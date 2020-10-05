@@ -1,7 +1,5 @@
 
 #include "Globals.h"
-#include <gl/GL.h>
-#include <gl/GLU.h>
 #include "Glew/include/glew.h"
 #include "Primitive.h"
 
