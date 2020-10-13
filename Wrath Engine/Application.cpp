@@ -1,4 +1,5 @@
 #include "Application.h"
+#include <Windows.h>
 
 Application::Application()
 {
@@ -127,3 +128,5 @@ void Application::AddModule(Module* mod)
 {
 	list_modules.add(mod);
 }
+
+void Application::RequestBrowser(char* url) { ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL); }
