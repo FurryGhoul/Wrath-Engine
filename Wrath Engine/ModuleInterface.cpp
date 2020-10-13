@@ -3,8 +3,6 @@
 #include "ModuleInterface.h"
 #include "ModuleWindow.h"
 
-#include "MathGeoLib/MathGeoLib.h"
-
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_sdl.h"
 #include "imgui/imgui_impl_opengl2.h"

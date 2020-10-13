@@ -1,6 +1,9 @@
-#pragma once
+#ifndef __MODULEINTERFACE_H__
+#define __MODULEINTERFACE_H__
+
 #include "Module.h"
 #include "Globals.h"
+#include "ImGui/imgui.h"
 
 class ModuleInterface : public Module
 {
@@ -17,4 +20,4 @@ public:
 private:
 	bool show_demo_window = false;
 };
-
+#endif
