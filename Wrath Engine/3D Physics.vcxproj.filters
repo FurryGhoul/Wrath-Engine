@@ -37,6 +37,9 @@
     <Filter Include="Sources\Tools\Glew">
       <UniqueIdentifier>{0eebb49b-1fa7-4d9e-8382-b9b3f9681258}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Tools\SDL">
+      <UniqueIdentifier>{de1ce162-0dda-430a-855a-29362eece06c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
