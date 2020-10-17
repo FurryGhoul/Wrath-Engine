@@ -11,6 +11,8 @@
 #include "ModuleCamera3D.h"
 #include "ModuleInterface.h"
 
+#include "UI_Config.h"
+
 class Application
 {
 public:
@@ -21,11 +23,14 @@ public:
 	ModuleCamera3D* camera;
 	ModuleInterface* ui;
 
+	UI_Config* configuration = nullptr;
+
 private:
 
 	Timer	ms_timer;
 	float	dt;
 	p2List<Module*> list_modules;
+	list<UI_Element*> list_UImodules;
 
 public:
 
@@ -38,9 +43,12 @@ public:
 
 	void RequestBrowser(char* url);
 
+	float milliseconds;
+
 private:
 
 	void AddModule(Module* mod);
+	void AddUIModule(UI_Element* mod);
 	void PrepareUpdate();
 	void FinishUpdate();
 };

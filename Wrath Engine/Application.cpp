@@ -10,6 +10,8 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	ui = new ModuleInterface(this);
 
+	configuration = new UI_Config(this);
+
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
 	// They will CleanUp() in reverse order
@@ -25,6 +27,9 @@ Application::Application()
 
 	// Renderer last!
 	AddModule(renderer3D);
+
+	//UI Modules
+	AddUIModule(configuration);
 }
 
 Application::~Application()
@@ -68,6 +73,8 @@ bool Application::Init()
 // ---------------------------------------------
 void Application::PrepareUpdate()
 {
+	milliseconds = ms_timer.Read();
+
 	dt = (float)ms_timer.Read() / 1000.0f;
 	ms_timer.Start();
 }
@@ -107,6 +114,10 @@ update_status Application::Update()
 		item = item->next;
 	}
 
+	//UI Update
+	for (list<UI_Element*>::iterator iter = list_UImodules.begin(); iter != list_UImodules.end() && ret == UPDATE_CONTINUE; iter++)
+		ret = (*iter)->Update(dt);
+
 	FinishUpdate();
 	return ret;
 }
@@ -127,6 +138,11 @@ bool Application::CleanUp()
 void Application::AddModule(Module* mod)
 {
 	list_modules.add(mod);
+}
+
+void Application::AddUIModule(UI_Element* mod)
+{
+	list_UImodules.push_back(mod);
 }
 
 void Application::RequestBrowser(char* url) { ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL); }

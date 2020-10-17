@@ -40,6 +40,9 @@
     <Filter Include="Sources\Tools\SDL">
       <UniqueIdentifier>{de1ce162-0dda-430a-855a-29362eece06c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\UI_Elements">
+      <UniqueIdentifier>{91aced8e-b1cd-4931-999e-21d5909e5de7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -330,6 +333,12 @@
     <ClInclude Include="MathGeoLib\Algorithm\LCG\LCG.h">
       <Filter>Sources\Tools\MathGeoLib\LGC</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Element.h">
+      <Filter>Sources\UI_Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="UI_Config.h">
+      <Filter>Sources\UI_Elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -505,6 +514,9 @@
     </ClCompile>
     <ClCompile Include="MathGeoLib\Algorithm\LCG\LCG.cpp">
       <Filter>Sources\Tools\MathGeoLib\LGC</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Config.cpp">
+      <Filter>Sources\UI_Elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

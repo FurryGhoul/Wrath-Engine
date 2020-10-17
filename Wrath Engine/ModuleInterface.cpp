@@ -3,6 +3,8 @@
 #include "ModuleInterface.h"
 #include "ModuleWindow.h"
 
+#include "UI_Config.h"
+
 #include "MathGeoLib/Math/float3.h"
 #include "MathGeoLib/MathGeoLib.h"
 #include "Glew/include/glew.h"
@@ -117,6 +119,7 @@ update_status ModuleInterface::Update(float dt)
 {
 	if (about_open)				this->CreateAboutWindow(&about_open);
 	if (hardware_open)				this->CreateHardwareWindow(&hardware_open);
+	if (config_open)				App->configuration->Draw(&config_open);
 
 	ImGui::ShowDemoWindow();
 
