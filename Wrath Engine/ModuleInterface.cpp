@@ -100,7 +100,6 @@ update_status ModuleInterface::PreUpdate(float dt)
 		}
 		if (ImGui::BeginMenu("Settings"))
 		{
-			if (ImGui::MenuItem("Configuration", NULL, &config_open)) {}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

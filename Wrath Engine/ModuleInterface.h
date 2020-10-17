@@ -22,7 +22,7 @@ public:
 
 public:
 	bool about_open = false;
-	bool config_open = false;
+	bool config_open = true;
 	bool hardware_open = false;
 
 private:
