@@ -21,10 +21,14 @@ public:
 
 public:
 	bool about_open = false;
+	bool hardware_open = true;
 	bool config_open = true;
-	bool hardware_open = false;
+	bool scene_open = true;
+
 
 private:
+	bool show_demo_window = false;
+
 	char* RDTSC;
 	char* MMX;
 	char* AVX;
@@ -34,7 +38,8 @@ private:
 	char* SSE41;
 	char* SSE42;
 
-private:
-	bool show_demo_window = false;
+	float fps[100];
+	float ms[100];
+	float bright_slider_scroll = 1;
 };
 #endif

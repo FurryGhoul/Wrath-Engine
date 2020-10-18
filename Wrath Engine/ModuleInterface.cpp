@@ -121,9 +121,10 @@ update_status ModuleInterface::PreUpdate(float dt)
 // Update
 update_status ModuleInterface::Update(float dt)
 {
-	if (about_open)				this->CreateAboutWindow(&about_open);
+	if (about_open)					this->CreateAboutWindow(&about_open);
 	if (hardware_open)				this->CreateHardwareWindow(&hardware_open);
 	if (config_open)				App->configuration->Draw(&config_open);
+	if (scene_open)					App->scene_ui->Draw(&scene_open);
 
 	ImGui::ShowDemoWindow();
 

@@ -12,6 +12,7 @@
 #include "ModuleInterface.h"
 
 #include "UI_Config.h"
+#include "UI_Scene.h"
 
 class Application
 {
@@ -24,6 +25,7 @@ public:
 	ModuleInterface* ui;
 
 	UI_Config* configuration = nullptr;
+	UI_Scene* scene_ui = nullptr;
 
 private:
 

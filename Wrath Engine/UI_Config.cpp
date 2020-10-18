@@ -10,6 +10,16 @@
 #include "MathGeoLib/Math/float3.h"
 #include "MathGeoLib/MathGeoLib.h"
 
+#include "Glew/include/glew.h"
+#include "SDL\include\SDL_opengl.h"
+#include <gl/GL.h>
+#include <gl/GLU.h>
+
+#include "ImGui\imgui.h"
+#include "ImGui/imgui_internal.h"
+#include "ImGui\imgui_impl_sdl.h"
+#include "ImGui\imgui_impl_opengl2.h"
+
 UI_Config::UI_Config(Application* app, bool start_enabled) : UI_Element(app, start_enabled) {}
 
 UI_Config::~UI_Config() {}
@@ -133,4 +143,16 @@ void UI_Config::Draw(bool* open)
 
 		ImGui::End();
 	}
+
+	glBegin(GL_LINES);
+	glColor3f(0.75f, 0.75f, 0.75f);
+
+	for (int i = -20; i <= 20; i++)
+	{
+		glVertex3f((float)i, 0, (float)-20);
+		glVertex3f((float)i, 0, (float)20);
+		glVertex3f((float)-20, 0, (float)i);
+		glVertex3f((float)20, 0, (float)i);
+	}
+	glEnd();
 }
