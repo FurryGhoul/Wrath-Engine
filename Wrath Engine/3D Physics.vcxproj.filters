@@ -339,6 +339,9 @@
     <ClInclude Include="UI_Config.h">
       <Filter>Sources\UI_Elements</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Scene.h">
+      <Filter>Sources\UI_Elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -516,6 +519,9 @@
       <Filter>Sources\Tools\MathGeoLib\LGC</Filter>
     </ClCompile>
     <ClCompile Include="UI_Config.cpp">
+      <Filter>Sources\UI_Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Scene.cpp">
       <Filter>Sources\UI_Elements</Filter>
     </ClCompile>
   </ItemGroup>

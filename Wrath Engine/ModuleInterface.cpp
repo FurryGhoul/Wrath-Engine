@@ -102,6 +102,11 @@ update_status ModuleInterface::PreUpdate(float dt)
 		{
 			ImGui::EndMenu();
 		}
+		if (ImGui::BeginMenu("Windows"))
+		{
+			if (ImGui::MenuItem("Configuration", NULL, &config_open)) {}
+			ImGui::EndMenu();
+		}
 		ImGui::EndMainMenuBar();
 	}
 

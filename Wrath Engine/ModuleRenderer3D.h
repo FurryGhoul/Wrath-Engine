@@ -25,4 +25,8 @@ public:
 	SDL_GLContext context;
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
+
+	uint buffer_tex = 0;
+	uint fbo = 0;
+	uint rbo;
 };

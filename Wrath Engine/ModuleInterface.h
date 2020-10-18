@@ -17,7 +17,6 @@ public:
 	bool CleanUp();
 
 	void CreateAboutWindow(bool* open);
-	void CreateConfigWindow(bool* open);
 	void CreateHardwareWindow(bool* open);
 
 public:

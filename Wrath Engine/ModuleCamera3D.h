@@ -18,15 +18,29 @@ public:
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
+	mat4x4 At(const vec3& right, const vec3& up, const vec3& direction);
+
 private:
 
 	void CalculateViewMatrix();
 
 public:
 	
-	vec3 X, Y, Z, Position, Reference;
+	vec3 X, Y, Z;
+	mat4x4 Camera_view;
+
+	vec3 cameraRef;
+	vec3 cameraPos;
+	vec3 cameraTarget;
+	vec3 cameraFront;
+
+	vec3 cameraDirection;
+	vec3 cameraRight;
+	vec3 cameraUp;
+	vec3 newPos;
 
 private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
+	Timer timer;
 };
