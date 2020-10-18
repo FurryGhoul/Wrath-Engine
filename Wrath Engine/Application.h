@@ -13,6 +13,7 @@
 
 #include "UI_Config.h"
 #include "UI_Scene.h"
+#include "UI_Hierarchy.h"
 
 class Application
 {
@@ -26,6 +27,7 @@ public:
 
 	UI_Config* configuration = nullptr;
 	UI_Scene* scene_ui = nullptr;
+	UI_Hierarchy* hierarchy = nullptr;
 
 private:
 

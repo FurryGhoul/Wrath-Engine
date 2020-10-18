@@ -125,8 +125,9 @@ update_status ModuleInterface::Update(float dt)
 	if (hardware_open)				this->CreateHardwareWindow(&hardware_open);
 	if (config_open)				App->configuration->Draw(&config_open);
 	if (scene_open)					App->scene_ui->Draw(&scene_open);
+	if (hierarchy_open)				App->hierarchy->Draw(&hierarchy_open);
 
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 
 	return UPDATE_CONTINUE;
 }

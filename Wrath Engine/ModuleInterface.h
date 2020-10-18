@@ -21,9 +21,10 @@ public:
 
 public:
 	bool about_open = false;
-	bool hardware_open = true;
+	bool hardware_open = false;
 	bool config_open = true;
 	bool scene_open = true;
+	bool hierarchy_open = true;
 
 
 private:
