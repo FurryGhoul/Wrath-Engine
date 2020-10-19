@@ -3,6 +3,7 @@
 #include "p2DynArray.h"
 #include "Globals.h"
 #include "Primitive.h"
+#include <vector>
 
 
 class ModuleSceneIntro : public Module
@@ -17,4 +18,10 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
+	//void CubeVertex();
+	//void CubeIndexes();
+
+public:
+	/*vector<uint> indices;
+	vector<vec3> vertexs;*/
 };

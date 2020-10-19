@@ -12,8 +12,13 @@ public:
 	void DrawGrid(int GridSize);
 	void DrawAxis(bool active);
 
+	void CubeDirectMode();
+	void CubeVertexArray();
+
 	bool active_grid = true;
 	bool active_axis = true;
 
 	int grid_size = 20;
+
+	uint cbo = 0;
 };

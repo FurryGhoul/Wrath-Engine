@@ -32,6 +32,8 @@ void UI_Scene::Draw(bool* open)
 
 		if (active_grid) DrawGrid(grid_size);
 		if (active_axis) DrawAxis(&active_axis);
+
+		CubeVertexArray();
 	}
 	ImGui::End();
 }
@@ -61,4 +63,126 @@ void UI_Scene::DrawAxis(bool active)
 	glColor3f(0.0, 0.0, 1.0);	glVertex3f(0.0, 0.0, 0.0);		glVertex3f(0.0, 0.0, 1.0);		// Z
 
 	glEnd();
+}
+
+void UI_Scene::CubeDirectMode()
+{
+	glLineWidth(2.0f);
+	glBegin(GL_TRIANGLES);
+
+	glColor3f(1.f, 1.f, 1.f);
+
+	//FRONT
+	glVertex3f(-1, 1, 1);
+	glVertex3f(-1, -1, 1);
+	glVertex3f(1, -1, 1);
+
+	glVertex3f(1, -1, 1);
+	glVertex3f(1, 1, 1);
+	glVertex3f(-1, 1, 1);
+
+	//RIGHT
+	glVertex3f(1, 1, 1);
+	glVertex3f(1, -1, 1);
+	glVertex3f(1, -1, -1);
+
+	glVertex3f(1, 1, 1);
+	glVertex3f(1, -1, -1);
+	glVertex3f(1, 1, -1);
+
+	//LEFT
+	glVertex3f(-1, 1, -1);
+	glVertex3f(-1, -1, -1);
+	glVertex3f(-1, -1, 1);
+
+	glVertex3f(-1, 1, -1);
+	glVertex3f(-1, -1, 1);
+	glVertex3f(-1, 1, 1);
+
+	//BACK
+	glVertex3f(1, 1, -1);
+	glVertex3f(1, -1, -1);
+	glVertex3f(-1, -1, -1);
+
+	glVertex3f(-1, -1, -1);
+	glVertex3f(-1, 1, -1);
+	glVertex3f(1, 1, -1);
+
+	//TOP
+	glVertex3f(-1, 1, 1);
+	glVertex3f(1, 1, 1);
+	glVertex3f(-1, 1, -1);
+
+	glVertex3f(1, 1, -1);
+	glVertex3f(-1, 1, -1);
+	glVertex3f(1, 1, 1);
+
+	//BOT
+	glVertex3f(1, -1, 1);
+	glVertex3f(-1, -1, 1);
+	glVertex3f(-1, -1, -1);
+
+	glVertex3f(-1, -1, -1);
+	glVertex3f(1, -1, -1);
+	glVertex3f(1, -1, 1);
+
+	glEnd();
+}
+
+void UI_Scene::CubeVertexArray()
+{
+	float vertexArray[] = {
+		-1, 1, 1,
+		-1, -1, 1,
+		1, -1, 1,
+
+		1, -1, 1,
+		1, 1, 1,
+		-1, 1, 1,
+
+		1, 1, 1,
+		1, -1, 1,
+		1, -1, -1,
+
+		1, 1, 1,
+		1, -1, -1,
+		1, 1, -1,
+
+		-1, 1, -1,
+		-1, -1, -1,
+		-1, -1, 1,
+
+		-1, 1, -1,
+		-1, -1, 1,
+		-1, 1, 1,
+
+		1, 1, -1,
+		1, -1, -1,
+		-1, -1, -1,
+
+		-1, -1, -1,
+		-1, 1, -1,
+		1, 1, -1,
+
+		-1, 1, 1,
+		1, 1, 1,
+		-1, 1, -1,
+
+		1, 1, -1,
+		-1, 1, -1,
+		1, 1, 1,
+
+		1, -1, 1,
+		-1, -1, 1,
+		-1, -1, -1,
+
+		-1, -1, -1,
+		1, -1, -1,
+		1, -1, 1,
+	};
+
+	cbo = 0;
+	glGenBuffers(1, (GLuint*)&(cbo));
+	glBindBuffer(GL_ARRAY_BUFFER, cbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 108, vertexArray, GL_STATIC_DRAW);
 }
