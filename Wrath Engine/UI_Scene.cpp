@@ -33,7 +33,7 @@ void UI_Scene::Draw(bool* open)
 		if (active_grid) DrawGrid(grid_size);
 		if (active_axis) DrawAxis(&active_axis);
 
-		CubeVertexArray();
+		//CubeVertexArray();
 	}
 	ImGui::End();
 }
