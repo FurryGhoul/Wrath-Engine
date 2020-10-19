@@ -27,6 +27,14 @@ enum update_status
 	UPDATE_ERROR
 };
 
+enum Component_Type 
+{ 
+	NO_TYPE, 
+	MESH, 
+	MATERIAL, 
+	TRANSFORM 
+};
+
 // Configuration -----------
 #define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 1024
