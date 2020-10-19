@@ -10,6 +10,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleInterface.h"
+#include "ModuleLoader.h"
 
 #include "UI_Config.h"
 #include "UI_Scene.h"
@@ -24,6 +25,7 @@ public:
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 	ModuleInterface* ui;
+	ModuleLoader* loader;
 
 	UI_Config* configuration = nullptr;
 	UI_Scene* scene_ui = nullptr;
