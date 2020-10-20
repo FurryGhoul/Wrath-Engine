@@ -127,6 +127,7 @@
     <ClInclude Include="ModuleLoader.h" />
     <ClInclude Include="Parson\parson.h" />
     <ClInclude Include="UI_Config.h" />
+    <ClInclude Include="UI_Console.h" />
     <ClInclude Include="UI_Element.h" />
     <ClInclude Include="ImGui\imconfig.h" />
     <ClInclude Include="ImGui\imgui.h" />
@@ -283,6 +284,7 @@
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UI_Config.cpp" />
+    <ClCompile Include="UI_Console.cpp" />
     <ClCompile Include="UI_Hierarchy.cpp" />
     <ClCompile Include="UI_Scene.cpp" />
   </ItemGroup>

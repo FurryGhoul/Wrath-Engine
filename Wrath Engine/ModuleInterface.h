@@ -25,6 +25,7 @@ public:
 	bool config_open = true;
 	bool scene_open = true;
 	bool hierarchy_open = true;
+	bool console_open = true;
 
 
 private:

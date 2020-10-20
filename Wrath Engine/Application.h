@@ -15,6 +15,7 @@
 #include "UI_Config.h"
 #include "UI_Scene.h"
 #include "UI_Hierarchy.h"
+#include "UI_Console.h"
 
 class Application
 {
@@ -30,6 +31,7 @@ public:
 	UI_Config* configuration = nullptr;
 	UI_Scene* scene_ui = nullptr;
 	UI_Hierarchy* hierarchy = nullptr;
+	UI_Console* console = nullptr;
 
 private:
 
@@ -58,3 +60,5 @@ private:
 	void PrepareUpdate();
 	void FinishUpdate();
 };
+
+extern Application* App;

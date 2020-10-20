@@ -14,6 +14,7 @@ Application::Application()
 	configuration = new UI_Config(this);
 	scene_ui = new UI_Scene(this);
 	hierarchy = new UI_Hierarchy(this);
+	console = new UI_Console(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -36,6 +37,7 @@ Application::Application()
 	AddUIModule(configuration);
 	AddUIModule(scene_ui);
 	AddUIModule(hierarchy);
+	AddUIModule(console);
 }
 
 Application::~Application()

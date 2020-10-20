@@ -492,6 +492,9 @@
     <ClInclude Include="Component.h">
       <Filter>Sources\GameObjects\Components</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Console.h">
+      <Filter>Sources\UI_Elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -688,6 +691,9 @@
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Sources\GameObjects\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Console.cpp">
+      <Filter>Sources\UI_Elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

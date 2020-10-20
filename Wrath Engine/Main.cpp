@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include "Application.h"
 #include "Globals.h"
+#include "UI_Console.h"
 
 #include "SDL/include/SDL.h"
 #pragma comment( lib, "SDL/libx86/SDL2.lib" )
@@ -15,13 +16,14 @@ enum main_states
 	MAIN_EXIT
 };
 
-int main(int argc, char ** argv)
+Application* App = NULL;
+
+int main(int argc, char** argv)
 {
 	LOG("Starting game '%s'...", TITLE);
 
 	int main_return = EXIT_FAILURE;
 	main_states state = MAIN_CREATION;
-	Application* App = NULL;
 
 	while (state != MAIN_EXIT)
 	{
@@ -63,7 +65,7 @@ int main(int argc, char ** argv)
 			if (update_return == UPDATE_STOP)
 				state = MAIN_FINISH;
 		}
-			break;
+		break;
 
 		case MAIN_FINISH:
 
@@ -82,7 +84,7 @@ int main(int argc, char ** argv)
 		}
 	}
 
-	delete App;
+	delete App; App = nullptr;
 	LOG("Exiting game '%s'...\n", TITLE);
 	return main_return;
 }
