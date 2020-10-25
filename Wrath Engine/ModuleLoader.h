@@ -21,13 +21,13 @@ public:
 	update_status PostUpdate(float dt);
 		
 	bool CleanUp();
-	//bool Import(const string& pFile);
+	bool Import(const string& pFile);
 
-	//uint Texturing(const char* file_name);
+	uint Texturing(const char* file_name);
 
 	//string module_name;
-	//string path;
+	string path;
 
-	//vec2 TextureSize;
+	vec2 TextureSize;
 };
 

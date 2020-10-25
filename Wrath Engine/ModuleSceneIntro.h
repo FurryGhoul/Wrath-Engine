@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include "Primitive.h"
 #include <vector>
+#include "GameObject.h"
 
 
 class ModuleSceneIntro : public Module
@@ -23,5 +24,8 @@ public:
 
 public:
 	/*vector<uint> indices;
-	vector<vec3> vertexs;*/
+	vector<vec3> vertexs;*/	
+
+	GameObject* root;
+	vector<GameObject*> gameobjects;
 };
