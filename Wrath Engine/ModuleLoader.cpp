@@ -77,8 +77,8 @@ bool ModuleLoader::Import(const string& pFile)
 	{
 		GameObject* GO = new GameObject();
 		GO->name = pFile.c_str();
-		App->scene_intro->root->children.push_back(GO);
-		App->scene_intro->gameobjects.push_back(GO);
+		App->scene->root->children.push_back(GO);
+		App->scene->gameobjects.push_back(GO);
 
 		for (int i = 0; i < scene->mNumMeshes; ++i)
 		{
@@ -147,7 +147,7 @@ bool ModuleLoader::Import(const string& pFile)
 				glBufferData(GL_TEXTURE_COORD_ARRAY, sizeof(uint) * new_mesh->num_vertices * 2, new_mesh->texture_coords, GL_STATIC_DRAW);
 				glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
 
-				App->scene_intro->gameobjects.push_back(newGO);
+				App->scene->gameobjects.push_back(newGO);
 			}
 		}
 	}
