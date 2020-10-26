@@ -1,5 +1,8 @@
 #include "GameObject.h"
 #include "Component.h"
+#include "ComponentMesh.h"
+#include "ComponentMaterial.h"
+#include "ComponentTransform.h"
 
 GameObject::GameObject() {}
 
@@ -38,14 +41,17 @@ Component* GameObject::AddComponent(Component_Type comp_type)
 		break;
 
 	case MESH:
+		ret = new ComponentMesh(comp_type, this);
 		components.push_back(ret);
 		break;
 
 	case MATERIAL:
+		ret = new ComponentMaterial(this);
 		components.push_back(ret);
 		break;
 
 	case TRANSFORM:
+		ret = new ComponentTransform(this);
 		components.push_back(ret);
 		break;
 	}

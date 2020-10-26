@@ -10,6 +10,9 @@
 struct Mesh;
 
 class Component;
+class ComponentTransform;
+class ComponentMesh;
+class ComponentMaterial;
 
 using namespace std;
 

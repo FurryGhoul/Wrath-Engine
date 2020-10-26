@@ -21,22 +21,18 @@ ModuleScene::~ModuleScene()
 // Load assets
 bool ModuleScene::Start()
 {
-	LOG("Loading Intro assets");
-	bool ret = true;
-
-	/*App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
-	App->camera->LookAt(vec3(0, 0, 0));*/
+	LOG("Loading scene");
 
 	root = new GameObject(nullptr, "Root");
-	//App->loader->Import("BakerHouse.fbx");
+	App->loader->Import("BakerHouse.fbx");
 
-	return ret;
+	return true;
 }
 
 // Load assets
 bool ModuleScene::CleanUp()
 {
-	LOG("Unloading Intro scene");
+	LOG("Unloading scene");
 
 	return true;
 }
