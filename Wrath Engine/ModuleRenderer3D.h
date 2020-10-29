@@ -14,6 +14,7 @@ public:
 
 	bool Init();
 	update_status PreUpdate(float dt);
+	update_status Update(float dt);
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
@@ -29,4 +30,11 @@ public:
 	uint buffer_tex = 0;
 	uint fbo = 0;
 	uint rbo;
+
+	bool vsync = false;
+	bool lightning = true;
+	bool backface = true;
+	bool lights_on = false;
+	bool wireframe = false;
+	bool textured = true;
 };

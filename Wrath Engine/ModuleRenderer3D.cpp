@@ -106,6 +106,20 @@ bool ModuleRenderer3D::Init()
 	return ret;
 }
 
+update_status ModuleRenderer3D::Update(float dt)
+{
+	if (lightning) { lights[0].Active(true); }
+	else lights[0].Active(false);
+	if (backface) { glEnable(GL_CULL_FACE); }
+	else { glDisable(GL_CULL_FACE); }
+	if (!lights_on) { glEnable(GL_LIGHTING); }
+	else { glDisable(GL_LIGHTING); }
+	if (textured) { glEnable(GL_TEXTURE_2D); }
+	else { glDisable(GL_TEXTURE_2D); }
+
+	return UPDATE_CONTINUE;
+}
+
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
@@ -128,11 +142,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	int result = 0;
-	//App->scene_intro->Draw();
+	App->scene->Draw();
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	ImGui::Render();
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &result);
