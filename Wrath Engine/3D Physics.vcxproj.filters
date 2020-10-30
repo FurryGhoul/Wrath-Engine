@@ -504,6 +504,9 @@
     <ClInclude Include="ModuleScene.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="UI_Inspector.h">
+      <Filter>Sources\UI_Elements</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -712,6 +715,9 @@
     </ClCompile>
     <ClCompile Include="ModuleScene.cpp">
       <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="UI_Inspector.cpp">
+      <Filter>Sources\UI_Elements</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

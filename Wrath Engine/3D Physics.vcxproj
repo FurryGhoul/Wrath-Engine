@@ -221,6 +221,7 @@
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="UI_Hierarchy.h" />
+    <ClInclude Include="UI_Inspector.h" />
     <ClInclude Include="UI_Scene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +293,7 @@
     <ClCompile Include="UI_Config.cpp" />
     <ClCompile Include="UI_Console.cpp" />
     <ClCompile Include="UI_Hierarchy.cpp" />
+    <ClCompile Include="UI_Inspector.cpp" />
     <ClCompile Include="UI_Scene.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,7 @@
 #include "UI_Scene.h"
 #include "UI_Hierarchy.h"
 #include "UI_Console.h"
+#include "UI_Inspector.h"
 
 class Application
 {
@@ -32,6 +33,7 @@ public:
 	UI_Scene* scene_ui = nullptr;
 	UI_Hierarchy* hierarchy = nullptr;
 	UI_Console* console = nullptr;
+	UI_Inspector* inspector = nullptr;
 
 private:
 

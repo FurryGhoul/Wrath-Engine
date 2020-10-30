@@ -127,6 +127,7 @@ update_status ModuleInterface::Update(float dt)
 	if (scene_open)					App->scene_ui->Draw(&scene_open);
 	if (hierarchy_open)				App->hierarchy->Draw(&hierarchy_open);
 	if (console_open)				App->console->Draw(&console_open);
+	if (inspector_open)				App->inspector->Draw(&inspector_open);
 
 	//ImGui::ShowDemoWindow();
 

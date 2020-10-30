@@ -26,7 +26,7 @@ public:
 	bool scene_open = true;
 	bool hierarchy_open = true;
 	bool console_open = true;
-
+	bool inspector_open = true;
 
 private:
 	bool show_demo_window = false;
