@@ -79,17 +79,15 @@ void UI_Config::Draw(bool* open)
 
 		if (ImGui::CollapsingHeader("Renderer"))
 		{
-			/*ImGui::Checkbox("Axis Active", &App->scene->active_axis);
-			ImGui::Checkbox("Grid Active", &App->scene->active_grid);
+			ImGui::Checkbox("Axis Active", &App->scene_ui->active_axis);
+			ImGui::Checkbox("Grid Active", &App->scene_ui->active_grid);
 			ImGui::Checkbox("Lighting", &App->renderer3D->lightning);
 			ImGui::Checkbox("Lights Abled", &App->renderer3D->lights_on);
 			ImGui::Checkbox("Backface Culling", &App->renderer3D->backface);
 			ImGui::Checkbox("Textured", &App->renderer3D->textured);
-			ImGui::Checkbox("Bounding Box", &App->renderer3D->boundingbox);
-			if (ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe)) { App->renderer3D->ActivateWireframe(); }
 
-			ImGui::Separator();
-			ImGui::SliderInt("Grid Size", &App->scene->grid_size, 0, 100);*/
+			if (ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe)) { App->renderer3D->ActivateWireframe(); }
+			ImGui::SliderInt("Grid Size", &App->scene_ui->grid_size, 0, 100);
 		}
 
 		if (ImGui::CollapsingHeader("Time Manager"))
@@ -143,16 +141,4 @@ void UI_Config::Draw(bool* open)
 
 		ImGui::End();
 	}
-
-	glBegin(GL_LINES);
-	glColor3f(0.75f, 0.75f, 0.75f);
-
-	for (int i = -20; i <= 20; i++)
-	{
-		glVertex3f((float)i, 0, (float)-20);
-		glVertex3f((float)i, 0, (float)20);
-		glVertex3f((float)-20, 0, (float)i);
-		glVertex3f((float)20, 0, (float)i);
-	}
-	glEnd();
 }
