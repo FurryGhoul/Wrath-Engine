@@ -36,7 +36,6 @@ public:
 
 	GameObject* parent;
 
-
 	list<Component*> components;
 	vector<GameObject*> children;
 

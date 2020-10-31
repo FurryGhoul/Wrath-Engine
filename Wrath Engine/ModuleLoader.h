@@ -23,7 +23,7 @@ public:
 	bool CleanUp();
 	bool Import(const string& pFile);
 
-	uint Texturing(const char* file_name);
+	uint Texturing(ComponentMaterial* material, const char* file_name);
 
 	//string module_name;
 	string path;

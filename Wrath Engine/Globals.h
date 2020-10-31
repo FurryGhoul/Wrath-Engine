@@ -6,6 +6,7 @@
 
 #include <windows.h>
 #include <stdio.h>
+#include <string>
 
 #define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
 
@@ -45,3 +46,14 @@ enum Component_Type
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
 #define TITLE "3D Physics Playground"
+
+struct texture
+{
+	uint textureID;
+	uint width;
+	uint height;
+	std::string name;
+	std::string path;
+	uint depth;
+	uint BPP;
+};

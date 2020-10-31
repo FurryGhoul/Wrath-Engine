@@ -60,9 +60,12 @@ void ModuleScene::Draw()
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
 				glVertexPointer(3, GL_FLOAT, 0, &mesh->vertices[0]);
 
-				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-				glBindTexture(GL_TEXTURE_2D, mesh->texture);
-				glTexCoordPointer(2, GL_FLOAT, 0, &mesh->texture_coords[0]);
+				if (ComponentMaterial* material = (ComponentMaterial*)(*iter)->parent->GetComponent(MATERIAL) )
+				{
+					glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+					glBindTexture(GL_TEXTURE_2D, material->textureID);
+					glTexCoordPointer(2, GL_FLOAT, 0, &mesh->texture_coords[0]);
+				}
 
 				glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
 

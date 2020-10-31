@@ -5,6 +5,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "ComponentMesh.h"
+#include "ComponentMaterial.h"
 
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -106,15 +107,9 @@ bool ModuleLoader::Import(const string& pFile)
 				}
 			}
 
-			if (mesh->HasFaces())
+			if (scene->HasMaterials())
 			{
-				new_mesh->num_indices = mesh->mNumFaces * 3;
-				new_mesh->indices = new uint[new_mesh->num_indices]; // assume each face is a triangle
-				for (uint i = 0; i < mesh->mNumFaces; ++i)
-				{
-					if (mesh->mFaces[i].mNumIndices != 3) { LOG("WARNING, geometry face with != 3 indices!"); }
-					else { memcpy(&new_mesh->indices[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint)); }
-				}
+				ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
 
 				aiString material_path;
 				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
@@ -128,13 +123,24 @@ bool ModuleLoader::Import(const string& pFile)
 				}
 
 				file_path += material_name;
-				new_mesh->texture = Texturing(file_path.c_str());
+				new_material->textureID = Texturing(new_material, file_path.c_str());
 
-				if (new_mesh->texture == 0)
+				if (new_material->textureID == 0)
 				{
 					file_path = "Assets/Textures/" + material_name;
-					new_mesh->texture = Texturing(file_path.c_str());
+					new_material->textureID = Texturing(new_material, file_path.c_str());
 					LOG("%s", file_path);
+				}
+			}
+
+			if (mesh->HasFaces())
+			{
+				new_mesh->num_indices = mesh->mNumFaces * 3;
+				new_mesh->indices = new uint[new_mesh->num_indices]; // assume each face is a triangle
+				for (uint i = 0; i < mesh->mNumFaces; ++i)
+				{
+					if (mesh->mFaces[i].mNumIndices != 3) { LOG("WARNING, geometry face with != 3 indices!"); }
+					else { memcpy(&new_mesh->indices[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint)); }
 				}
 
 				glGenBuffers(1, (GLuint*)&(new_mesh->id_indices));
@@ -158,12 +164,12 @@ bool ModuleLoader::Import(const string& pFile)
 	return true;
 }
 
-uint ModuleLoader::Texturing(const char* file_name)
+uint ModuleLoader::Texturing(ComponentMaterial* material, const char* file_name)
 {
 	ILuint imageID = 0;
-	GLuint textureID = 0;
 	ILenum error;
 	ILinfo ImageInfo;
+	texture* new_texture = new texture;
 
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
@@ -176,8 +182,8 @@ uint ModuleLoader::Texturing(const char* file_name)
 		ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 		iluGetImageInfo(&ImageInfo);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-		glGenTextures(1, &textureID);
-		glBindTexture(GL_TEXTURE_2D, textureID);
+		glGenTextures(1, &new_texture->textureID);
+		glBindTexture(GL_TEXTURE_2D, new_texture->textureID);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -187,14 +193,29 @@ uint ModuleLoader::Texturing(const char* file_name)
 		uint texture_width = ImageInfo.Width; uint texture_height = ImageInfo.Height;
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture_width, texture_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, ilGetData());
 		glBindTexture(GL_TEXTURE_2D, 0);
+
+		material->path = file_name;
+		material->width = ImageInfo.Width;
+		material->height = ImageInfo.Height;
+		material->depth = ImageInfo.Depth;
+		material->BPP = ImageInfo.Bpp;
+
 		LOG("Texture loaded succesfuly!")
 
 			TextureSize = { (float)texture_width, (float)texture_height };
 	}
-	else 	while (error = ilGetError()) { LOG("Error %d: %s", error, iluErrorString(error)); }
+
+	else
+	{
+		while (error = ilGetError()) 
+		{ 
+			LOG("Error %d: %s", error, iluErrorString(error)); 
+		}
+		return 0;
+	}
 
 	ilDeleteImages(1, &imageID);
-	return textureID;
+	return new_texture->textureID;
 }
 
 

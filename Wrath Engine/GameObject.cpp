@@ -46,7 +46,7 @@ Component* GameObject::AddComponent(Component_Type comp_type)
 		break;
 
 	case MATERIAL:
-		ret = new ComponentMaterial(this);
+		ret = new ComponentMaterial(comp_type, this);
 		components.push_back(ret);
 		break;
 

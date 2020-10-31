@@ -62,6 +62,9 @@ void UI_Inspector::Draw(bool* open)
 					ImGui::Text("Texture Width: %.01f", App->loader->TextureSize.x);
 					ImGui::Text("Texture Height: %.01f", App->loader->TextureSize.y);
 					ImGui::Text("Path: MotoresJuan/Game/%s", App->loader->path.c_str());
+					float panelWidth = ImGui::GetWindowContentRegionWidth();
+					float conversionFactor = panelWidth / App->loader->TextureSize.x;
+					ImVec2 imageSize = { App->loader->TextureSize.y * conversionFactor, panelWidth };
 				}
 			}
 
