@@ -10,7 +10,7 @@ public:
 
 	void Draw(bool* open);
 
-	char app_name[30] = "Motores Juan";
+	char app_name[30] = "Wrath Engine";
 	char org[30] = "UPC CITM";
 
 private:

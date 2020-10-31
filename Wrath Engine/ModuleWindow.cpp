@@ -92,3 +92,45 @@ void ModuleWindow::SetTitle(const char* title)
 {
 	SDL_SetWindowTitle(window, title);
 }
+
+void ModuleWindow::SetLightSlider(float brightness)
+{
+	SDL_SetWindowBrightness(window, brightness);
+	this->brightness = brightness;
+}
+
+void ModuleWindow::SetWindowSize(int width, int height)
+{
+	SDL_SetWindowSize(window, width, height);
+	this->height = height, this->width = width;
+}
+
+void ModuleWindow::SetFullscreen(bool fullscreen)
+{
+	Uint32 flags = fullscreen ? SDL_WINDOW_FULLSCREEN : 0;
+	SDL_SetWindowFullscreen(window, flags);
+	this->fullscreen = fullscreen;
+	SDL_GetWindowSize(window, &width, &height);
+}
+
+void ModuleWindow::SetResizable(bool resizable)
+{
+	resizable ? SDL_WINDOW_RESIZABLE, SDL_SetWindowResizable(window, (SDL_TRUE)) : 0, SDL_SetWindowResizable(window, (SDL_FALSE));
+	this->resizable = resizable;
+	SDL_GetWindowSize(window, &width, &height);
+}
+
+void ModuleWindow::SetBorderless(bool borderless)
+{
+	borderless ? SDL_SetWindowBordered(window, SDL_FALSE) : SDL_SetWindowBordered(window, (SDL_TRUE));
+	this->borderless = borderless;
+	SDL_GetWindowSize(window, &width, &height);
+}
+
+void ModuleWindow::SetFullDesktop(bool fulldesktop)
+{
+	Uint32 flags = fulldesktop ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0;
+	SDL_SetWindowFullscreen(window, flags);
+	this->fulldesktop = fulldesktop;
+	SDL_GetWindowSize(window, &width, &height);
+}
