@@ -13,6 +13,10 @@
 #include "imgui/imgui_impl_sdl.h"
 #include "imgui/imgui_impl_opengl2.h"
 
+#include "Devil/includes/il.h"
+#include "Parson/parson.h"
+#include "Assimp/include/version.h"
+
 ModuleInterface::ModuleInterface(Application* app, bool start_enabled) : Module(app, start_enabled) {}
 
 ModuleInterface::~ModuleInterface() {}
@@ -25,7 +29,7 @@ bool ModuleInterface::Start()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable, ImGuiConfigFlags_NavEnableKeyboard;
 
 	ImGui::StyleColorsDark();
 
@@ -70,7 +74,6 @@ update_status ModuleInterface::PreUpdate(float dt)
 	ImGui::Begin("Docking", 0, window_flags);
 	ImGui::PopStyleVar(3);
 
-	//TODO: Create Menu Bar
 	if (ImGui::BeginMainMenuBar())
 	{
 		if (ImGui::BeginMenu("File"))
@@ -105,6 +108,10 @@ update_status ModuleInterface::PreUpdate(float dt)
 		if (ImGui::BeginMenu("Windows"))
 		{
 			if (ImGui::MenuItem("Configuration", NULL, &config_open)) {}
+			if (ImGui::MenuItem("Hierarchy", NULL, &hierarchy_open)) {}
+			if (ImGui::MenuItem("Inspector", NULL, &inspector_open)) {}
+			if (ImGui::MenuItem("Console", NULL, &console_open)) {}
+			if (ImGui::MenuItem("Scene", NULL, &scene_open)) {}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
@@ -144,9 +151,9 @@ void ModuleInterface::CreateAboutWindow(bool* open)
 	ImGui::OpenPopup("About");
 	if (ImGui::BeginPopupModal("About"))
 	{
-		ImGui::Text("Motores Juan"), ImGui::Separator();
+		ImGui::Text("Wrath Engine"), ImGui::Separator();
 		ImGui::Text("This is a video game engine with academic purposes.");
-		ImGui::Text("By Roger Sanchez and Ivan Drofiak.");
+		ImGui::Text("By Ivan Drofiak.");
 		ImGui::Text("Licensed under the MIT License."), ImGui::Separator();
 
 		ImGui::Text("External Libraries We Used:");
@@ -178,9 +185,9 @@ void ModuleInterface::CreateHardwareWindow(bool* open)
 
 
 		ImGui::Text("SDL Version: %d.%d.%d", ver.major, ver.minor, ver.patch);
-		//ImGui::Text("Assimp Version: %i", aiGetVersionMajor());
+		ImGui::Text("Assimp Version: %i", aiGetVersionMajor());
 		ImGui::Text("Open GL Version: %s", glGetString(GL_VERSION));
-		//ImGui::Text("DevIL Version: %i", IL_VERSION);
+		ImGui::Text("DevIL Version: %i", IL_VERSION);
 		ImGui::Text("MathGeoLib Version: %.02f", mathgeolibversion);
 		ImGui::Text("Glew Version: %s", glewGetString(GLEW_VERSION));
 
