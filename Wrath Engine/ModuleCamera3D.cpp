@@ -82,6 +82,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 	if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT)	//Orbit movement
 	{
+		App->camera->LookAt(vec3(0, 0, 0));
 		if (mouse_x != 0) { X = rotate(X, DeltaX, vec3(0.0f, 1.0f, 0.0f)); Y = rotate(Y, DeltaX, vec3(0.0f, 1.0f, 0.0f)); Z = rotate(Z, DeltaX, vec3(0.0f, 1.0f, 0.0f)); }		//Mouse X Right
 		if (mouse_y != 0) { Y = rotate(Y, DeltaY, X); Z = rotate(Z, DeltaY, X); if (Y.y < 0.0f) { Z = vec3(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);	Y = cross(Z, X); } }				//Mouse Y Left
 		cameraPos = Z * length(cameraPos);
