@@ -52,7 +52,6 @@ public:
 	bool CleanUp();
 
 	void RequestBrowser(char* url);
-	void ExitApp();
 
 	float milliseconds;
 

@@ -97,7 +97,7 @@ update_status ModuleInterface::PreUpdate(float dt)
 		{
 			if (ImGui::MenuItem("About", NULL, &about_open)) {}
 			if (ImGui::MenuItem("Hardware Info", NULL, &hardware_open)) {}
-			if (ImGui::MenuItem("GitHub", false, true)) {}
+			if (ImGui::MenuItem("GitHub", false, true)) { App->RequestBrowser("https://github.com/FurryGhoul/Wrath-Engine"); }
 			if (ImGui::MenuItem("Controls", NULL)) {}
 			ImGui::EndMenu();
 		}
@@ -121,11 +121,6 @@ update_status ModuleInterface::PreUpdate(float dt)
 	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
 	ImGui::End();
-
-	if (exit)
-	{
-		return UPDATE_STOP;
-	}
 
 	return UPDATE_CONTINUE;
 }

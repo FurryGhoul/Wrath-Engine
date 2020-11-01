@@ -157,7 +157,3 @@ void Application::AddUIModule(UI_Element* mod)
 
 void Application::RequestBrowser(char* url) { ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL); }
 
-void Application::ExitApp()
-{
-
-}
