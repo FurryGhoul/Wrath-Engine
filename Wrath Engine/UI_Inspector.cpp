@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
+#include "ComponentTransform.h"
+#include "MathGeoLib/Math/float4x4.h"
 
 UI_Inspector::UI_Inspector(Application* app, bool start_enabled) : UI_Element(app, start_enabled) {}
 
@@ -27,6 +29,19 @@ void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 		
 		if (selectedGO != nullptr)
 		{
+			if (ComponentTransform* transform = (ComponentTransform*)selectedGO->GetComponent(TRANSFORM))
+			{
+				ImGui::Text("Transform");
+
+				math::float4x4 localTransform = transform->GetLocalMatrix();
+
+				ImGui::DragInt3("Position", (int*)&localTransform.TranslatePart(), 0.25f);
+				ImGui::SliderInt3("Rotation", (int*)&localTransform.RotatePart().ToEulerXYZ(), 0.0f, 360.0f);
+				ImGui::DragInt3("Scale", (int*)&localTransform.ExtractScale(), 0.25f, 1.0f, 1000.0f);
+				ImGui::Separator();
+				ImGui::Separator();
+			}
+
 			if (ComponentMesh* mesh = (ComponentMesh*)selectedGO->GetComponent(MESH))
 			{
 				ImGui::Text("Mesh");

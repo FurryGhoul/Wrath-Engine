@@ -4,10 +4,14 @@
 #include "ComponentMaterial.h"
 #include "ComponentTransform.h"
 
-GameObject::GameObject() {}
+GameObject::GameObject() 
+{ 
+	AddComponent(TRANSFORM); 
+}
 
 GameObject::GameObject(GameObject* parent, string name)
 {
+	AddComponent(TRANSFORM);
 	this->parent = parent;
 	this->name = name;
 }
@@ -51,7 +55,7 @@ Component* GameObject::AddComponent(Component_Type comp_type)
 		break;
 
 	case TRANSFORM:
-		ret = new ComponentTransform(this);
+		ret = new ComponentTransform(comp_type, this);
 		components.push_back(ret);
 		break;
 	}

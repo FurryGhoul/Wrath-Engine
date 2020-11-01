@@ -89,6 +89,7 @@ bool ModuleLoader::Import(const string& pFile)
 			newGO->name = mesh->mName.C_Str();
 			GO->children.push_back(newGO);
 
+			//ComponentTransform* new_transform = (ComponentTransform*)newGO->AddComponent(TRANSFORM);
 			ComponentMesh* new_mesh = (ComponentMesh*)newGO->AddComponent(MESH);
 
 			new_mesh->num_vertices = mesh->mNumVertices;

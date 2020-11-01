@@ -15,9 +15,6 @@ public:
 	void Draw(GameObject* selectedGO, bool* open);
 
 public:
-	GameObject* selectedGO = nullptr;
-	ComponentMesh* meshes = nullptr;
-	ComponentMaterial* materials = nullptr;
 
 	int numChildren = 0;
 
