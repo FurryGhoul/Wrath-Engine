@@ -6,10 +6,9 @@
 class ComponentMaterial : public Component
 {
 public:
+	ComponentMaterial();
 	ComponentMaterial(Component_Type type, GameObject* parent);
 	~ComponentMaterial();
-
-	void GetTextureInfo(texture textureInfo);
 
 public:
 	uint textureID;

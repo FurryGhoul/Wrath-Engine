@@ -3,6 +3,7 @@
 
 class GameObject;
 class ComponentMesh;
+class ComponentMaterial;
 
 class UI_Inspector : public UI_Element
 {
@@ -11,11 +12,12 @@ public:
 	~UI_Inspector();
 
 
-	void Draw(bool* open);
+	void Draw(GameObject* selectedGO, bool* open);
 
 public:
 	GameObject* selectedGO = nullptr;
 	ComponentMesh* meshes = nullptr;
+	ComponentMaterial* materials = nullptr;
 
 	int numChildren = 0;
 

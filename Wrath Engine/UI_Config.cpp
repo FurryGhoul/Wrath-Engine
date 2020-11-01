@@ -69,8 +69,11 @@ void UI_Config::Draw(bool* open)
 			ImGui::Text("Refresh Rate: %.3f ms/frame", ImGui::GetIO().Framerate);
 
 			if (ImGui::SliderFloat("Brightness", &bright_slider_scroll, 0.0f, 1.0f)) { App->window->SetLightSlider(bright_slider_scroll); }
-			if (ImGui::SliderInt("Width", &width_slider_scroll, 640, 2048) && resizable) { App->window->SetWindowSize(width_slider_scroll, height_slider_scroll); }
-			if (ImGui::SliderInt("Height", &height_slider_scroll, 480, 1536) && resizable) { App->window->SetWindowSize(width_slider_scroll, height_slider_scroll); }
+			if (resizable)
+			{
+				if (ImGui::SliderInt("Width", &width_slider_scroll, 640, 2048) && resizable) { App->window->SetWindowSize(width_slider_scroll, height_slider_scroll); }
+				if (ImGui::SliderInt("Height", &height_slider_scroll, 480, 1536) && resizable) { App->window->SetWindowSize(width_slider_scroll, height_slider_scroll); }
+			}
 			if (ImGui::Checkbox("FullScreen", &fullscreen)) { fullscreen ? App->window->SetFullscreen(true) : App->window->SetFullscreen(false); } 	ImGui::SameLine();
 			if (ImGui::Checkbox("Resizable", &resizable)) { resizable ? App->window->SetResizable(true) : App->window->SetResizable(false); }
 			if (ImGui::Checkbox("Borderless", &borderless)) { borderless ? App->window->SetBorderless(true) : App->window->SetBorderless(false); } ImGui::SameLine();

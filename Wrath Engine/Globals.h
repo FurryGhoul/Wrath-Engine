@@ -46,14 +46,3 @@ enum Component_Type
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
 #define TITLE "3D Physics Playground"
-
-struct texture
-{
-	uint textureID;
-	uint width;
-	uint height;
-	std::string name;
-	std::string path;
-	uint depth;
-	uint BPP;
-};

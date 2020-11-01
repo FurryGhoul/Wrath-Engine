@@ -124,6 +124,7 @@ bool ModuleLoader::Import(const string& pFile)
 
 				file_path += material_name;
 				new_material->textureID = Texturing(new_material, file_path.c_str());
+				new_material->name = material_name;
 
 				if (new_material->textureID == 0)
 				{
@@ -169,7 +170,6 @@ uint ModuleLoader::Texturing(ComponentMaterial* material, const char* file_name)
 	ILuint imageID = 0;
 	ILenum error;
 	ILinfo ImageInfo;
-	texture* new_texture = new texture;
 
 	ilGenImages(1, &imageID);
 	ilBindImage(imageID);
@@ -182,8 +182,8 @@ uint ModuleLoader::Texturing(ComponentMaterial* material, const char* file_name)
 		ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
 		iluGetImageInfo(&ImageInfo);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-		glGenTextures(1, &new_texture->textureID);
-		glBindTexture(GL_TEXTURE_2D, new_texture->textureID);
+		glGenTextures(1, &material->textureID);
+		glBindTexture(GL_TEXTURE_2D, material->textureID);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -215,7 +215,7 @@ uint ModuleLoader::Texturing(ComponentMaterial* material, const char* file_name)
 	}
 
 	ilDeleteImages(1, &imageID);
-	return new_texture->textureID;
+	return material->textureID;
 }
 
 

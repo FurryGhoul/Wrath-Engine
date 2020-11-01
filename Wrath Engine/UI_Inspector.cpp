@@ -4,12 +4,13 @@
 #include "ModuleInterface.h"
 #include "GameObject.h"
 #include "ComponentMesh.h"
+#include "ComponentMaterial.h"
 
 UI_Inspector::UI_Inspector(Application* app, bool start_enabled) : UI_Element(app, start_enabled) {}
 
 UI_Inspector::~UI_Inspector() {}
 
-void UI_Inspector::Draw(bool* open)
+void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 {
 	if (ImGui::Begin("Inspector", open))
 	{
@@ -23,9 +24,35 @@ void UI_Inspector::Draw(bool* open)
 		ImGui::Text(name);
 		ImGui::Separator();
 		ImGui::Checkbox("Active", &foo);
+		
+		if (selectedGO != nullptr)
+		{
+			if (ComponentMesh* mesh = (ComponentMesh*)selectedGO->GetComponent(MESH))
+			{
+				ImGui::Text("Mesh");
 
+				ImGui::Text("Number of vertices: %d", mesh->num_vertices);
+				ImGui::Text("Number of indices: %d", mesh->num_indices);
+				ImGui::Text("Number of children: %d", selectedGO->children.size());
+				ImGui::Separator();
+				ImGui::Separator();
+			}
 
-		for (auto item = App->scene->gameobjects.begin(); item != App->scene->gameobjects.end(); ++item)
+			if (ComponentMaterial* material = (ComponentMaterial*)selectedGO->GetComponent(MATERIAL))
+			{
+				ImGui::Text("Material");
+
+				ImGui::Text("Name: %s", material->name.c_str());
+				float panelWidth = ImGui::GetWindowContentRegionWidth();
+				float conversionFactor = panelWidth / material->width;
+				ImVec2 imageSize = { material->height * conversionFactor, panelWidth };
+				ImGui::Image((ImTextureID)material->textureID, imageSize);
+				ImGui::Text("Texture Width: %u", material->width);
+				ImGui::Text("Texture Height: %u", material->height);
+				ImGui::Text("Path: MotoresJuan/Game/%s", material->path.c_str());
+			}
+		}
+		/*for (auto item = App->scene->gameobjects.begin(); item != App->scene->gameobjects.end(); ++item)
 		{
 			if ((*item)->selected && (*item)->children.size() > 0)
 			{
@@ -59,12 +86,24 @@ void UI_Inspector::Draw(bool* open)
 
 				if ((ImGui::CollapsingHeader("Texture")))
 				{
-					ImGui::Text("Texture Width: %.01f", App->loader->TextureSize.x);
-					ImGui::Text("Texture Height: %.01f", App->loader->TextureSize.y);
-					ImGui::Text("Path: MotoresJuan/Game/%s", App->loader->path.c_str());
+					materials = new ComponentMaterial();
+					for (auto item = selectedGO->children.begin(); item != selectedGO->children.end(); ++item)
+					{
+						ComponentMaterial* auxmaterial = (ComponentMaterial*)(*item)->GetComponent(MATERIAL);
+						materials->textureID = auxmaterial->textureID;
+						materials->path = auxmaterial->path;
+						materials->width = auxmaterial->width;
+						materials->height = auxmaterial->height;
+						materials->depth = auxmaterial->depth;
+						materials->BPP = auxmaterial->BPP;
+					}
+					ImGui::Text("Texture Width: %.01f", materials->width);
+					ImGui::Text("Texture Height: %.01f", materials->height);
+					ImGui::Text("Path: MotoresJuan/Game/%s", materials->path);
 					float panelWidth = ImGui::GetWindowContentRegionWidth();
-					float conversionFactor = panelWidth / App->loader->TextureSize.x;
-					ImVec2 imageSize = { App->loader->TextureSize.y * conversionFactor, panelWidth };
+					float conversionFactor = panelWidth / materials->width;
+					ImVec2 imageSize = { materials->height * conversionFactor, panelWidth };
+					ImGui::Image((ImTextureID)materials->textureID, imageSize);
 				}
 			}
 
@@ -102,7 +141,7 @@ void UI_Inspector::Draw(bool* open)
 					ImGui::Text("Path: MotoresJuan/Game/%s", App->loader->path.c_str());
 				}
 			}
-		}
+		}*/
 	}
 	ImGui::End();
 }

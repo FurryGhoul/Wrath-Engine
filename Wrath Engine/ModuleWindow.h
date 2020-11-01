@@ -40,6 +40,9 @@ public:
 	int width = SCREEN_WIDTH;
 	int height = SCREEN_HEIGHT;
 
+	int original_w = 0;
+	int original_h = 0;
+
 	bool fullscreen = false;
 	bool resizable = false;
 	bool borderless = false;
