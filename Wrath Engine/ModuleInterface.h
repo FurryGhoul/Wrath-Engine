@@ -28,6 +28,8 @@ public:
 	bool console_open = true;
 	bool inspector_open = true;
 
+	bool close_engine = false;
+
 private:
 	bool show_demo_window = false;
 

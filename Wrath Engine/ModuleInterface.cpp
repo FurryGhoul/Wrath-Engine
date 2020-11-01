@@ -74,6 +74,8 @@ update_status ModuleInterface::PreUpdate(float dt)
 	ImGui::Begin("Docking", 0, window_flags);
 	ImGui::PopStyleVar(3);
 
+	bool exit = false;
+
 	if (ImGui::BeginMainMenuBar())
 	{
 		if (ImGui::BeginMenu("File"))
@@ -84,15 +86,13 @@ update_status ModuleInterface::PreUpdate(float dt)
 			{
 				ImGui::EndMenu();
 				ImGui::EndMainMenuBar();
+				ImGui::End();
 				ImGui::EndFrame();
 				return UPDATE_STOP;
 			}
 			ImGui::EndMenu();
 		}
-		if (ImGui::BeginMenu("View"))
-		{
-			ImGui::EndMenu();
-		}
+
 		if (ImGui::BeginMenu("Help"))
 		{
 			if (ImGui::MenuItem("About", NULL, &about_open)) {}
@@ -121,6 +121,11 @@ update_status ModuleInterface::PreUpdate(float dt)
 	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
 	ImGui::End();
+
+	if (exit)
+	{
+		return UPDATE_STOP;
+	}
 
 	return UPDATE_CONTINUE;
 }
