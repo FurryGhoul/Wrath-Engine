@@ -2,6 +2,8 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 
+#include "ComponentMesh.h"
+
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
 
@@ -168,6 +170,23 @@ void ModuleRenderer3D::ActivateWireframe()
 {
 	if (wireframe) { glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); }
 	else { glPolygonMode(GL_FRONT_AND_BACK, GL_FILL); }
+}
+
+void  ModuleRenderer3D::DrawNormals(ComponentMesh* mesh)
+{
+	glLineWidth(2.0f);
+	glColor3f(1, 0, 0);
+
+	glBegin(GL_LINES);
+
+	for (uint i = 0; i < mesh->num_vertices * 3; i += 3)
+	{
+		glVertex3f(mesh->vertices[i] - mesh->normals[i], mesh->vertices[i + 1] - mesh->normals[i + 1], mesh->vertices[i + 2] - mesh->normals[i + 2]);
+		glVertex3f(mesh->vertices[i], mesh->vertices[i + 1], mesh->vertices[i + 2]);
+	}
+	glEnd();
+	glColor3f(1, 1, 1);
+	glLineWidth(1);
 }
 
 void ModuleRenderer3D::OnResize(int width, int height)

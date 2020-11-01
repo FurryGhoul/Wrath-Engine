@@ -19,6 +19,7 @@ public:
 	bool CleanUp();
 
 	void ActivateWireframe();
+	void DrawNormals(ComponentMesh* mesh);
 
 	void OnResize(int width, int height);
 

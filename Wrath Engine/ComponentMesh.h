@@ -18,7 +18,7 @@ public:
 	uint* indices = nullptr;
 
 	//Normals
-	uint* normals = nullptr;
+	float* normals = nullptr;
 	uint num_normals = 0;
 	uint id_normals = 0;
 

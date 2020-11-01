@@ -97,6 +97,9 @@ bool ModuleLoader::Import(const string& pFile)
 			memcpy(new_mesh->vertices, mesh->mVertices, sizeof(float) * new_mesh->num_vertices * 3);
 			LOG("New mesh with %d vertices", new_mesh->num_vertices);
 
+			new_mesh->normals = new float[new_mesh->num_vertices * 3];
+			memcpy(new_mesh->normals, mesh->mNormals, sizeof(float) * new_mesh->num_vertices * 3);
+
 			if (mesh->HasTextureCoords(0))
 			{
 				new_mesh->texture_coords = new float[mesh->mNumVertices * 2];

@@ -28,4 +28,6 @@ public:
 
 	GameObject* root;
 	vector<GameObject*> gameobjects;
+
+	bool normals = false;
 };

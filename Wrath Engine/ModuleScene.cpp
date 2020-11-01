@@ -77,6 +77,13 @@ void ModuleScene::Draw()
 
 				if ((*item)->selected)
 				{
+					if (ComponentMesh* mesh = (ComponentMesh*)(*item)->GetComponent(MESH))
+					{
+						if (normals)
+						{
+							App->renderer3D->DrawNormals(mesh);
+						}
+					}
 					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 					glColor3f(1.0, 1.0, 1.0);
