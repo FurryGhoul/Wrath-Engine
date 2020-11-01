@@ -98,7 +98,7 @@ update_status ModuleInterface::PreUpdate(float dt)
 			if (ImGui::MenuItem("About", NULL, &about_open)) {}
 			if (ImGui::MenuItem("Hardware Info", NULL, &hardware_open)) {}
 			if (ImGui::MenuItem("GitHub", false, true)) { App->RequestBrowser("https://github.com/FurryGhoul/Wrath-Engine"); }
-			if (ImGui::MenuItem("Controls", NULL)) {}
+			if (ImGui::MenuItem("Controls", NULL, &controls_open)) {}
 			ImGui::EndMenu();
 		}
 		if (ImGui::BeginMenu("Settings"))
@@ -130,6 +130,7 @@ update_status ModuleInterface::Update(float dt)
 {
 	if (about_open)					this->CreateAboutWindow(&about_open);
 	if (hardware_open)				this->CreateHardwareWindow(&hardware_open);
+	if (controls_open)				this->CreateControlsWindow(&controls_open);
 	if (config_open)				App->configuration->Draw(&config_open);
 	if (scene_open)					App->scene_ui->Draw(&scene_open);
 	if (hierarchy_open)				App->hierarchy->Draw(&hierarchy_open);
@@ -219,6 +220,24 @@ void ModuleInterface::CreateHardwareWindow(bool* open)
 
 		if (ImGui::Button("Close")) { ImGui::CloseCurrentPopup(); hardware_open = false; }
 
+		ImGui::EndPopup();
+	}
+}
+
+void ModuleInterface::CreateControlsWindow(bool* open)
+{
+	ImGui::OpenPopup("Controls");
+	if (ImGui::BeginPopupModal("Controls"))
+	{
+		ImGui::Text("Use 'Right Click +WASD' to move arround the scene."), ImGui::Separator();
+		ImGui::Text("Use 'Q' to move upwards and 'E' to move downwards."), ImGui::Separator();
+		ImGui::Text("Use 'Alt' & Left Click to orbit arround the object."), ImGui::Separator();
+		ImGui::Text("Use 'Mouse Wheel' to zoom In and Out."); ImGui::Separator();
+		ImGui::Text("Use Mouse Middle Button to move the camera."); ImGui::Separator();
+		ImGui::Text("Use 'F' to focus the camera on the object."); ImGui::Separator();
+		ImGui::Text("Use 'Shift' to duplicate movement speed."); ImGui::Separator();
+
+		if (ImGui::Button("Close")) { ImGui::CloseCurrentPopup(); controls_open = false; }
 		ImGui::EndPopup();
 	}
 }

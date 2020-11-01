@@ -18,6 +18,7 @@ public:
 
 	void CreateAboutWindow(bool* open);
 	void CreateHardwareWindow(bool* open);
+	void CreateControlsWindow(bool* open);
 
 public:
 	bool about_open = false;
@@ -27,6 +28,7 @@ public:
 	bool hierarchy_open = true;
 	bool console_open = true;
 	bool inspector_open = true;
+	bool controls_open = false;
 
 	bool close_engine = false;
 
