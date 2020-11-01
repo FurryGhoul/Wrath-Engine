@@ -65,6 +65,15 @@ Component* GameObject::AddComponent(Component_Type comp_type)
 
 Component* GameObject::GetComponent(Component_Type comp_type)
 {
+	Component* ret = nullptr;
+
 	for (auto item = components.begin(); item != components.end(); item++)
-		if ((*item)->GetCompType() == comp_type) return (*item);
+	{
+		if ((*item)->GetCompType() == comp_type)
+		{
+			ret = (*item);
+		}
+	}
+	return ret;
 }
+

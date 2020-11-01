@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleInput.h"
+#include "ComponentMaterial.h"
 
 #define MAX_KEYS 300
 
@@ -85,6 +86,7 @@ update_status ModuleInput::PreUpdate(float dt)
 	mouse_x_motion = mouse_y_motion = 0;
 
 	bool quit = false;
+	ComponentMaterial* material = nullptr;
 	SDL_Event e;
 	while(SDL_PollEvent(&e))
 	{
@@ -110,7 +112,18 @@ update_status ModuleInput::PreUpdate(float dt)
 			{
 				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
 					App->renderer3D->OnResize(e.window.data1, e.window.data2);
+				break;
 			}
+
+			case SDL_DROPFILE:
+				string dropped_file = e.drop.file;
+				size_t i = dropped_file.rfind('.', dropped_file.length());
+				if (i != string::npos) { dropped_file = dropped_file.substr(i + 1, dropped_file.length() - i); }
+				if (dropped_file == "fbx" || dropped_file == "FBX") { App->loader->Import(e.drop.file); }
+				else if (dropped_file == "png" || dropped_file == "dds") { App->loader->Texturing(material, e.drop.file); }
+				else { LOG("Unsupported file format"); }
+
+				break;
 		}
 	}
 

@@ -34,7 +34,7 @@ public:
 public:
 	string name;
 
-	GameObject* parent;
+	GameObject* parent = nullptr;
 
 	list<Component*> components;
 	vector<GameObject*> children;

@@ -77,7 +77,7 @@ bool ModuleLoader::Import(const string& pFile)
 	if (scene != nullptr && scene->HasMeshes())
 	{
 		GameObject* GO = new GameObject();
-		GO->name = pFile.c_str();
+		GO->name = node->mName.C_Str();
 		App->scene->root->children.push_back(GO);
 		App->scene->gameobjects.push_back(GO);
 
@@ -89,7 +89,6 @@ bool ModuleLoader::Import(const string& pFile)
 			newGO->name = mesh->mName.C_Str();
 			GO->children.push_back(newGO);
 
-			//ComponentTransform* new_transform = (ComponentTransform*)newGO->AddComponent(TRANSFORM);
 			ComponentMesh* new_mesh = (ComponentMesh*)newGO->AddComponent(MESH);
 
 			new_mesh->num_vertices = mesh->mNumVertices;
@@ -171,6 +170,10 @@ bool ModuleLoader::Import(const string& pFile)
 
 uint ModuleLoader::Texturing(ComponentMaterial* material, const char* file_name)
 {
+	/*if (material == nullptr)
+	{
+
+	}*/
 	ILuint imageID = 0;
 	ILenum error;
 	ILinfo ImageInfo;
