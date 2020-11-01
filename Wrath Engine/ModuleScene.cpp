@@ -83,6 +83,7 @@ void ModuleScene::Draw()
 						{
 							App->renderer3D->DrawNormals(mesh);
 						}
+
 					}
 					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -103,5 +104,10 @@ void ModuleScene::Draw()
 				}
 			}
 		}
+	}
+
+	if (App->renderer3D->wireframe)
+	{
+		App->renderer3D->ActivateWireframe();
 	}
 }

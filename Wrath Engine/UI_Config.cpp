@@ -89,7 +89,7 @@ void UI_Config::Draw(bool* open)
 			ImGui::Checkbox("Backface Culling", &App->renderer3D->backface);
 			ImGui::Checkbox("Textured", &App->renderer3D->textured);
 
-			if (ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe)) { App->renderer3D->ActivateWireframe(); }
+			ImGui::Checkbox("Wireframe", &App->renderer3D->wireframe);
 			ImGui::SliderInt("Grid Size", &App->scene_ui->grid_size, 0, 100);
 		}
 
