@@ -507,6 +507,9 @@
     <ClInclude Include="UI_Inspector.h">
       <Filter>Sources\UI_Elements</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleFileSystem.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -718,6 +721,9 @@
     </ClCompile>
     <ClCompile Include="UI_Inspector.cpp">
       <Filter>Sources\UI_Elements</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFileSystem.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

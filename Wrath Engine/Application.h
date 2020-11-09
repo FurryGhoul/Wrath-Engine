@@ -11,6 +11,7 @@
 #include "ModuleCamera3D.h"
 #include "ModuleInterface.h"
 #include "ModuleLoader.h"
+#include "ModuleFileSystem.h"
 
 #include "UI_Config.h"
 #include "UI_Scene.h"
@@ -28,6 +29,7 @@ public:
 	ModuleCamera3D* camera;
 	ModuleInterface* ui;
 	ModuleLoader* loader;
+	ModuleFileSystem* file_system;
 
 	UI_Config* configuration = nullptr;
 	UI_Scene* scene_ui = nullptr;

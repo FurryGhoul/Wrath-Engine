@@ -127,6 +127,7 @@
     <ClInclude Include="Glew\include\wglew.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="ModuleFileSystem.h" />
     <ClInclude Include="ModuleLoader.h" />
     <ClInclude Include="Parson\parson.h" />
     <ClInclude Include="UI_Config.h" />
@@ -281,6 +282,7 @@
     <ClCompile Include="MathGeoLib\Math\TransformOps.cpp" />
     <ClCompile Include="MathGeoLib\Time\Clock.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
+    <ClCompile Include="ModuleFileSystem.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleInterface.cpp" />
     <ClCompile Include="ModuleLoader.cpp" />

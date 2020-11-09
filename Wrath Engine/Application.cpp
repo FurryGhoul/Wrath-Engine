@@ -10,6 +10,7 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	ui = new ModuleInterface(this);
 	loader = new ModuleLoader(this);
+	file_system = new ModuleFileSystem(this);
 
 	configuration = new UI_Config(this);
 	scene_ui = new UI_Scene(this);
@@ -22,6 +23,7 @@ Application::Application()
 	// They will CleanUp() in reverse order
 
 	// Main Modules
+	AddModule(file_system);
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);

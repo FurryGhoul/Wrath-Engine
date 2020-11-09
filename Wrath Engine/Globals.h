@@ -18,6 +18,9 @@ void log(const char file[], int line, const char* format, ...);
 #define RADTODEG 57.295779513082320876f
 #define HAVE_M_PI
 
+#define RELEASE(x){ if(x != NULL) {delete x; x = NULL;}}
+#define RELEASE_ARRAY( x ) { if( x != NULL ) {delete[] x; x = NULL;}} // Deletes an array of buffers
+
 
 typedef unsigned int uint;
 
@@ -46,3 +49,14 @@ enum Component_Type
 #define WIN_FULLSCREEN_DESKTOP false
 #define VSYNC true
 #define TITLE "3D Physics Playground"
+
+//Files
+#define SETTINGS_FOLDER "/Settings/"
+
+#define ASSETS_FOLDER "/Assets/"
+#define MODELS_FOLDER "/Assets/Models/"
+
+#define LIBRARY_FOLDER "/Library/"
+#define MESHES_FOLDER "/Library/Meshes"
+#define TEXTURES_FOLDER "/Library/Textures"
+#define SCENES_FOLDER "/Library/Scenes"
