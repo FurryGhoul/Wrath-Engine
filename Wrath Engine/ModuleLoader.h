@@ -2,6 +2,13 @@
 #include "Module.h"
 #include "Globals.h"
 #include "Parson\parson.h"
+#include "GameObject.h"
+
+#include "Assimp/include/cimport.h"
+#include "Assimp/include/scene.h"
+#include "Assimp/include/postprocess.h"
+#include "Assimp/include/cfileio.h"
+
 #include <list>
 
 class Application;
@@ -22,6 +29,10 @@ public:
 		
 	bool CleanUp();
 	bool Import(const string& pFile);
+
+	bool RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent);
+
+	bool LoadGameObject();
 
 	uint Texturing(ComponentMaterial* material, const char* file_name);
 

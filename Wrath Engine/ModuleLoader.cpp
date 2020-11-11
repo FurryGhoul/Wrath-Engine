@@ -6,6 +6,7 @@
 #include "Component.h"
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
+#include "ComponentTransform.h"
 
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -76,77 +77,115 @@ bool ModuleLoader::Import(const string& pFile)
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
-		GameObject* GO = new GameObject();
-		GO->name = node->mName.C_Str();
-		App->scene->root->children.push_back(GO);
-		App->scene->gameobjects.push_back(GO);
+		RecursiveLoadChildren(scene, node, nullptr);
+	}
+	else { LOG("Error loading scene %s", file_path); }
 
-		for (int i = 0; i < scene->mNumMeshes; ++i)
+	aiReleaseImport(scene);
+
+	return true;
+}
+
+bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent)
+{
+	GameObject* GO = new GameObject(parent, node->mName.C_Str());
+	App->scene->root->children.push_back(GO);
+	App->scene->gameobjects.push_back(GO);
+
+	aiVector3D translation;
+	aiVector3D scale;
+	aiQuaternion rotation;
+	node->mTransformation.Decompose(scale, rotation, translation);
+
+	float3 new_translation = { translation.x, translation.y, translation.z };
+	float3 new_scale = { scale.x, scale.y, scale.z };
+	Quat new_rotation = Quat(rotation.x, rotation.y, rotation.z, rotation.w);
+
+	float4x4 new_local = float4x4::FromTRS(new_translation, new_rotation, new_scale);
+
+	ComponentTransform* transform = (ComponentTransform*)GO->AddComponent(TRANSFORM);
+	transform->SetTransformation(new_local);
+
+	for (int i = 0; i < node->mNumMeshes; ++i)
+	{
+		const aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+
+		GameObject* newGO = new GameObject(GO, mesh->mName.C_Str());
+		GO->children.push_back(newGO);
+
+		ComponentMesh* new_mesh = (ComponentMesh*)newGO->AddComponent(MESH);
+
+		ComponentTransform* new_transform = (ComponentTransform*)newGO->AddComponent(TRANSFORM);
+
+		new_transform->SetLocalMatrix(transform->GetLocalMatrix());
+		new_transform->SetGlobalMatrix(transform->GetGlobalMatrix());
+
+		new_mesh->num_vertices = mesh->mNumVertices;
+		new_mesh->vertices = new float[new_mesh->num_vertices * 3];
+		memcpy(new_mesh->vertices, mesh->mVertices, sizeof(float) * new_mesh->num_vertices * 3);
+		LOG("New mesh with %d vertices", new_mesh->num_vertices);
+
+		new_mesh->normals = new float[new_mesh->num_vertices * 3];
+		memcpy(new_mesh->normals, mesh->mNormals, sizeof(float) * new_mesh->num_vertices * 3);
+
+		if (mesh->HasTextureCoords(0))
 		{
-			const aiMesh* mesh = scene->mMeshes[i];
+			new_mesh->texture_coords = new float[mesh->mNumVertices * 2];
 
-			GameObject* newGO = new GameObject();
-			newGO->name = mesh->mName.C_Str();
-			GO->children.push_back(newGO);
-
-			ComponentMesh* new_mesh = (ComponentMesh*)newGO->AddComponent(MESH);
-
-			new_mesh->num_vertices = mesh->mNumVertices;
-			new_mesh->vertices = new float[new_mesh->num_vertices * 3];
-			memcpy(new_mesh->vertices, mesh->mVertices, sizeof(float) * new_mesh->num_vertices * 3);
-			LOG("New mesh with %d vertices", new_mesh->num_vertices);
-
-			new_mesh->normals = new float[new_mesh->num_vertices * 3];
-			memcpy(new_mesh->normals, mesh->mNormals, sizeof(float) * new_mesh->num_vertices * 3);
-
-			if (mesh->HasTextureCoords(0))
+			for (uint j = 0; j < mesh->mNumVertices * 2; j += 2)
 			{
-				new_mesh->texture_coords = new float[mesh->mNumVertices * 2];
+				new_mesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
+				new_mesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
+			}
+		}
 
-				for (uint j = 0; j < mesh->mNumVertices * 2; j += 2)
-				{
-					new_mesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
-					new_mesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
-				}
+		/*if (scene->HasMaterials())
+		{
+			ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
+
+			aiString material_path;
+			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+			material->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
+			string material_name = material_path.C_Str();
+
+			for (int i = file_path.size() - 1; i >= 0; i--)
+			{
+				if (file_path[i] == '/' || file_path[i] == '\\') break;
+				else file_path.pop_back();
 			}
 
-			if (scene->HasMaterials())
+			file_path += material_name;
+			new_material->textureID = Texturing(new_material, file_path.c_str());
+			new_material->name = material_name;
+
+			if (new_material->textureID == 0)
 			{
-				ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
-
-				aiString material_path;
-				aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
-				material->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
-				string material_name = material_path.C_Str();
-
-				for (int i = file_path.size() - 1; i >= 0; i--)
-				{
-					if (file_path[i] == '/' || file_path[i] == '\\') break;
-					else file_path.pop_back();
-				}
-
-				file_path += material_name;
+				file_path = "Assets/Textures/" + material_name;
 				new_material->textureID = Texturing(new_material, file_path.c_str());
-				new_material->name = material_name;
+				LOG("%s", file_path);
+			}
+		}*/
 
-				if (new_material->textureID == 0)
-				{
-					file_path = "Assets/Textures/" + material_name;
-					new_material->textureID = Texturing(new_material, file_path.c_str());
-					LOG("%s", file_path);
+		if (mesh->HasFaces())
+		{
+			LOG("New mesh with %d face", mesh->mNumFaces);
+			int faceIndex = 0;
+			new_mesh->num_indices = mesh->mNumFaces * 3;
+			new_mesh->indices = new uint[new_mesh->num_indices];
+			for (uint i = 0; i < mesh->mNumFaces; ++i)
+			{
+				if (mesh->mFaces[i].mNumIndices != 3) 
+				{ 
+					LOG("WARNING, geometry face with != 3 indices!"); 
+				}
+				else 
+				{ 
+					memcpy(&new_mesh->indices[faceIndex * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint)); 
+					faceIndex++;
 				}
 			}
-
-			if (mesh->HasFaces())
+			if (faceIndex > 0)
 			{
-				new_mesh->num_indices = mesh->mNumFaces * 3;
-				new_mesh->indices = new uint[new_mesh->num_indices]; // assume each face is a triangle
-				for (uint i = 0; i < mesh->mNumFaces; ++i)
-				{
-					if (mesh->mFaces[i].mNumIndices != 3) { LOG("WARNING, geometry face with != 3 indices!"); }
-					else { memcpy(&new_mesh->indices[i * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint)); }
-				}
-
 				glGenBuffers(1, (GLuint*)&(new_mesh->id_indices));
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, new_mesh->id_indices);
 				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * new_mesh->num_indices, new_mesh->indices, GL_STATIC_DRAW);
@@ -156,14 +195,16 @@ bool ModuleLoader::Import(const string& pFile)
 				glBindBuffer(GL_TEXTURE_COORD_ARRAY, new_mesh->id_texcoords);
 				glBufferData(GL_TEXTURE_COORD_ARRAY, sizeof(uint) * new_mesh->num_vertices * 2, new_mesh->texture_coords, GL_STATIC_DRAW);
 				glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
-
-				App->scene->gameobjects.push_back(newGO);
 			}
+
+			App->scene->gameobjects.push_back(newGO);
 		}
 	}
-	else { LOG("Error loading scene %s", file_path); }
 
-	aiReleaseImport(scene);
+	for (int i = 0; i < node->mNumChildren; ++i)
+	{
+		RecursiveLoadChildren(scene, node->mChildren[i], GO);
+	}
 
 	return true;
 }

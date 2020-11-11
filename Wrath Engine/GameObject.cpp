@@ -7,6 +7,8 @@
 GameObject::GameObject() 
 { 
 	AddComponent(TRANSFORM); 
+	this->parent = nullptr;
+	this->name = "";
 }
 
 GameObject::GameObject(GameObject* parent, string name)

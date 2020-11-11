@@ -7,6 +7,7 @@
 #include "Component.h"
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
+#include "ComponentTransform.h"
 
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -24,7 +25,7 @@ bool ModuleScene::Start()
 	LOG("Loading scene");
 
 	root = new GameObject(nullptr, "Root");
-	App->loader->Import("BakerHouse.fbx");
+	//App->loader->Import("BakerHouse.fbx");
 
 	return true;
 }
@@ -55,6 +56,9 @@ void ModuleScene::Draw()
 				ComponentMesh* mesh = (ComponentMesh*)(*iter);
 
 				glColor3f(1.0, 1.0, 1.0);
+
+				glPushMatrix();
+				glMultMatrixf((float*)((ComponentTransform*)(*item)->GetComponent(TRANSFORM))->GetGlobalMatrix().Transposed().v);
 
 				glEnableClientState(GL_VERTEX_ARRAY);
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
@@ -101,6 +105,8 @@ void ModuleScene::Draw()
 					glDisableClientState(GL_VERTEX_ARRAY);
 
 					glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+					glPopMatrix();
 				}
 			}
 		}

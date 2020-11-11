@@ -35,9 +35,9 @@ void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 			{
 				ImGui::Text("Transform");
 
-				math::float4x4 localTransform = transform->GetLocalMatrix();
+				math::float4x4 localTransform = transform->GetGlobalMatrix();
 				
-				ImGui::DragInt3("Position", (int*)&localTransform.TranslatePart(), 0.25f);
+				ImGui::DragFloat3("Position", (float*)&localTransform.TranslatePart(), 0.25f);
 				ImGui::SliderFloat3("Rotation", (float*)&localTransform.RotatePart().ToEulerXYZ(), 0.0f, 360.0f);
 				ImGui::DragFloat3("Scale", (float*)&localTransform.ExtractScale(), 0.25f, 1.0f, 1000.0f);
 				ImGui::Separator();
