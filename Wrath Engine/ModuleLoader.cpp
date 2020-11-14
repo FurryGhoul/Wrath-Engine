@@ -77,7 +77,7 @@ bool ModuleLoader::Import(const string& pFile)
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
-		RecursiveLoadChildren(scene, node, nullptr);
+		RecursiveLoadChildren(scene, node, nullptr, path);
 	}
 	else { LOG("Error loading scene %s", file_path); }
 
@@ -86,7 +86,7 @@ bool ModuleLoader::Import(const string& pFile)
 	return true;
 }
 
-bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent)
+bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent, string path)
 {
 	GameObject* GO = new GameObject(parent, node->mName.C_Str());
 	App->scene->root->children.push_back(GO);
@@ -109,7 +109,6 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 	for (int i = 0; i < node->mNumMeshes; ++i)
 	{
 		const aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-
 		GameObject* newGO = new GameObject(GO, mesh->mName.C_Str());
 		GO->children.push_back(newGO);
 
@@ -139,32 +138,56 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 			}
 		}
 
-		/*if (scene->HasMaterials())
+		if (scene->HasMaterials())
 		{
 			ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
+
+			aiColor3D meshColour(1.f, 1.f, 1.f);
 
 			aiString material_path;
 			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 			material->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
+
+			material->Get(AI_MATKEY_COLOR_DIFFUSE, meshColour);
+			new_mesh->colour = { meshColour.r,meshColour.g,meshColour.b, 1.f };
+
 			string material_name = material_path.C_Str();
 
-			for (int i = file_path.size() - 1; i >= 0; i--)
+			for (int i = material_name.size() - 1; i >= 0; i--)
 			{
-				if (file_path[i] == '/' || file_path[i] == '\\') break;
-				else file_path.pop_back();
+				if (material_name[i] == '/' || material_name[i] == '\\')
+				{
+					material_name = material_name.substr(i+1, material_name.length()-1);
+					break;
+				}
 			}
 
-			file_path += material_name;
-			new_material->textureID = Texturing(new_material, file_path.c_str());
+			string materialFullPath = path;
+
+			for (int i = materialFullPath.size() - 1; i >= 0; i--)
+			{
+				if (materialFullPath[i] == '/' || materialFullPath[i] == '\\')
+				{
+					break;
+				}
+				else
+				{
+					materialFullPath.pop_back();
+				}
+			}
+
+			materialFullPath += material_name;
+			new_material->textureID = Texturing(new_material, materialFullPath.c_str());
 			new_material->name = material_name;
+
 
 			if (new_material->textureID == 0)
 			{
-				file_path = "Assets/Textures/" + material_name;
-				new_material->textureID = Texturing(new_material, file_path.c_str());
-				LOG("%s", file_path);
+				path = "Assets/Textures/" + material_name;
+				new_material->textureID = Texturing(new_material, path.c_str());
+				LOG("%s", path);
 			}
-		}*/
+		}
 
 		if (mesh->HasFaces())
 		{
@@ -203,7 +226,7 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 
 	for (int i = 0; i < node->mNumChildren; ++i)
 	{
-		RecursiveLoadChildren(scene, node->mChildren[i], GO);
+		RecursiveLoadChildren(scene, node->mChildren[i], GO, path);
 	}
 
 	return true;
@@ -257,7 +280,7 @@ uint ModuleLoader::Texturing(ComponentMaterial* material, const char* file_name)
 	{
 		while (error = ilGetError()) 
 		{ 
-			LOG("Error %d: %s", error, iluErrorString(error)); 
+			LOG("Error  %d: %s loading %s", error, iluErrorString(error), file_name); 
 		}
 		return 0;
 	}

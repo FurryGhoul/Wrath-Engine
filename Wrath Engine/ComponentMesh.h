@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "GameObject.h"
+#include "MathGeoLib/Math/float4.h"
 
 class ComponentMaterial;
 class ComponentMesh : public Component
@@ -33,4 +34,7 @@ public:
 	uint texture_width = 0;
 	uint texture_height = 0;
 	float* texture_coords = nullptr;
+
+	//Colour
+	float4 colour = { 0.f, 0.f, 0.f, 0.f };
 };

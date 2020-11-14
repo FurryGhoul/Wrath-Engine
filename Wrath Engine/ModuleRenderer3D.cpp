@@ -119,6 +119,8 @@ update_status ModuleRenderer3D::Update(float dt)
 	if (textured) { glEnable(GL_TEXTURE_2D); }
 	else { glDisable(GL_TEXTURE_2D); }
 
+	glEnable(GL_COLOR_MATERIAL);
+
 	return UPDATE_CONTINUE;
 }
 
@@ -128,11 +130,13 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 	glBindTexture(GL_TEXTURE_2D, buffer_tex);
 
-	glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+	glClearColor(0.3f, 0.3f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	//TODO: update this shit when frustrum is done
+	//glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 	glLoadMatrixf(App->camera->GetViewMatrix());
 
 	lights[0].SetPos(App->camera->cameraPos.x, App->camera->cameraPos.y, App->camera->cameraPos.z);

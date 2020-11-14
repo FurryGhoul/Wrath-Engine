@@ -16,7 +16,9 @@ public:
 	void Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference = false);
 	void LookAt(const vec3 &Spot);
 	void Move(const vec3 &Movement);
+
 	float* GetViewMatrix();
+	//float* GetProjectionMatrix();
 
 	mat4x4 At(const vec3& right, const vec3& up, const vec3& direction);
 

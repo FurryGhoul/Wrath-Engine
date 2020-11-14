@@ -55,10 +55,10 @@ void ModuleScene::Draw()
 			{
 				ComponentMesh* mesh = (ComponentMesh*)(*iter);
 
-				glColor3f(1.0, 1.0, 1.0);
+				glColor3f(mesh->colour.x, mesh->colour.y, mesh->colour.z);
 
 				glPushMatrix();
-				glMultMatrixf((float*)((ComponentTransform*)(*item)->GetComponent(TRANSFORM))->GetGlobalMatrix().Transposed().v);
+				glMultMatrixf((float*)((ComponentTransform*)(*item)->GetComponent(TRANSFORM))->GetGlobalMatrix().Transposed().ptr());
 
 				glEnableClientState(GL_VERTEX_ARRAY);
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
@@ -105,9 +105,8 @@ void ModuleScene::Draw()
 					glDisableClientState(GL_VERTEX_ARRAY);
 
 					glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-					glPopMatrix();
 				}
+				glPopMatrix();
 			}
 		}
 	}

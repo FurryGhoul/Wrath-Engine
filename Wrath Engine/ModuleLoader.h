@@ -30,7 +30,7 @@ public:
 	bool CleanUp();
 	bool Import(const string& pFile);
 
-	bool RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent);
+	bool RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent, string path);
 
 	bool LoadGameObject();
 
