@@ -26,6 +26,7 @@ bool ModuleScene::Start()
 
 	root = new GameObject(nullptr, "Root");
 	//App->loader->Import("BakerHouse.fbx");
+	//mainCamera = new ComponentCamera
 
 	return true;
 }
@@ -115,4 +116,22 @@ void ModuleScene::Draw()
 	{
 		App->renderer3D->ActivateWireframe();
 	}
+}
+
+void ModuleScene::AddCamera()
+{
+	string cameraName = "Camera " + cameras.size();
+	if (cameras.size() == 0)
+	{
+		cameraName = "Camera";
+	}
+
+	GameObject* gameobject = App->scene->root->AddChildren(cameraName);
+	
+	ComponentCamera* camera = (ComponentCamera*)gameobject->AddComponent(CAMERA);
+	ComponentTransform* transformations = (ComponentTransform*)gameobject->AddComponent(TRANSFORM);
+
+	cameras.push_back(camera);
+
+	LOG("Game Object Camera Created.");
 }

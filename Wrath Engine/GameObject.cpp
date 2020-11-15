@@ -3,6 +3,7 @@
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
 #include "ComponentTransform.h"
+#include "ComponentCamera.h"
 
 GameObject::GameObject() 
 { 
@@ -58,6 +59,11 @@ Component* GameObject::AddComponent(Component_Type comp_type)
 
 	case TRANSFORM:
 		ret = new ComponentTransform(comp_type, this);
+		components.push_back(ret);
+		break;
+
+	case CAMERA:
+		ret = new ComponentCamera(comp_type, this);
 		components.push_back(ret);
 		break;
 	}

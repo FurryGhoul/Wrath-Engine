@@ -5,6 +5,8 @@
 #include "Primitive.h"
 #include <vector>
 #include "GameObject.h"
+#include "ComponentCamera.h"
+#include "MathGeoLib/Geometry/LineSegment.h"
 
 
 class ModuleScene : public Module
@@ -19,15 +21,18 @@ public:
 
 	void Draw();
 
-	//void CubeVertex();
-	//void CubeIndexes();
+	void AddCamera();
 
 public:
 	/*vector<uint> indices;
 	vector<vec3> vertexs;*/	
 
 	GameObject* root;
+
 	vector<GameObject*> gameobjects;
+	vector<ComponentCamera*> cameras;
+
+	LineSegment ray;
 
 	bool normals = false;
 };

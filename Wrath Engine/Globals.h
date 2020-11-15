@@ -36,7 +36,8 @@ enum Component_Type
 	NO_TYPE, 
 	MESH, 
 	MATERIAL, 
-	TRANSFORM 
+	TRANSFORM,
+	CAMERA
 };
 
 // Configuration -----------

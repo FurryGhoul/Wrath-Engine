@@ -7,12 +7,15 @@
 #include <vector>
 #include <map>
 
+#include "MathGeoLib/Geometry/AABB.h"
+
 struct Mesh;
 
 class Component;
 class ComponentTransform;
 class ComponentMesh;
 class ComponentMaterial;
+class ComponentCamera;
 
 using namespace std;
 
