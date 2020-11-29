@@ -21,8 +21,9 @@ void log(const char file[], int line, const char* format, ...);
 #define RELEASE(x){ if(x != NULL) {delete x; x = NULL;}}
 #define RELEASE_ARRAY( x ) { if( x != NULL ) {delete[] x; x = NULL;}} // Deletes an array of buffers
 
-
 typedef unsigned int uint;
+
+uint Generate_UUID();
 
 enum update_status
 {

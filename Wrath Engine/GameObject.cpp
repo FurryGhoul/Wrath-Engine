@@ -7,14 +7,14 @@
 
 GameObject::GameObject() 
 { 
-	AddComponent(TRANSFORM); 
+	//uuid = Generate_UUID();
 	this->parent = nullptr;
 	this->name = "";
 }
 
 GameObject::GameObject(GameObject* parent, string name)
 {
-	AddComponent(TRANSFORM);
+	//uuid = Generate_UUID();
 	this->parent = parent;
 	this->name = name;
 }

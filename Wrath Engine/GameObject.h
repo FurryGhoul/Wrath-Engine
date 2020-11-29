@@ -43,6 +43,8 @@ public:
 	vector<GameObject*> children;
 
 	bool selected = false;
+
+	uint uuid;
 };
 
 #endif 

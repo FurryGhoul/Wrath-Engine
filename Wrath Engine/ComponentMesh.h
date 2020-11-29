@@ -31,8 +31,6 @@ public:
 	// Textures
 	uint id_texcoords = 0;
 	uint texture = 0;
-	uint texture_width = 0;
-	uint texture_height = 0;
 	float* texture_coords = nullptr;
 
 	//Colour

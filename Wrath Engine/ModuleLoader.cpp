@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "ModuleLoader.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleFileSystem.h"
 
 #include "GameObject.h"
 #include "Component.h"
@@ -109,6 +110,7 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 	for (int i = 0; i < node->mNumMeshes; ++i)
 	{
 		const aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+	
 		GameObject* newGO = new GameObject(GO, mesh->mName.C_Str());
 		GO->children.push_back(newGO);
 
@@ -119,37 +121,38 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 		new_transform->SetLocalMatrix(transform->GetLocalMatrix());
 		new_transform->SetGlobalMatrix(transform->GetGlobalMatrix());
 
-		new_mesh->num_vertices = mesh->mNumVertices;
+		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+		aiColor3D meshColour(1.f, 1.f, 1.f);
+
+		material->Get(AI_MATKEY_COLOR_DIFFUSE, meshColour);
+
+		ImportMesh(mesh, new_mesh, path, meshColour);
+
+		/*new_mesh->num_vertices = mesh->mNumVertices;
 		new_mesh->vertices = new float[new_mesh->num_vertices * 3];
 		memcpy(new_mesh->vertices, mesh->mVertices, sizeof(float) * new_mesh->num_vertices * 3);
 		LOG("New mesh with %d vertices", new_mesh->num_vertices);
 
 		new_mesh->normals = new float[new_mesh->num_vertices * 3];
-		memcpy(new_mesh->normals, mesh->mNormals, sizeof(float) * new_mesh->num_vertices * 3);
+		memcpy(new_mesh->normals, mesh->mNormals, sizeof(float) * new_mesh->num_vertices * 3);*/
 
-		if (mesh->HasTextureCoords(0))
-		{
-			new_mesh->texture_coords = new float[mesh->mNumVertices * 2];
+		//if (mesh->HasTextureCoords(0))
+		//{
+		//	new_mesh->texture_coords = new float[mesh->mNumVertices * 2];
 
-			for (uint j = 0; j < mesh->mNumVertices * 2; j += 2)
-			{
-				new_mesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
-				new_mesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
-			}
-		}
+		//	for (uint j = 0; j < mesh->mNumVertices * 2; j += 2)
+		//	{
+		//		new_mesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
+		//		new_mesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
+		//	}
+		//}
 
 		if (scene->HasMaterials())
 		{
 			ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
 
-			aiColor3D meshColour(1.f, 1.f, 1.f);
-
 			aiString material_path;
-			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 			material->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
-
-			material->Get(AI_MATKEY_COLOR_DIFFUSE, meshColour);
-			new_mesh->colour = { meshColour.r,meshColour.g,meshColour.b, 1.f };
 
 			string material_name = material_path.C_Str();
 
@@ -191,7 +194,7 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 
 		if (mesh->HasFaces())
 		{
-			LOG("New mesh with %d face", mesh->mNumFaces);
+			/*LOG("New mesh with %d face", mesh->mNumFaces);
 			int faceIndex = 0;
 			new_mesh->num_indices = mesh->mNumFaces * 3;
 			new_mesh->indices = new uint[new_mesh->num_indices];
@@ -206,8 +209,8 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 					memcpy(&new_mesh->indices[faceIndex * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint)); 
 					faceIndex++;
 				}
-			}
-			if (faceIndex > 0)
+			}*/
+			/*if (faceIndex > 0)
 			{
 				glGenBuffers(1, (GLuint*)&(new_mesh->id_indices));
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, new_mesh->id_indices);
@@ -218,7 +221,7 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 				glBindBuffer(GL_TEXTURE_COORD_ARRAY, new_mesh->id_texcoords);
 				glBufferData(GL_TEXTURE_COORD_ARRAY, sizeof(uint) * new_mesh->num_vertices * 2, new_mesh->texture_coords, GL_STATIC_DRAW);
 				glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
-			}
+			}*/
 
 			App->scene->gameobjects.push_back(newGO);
 		}
@@ -228,6 +231,120 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 	{
 		RecursiveLoadChildren(scene, node->mChildren[i], GO, path);
 	}
+
+	return true;
+}
+
+bool ModuleLoader::ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, string path, aiColor3D colour)
+{
+	compMesh->num_vertices = mesh->mNumVertices;
+	compMesh->vertices = new float[compMesh->num_vertices * 3];
+	memcpy(compMesh->vertices, mesh->mVertices, sizeof(float) * compMesh->num_vertices * 3);
+	LOG("New mesh with %d vertices", compMesh->num_vertices);
+
+	compMesh->normals = new float[compMesh->num_vertices * 3];
+	memcpy(compMesh->normals, mesh->mNormals, sizeof(float) * compMesh->num_vertices * 3);
+
+	if (mesh->HasTextureCoords(0))
+	{
+		compMesh->texture_coords = new float[mesh->mNumVertices * 2];
+
+		for (uint j = 0; j < mesh->mNumVertices * 2; j += 2)
+		{
+			compMesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
+			compMesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
+		}
+	}
+
+	if (mesh->HasFaces())
+	{
+		LOG("New mesh with %d face", mesh->mNumFaces);
+		int faceIndex = 0;
+		compMesh->num_indices = mesh->mNumFaces * 3;
+		compMesh->indices = new uint[compMesh->num_indices];
+		for (uint i = 0; i < mesh->mNumFaces; ++i)
+		{
+			if (mesh->mFaces[i].mNumIndices != 3)
+			{
+				LOG("WARNING, geometry face with != 3 indices!");
+			}
+			else
+			{
+				memcpy(&compMesh->indices[faceIndex * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint));
+				faceIndex++;
+			}
+		}
+
+		if (faceIndex > 0)
+		{
+			glGenBuffers(1, (GLuint*)&(compMesh->id_indices));
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, compMesh->id_indices);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * compMesh->num_indices, compMesh->indices, GL_STATIC_DRAW);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+			glGenBuffers(1, (GLuint*)&(compMesh->id_texcoords));
+			glBindBuffer(GL_TEXTURE_COORD_ARRAY, compMesh->id_texcoords);
+			glBufferData(GL_TEXTURE_COORD_ARRAY, sizeof(uint) * compMesh->num_vertices * 2, compMesh->texture_coords, GL_STATIC_DRAW);
+			glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
+		}
+	}
+
+	compMesh->colour = { colour.r, colour.g, colour.b, 1.f };
+
+	SaveMesh(compMesh);
+
+	return true;
+}
+
+bool ModuleLoader::SaveMesh(ComponentMesh* compMesh)
+{
+	//Vertices
+	uint numVSize = sizeof(int);
+	uint vSize = sizeof(float) * compMesh->num_vertices * 3;
+
+	uint nSize = sizeof(float) * compMesh->num_vertices * 3;
+
+	uint texCoordSize = sizeof(float) * compMesh->num_vertices * 2;
+
+	//Indices
+	uint numISize = sizeof(int);
+	uint iSize = sizeof(uint) * compMesh->num_indices * 3;
+
+	//Colour
+	uint cSize = sizeof(float) * 4;
+
+	//Saving Shit
+	int totalSize = numVSize + vSize + nSize + texCoordSize + numISize + iSize + cSize;
+	char* buffer = new char[totalSize];
+	char* pointer = buffer; 
+
+	memcpy(pointer, &numVSize, sizeof(int));
+	pointer += sizeof(int);
+
+	memcpy(pointer, &vSize, sizeof(float));
+	pointer += sizeof(float);
+
+	memcpy(pointer, &nSize, sizeof(float));
+	pointer += sizeof(float);
+
+	memcpy(pointer, &texCoordSize, sizeof(float));
+	pointer += sizeof(float);
+
+	memcpy(pointer, &numISize, sizeof(int));
+	pointer += sizeof(int);
+
+	memcpy(pointer, &iSize, sizeof(uint));
+	pointer += sizeof(uint);
+
+	memcpy(pointer, &cSize, sizeof(float));
+	pointer += sizeof(float);
+
+	FILE* fMesh;
+	fMesh = fopen("Assets\Models\meshInfo.wrth", "w");
+	fputs(buffer, fMesh);
+	fclose(fMesh);
+
+	RELEASE_ARRAY(buffer);
 
 	return true;
 }

@@ -30,6 +30,9 @@ public:
 	bool CleanUp();
 	bool Import(const string& pFile);
 
+	bool ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, string path, aiColor3D colour);
+	bool SaveMesh(ComponentMesh* compMesh);
+
 	bool RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent, string path);
 
 	bool LoadGameObject();

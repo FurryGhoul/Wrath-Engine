@@ -74,10 +74,7 @@ update_status ModuleCamera3D::Update(float dt)
 		
 		cameraPos += newPos;
 		cameraRef += newPos;
-	}
 
-	if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT)	//Orbit movement
-	{
 		//Mouse X Right
 		if (mouse_x != 0)
 		{
@@ -92,6 +89,27 @@ update_status ModuleCamera3D::Update(float dt)
 			editorCamera->camera_frustum.front = rotation.Mul(editorCamera->camera_frustum.front).Normalized();
 			editorCamera->camera_frustum.up = rotation.Mul(editorCamera->camera_frustum.up).Normalized();
 		}
+	}
+
+	if (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT)	//Orbit movement
+	{
+		vec newPos = cameraPos - cameraRef;
+		//Mouse X Right
+		if (mouse_x != 0)
+		{
+			Quat rotation = Quat::RotateY(DeltaX);
+			editorCamera->camera_frustum.front = rotation.Mul(editorCamera->camera_frustum.front).Normalized();
+			editorCamera->camera_frustum.up = rotation.Mul(editorCamera->camera_frustum.up).Normalized();
+		}
+		//Mouse Y Left
+		if (mouse_y != 0)
+		{
+			Quat rotation = Quat::RotateAxisAngle(editorCamera->camera_frustum.WorldRight(), DeltaY);
+			editorCamera->camera_frustum.front = rotation.Mul(editorCamera->camera_frustum.front).Normalized();
+			editorCamera->camera_frustum.up = rotation.Mul(editorCamera->camera_frustum.up).Normalized();
+		}
+		
+		editorCamera->camera_frustum.pos = cameraPos = cameraRef + editorCamera->camera_frustum.front*newPos.Length();
 	}
 
 	if (App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT)	//Move camera
