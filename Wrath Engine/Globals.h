@@ -23,6 +23,8 @@ void log(const char file[], int line, const char* format, ...);
 
 typedef unsigned int uint;
 
+void StartPCGRNG();
+
 uint Generate_UUID();
 
 enum update_status

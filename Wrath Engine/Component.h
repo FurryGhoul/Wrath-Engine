@@ -14,6 +14,8 @@ public:
 
 	virtual void ComponentUpdate();
 
+	//virtual void SaveComponent(PHYSFS_File* sceneFile);
+
 public:
 	Component_Type c_type;
 

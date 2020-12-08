@@ -20,7 +20,6 @@ public:
 	ModuleLoader(Application* app, bool start_enabled = true);
 	~ModuleLoader();
 
-	bool Init(const JSON_Object& config);
 	bool Start();
 
 	update_status PreUpdate(float dt);
@@ -31,7 +30,12 @@ public:
 	bool Import(const string& pFile);
 
 	bool ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, string path, aiColor3D colour);
+	bool ImportMaterial(const aiMaterial* material, ComponentMaterial* compMat, string path);
+
 	bool SaveMesh(ComponentMesh* compMesh);
+	bool SaveMaterial(ComponentMaterial* compMat);
+
+	bool LoadMesh(FILE* mesh);
 
 	bool RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent, string path);
 

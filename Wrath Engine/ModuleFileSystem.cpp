@@ -7,6 +7,8 @@
 #include "Assimp/include/cfileio.h"
 #include "Assimp/include/types.h"
 
+#include "Parson/parson.h"
+
 #include <iostream>
 #include <fstream>
 #include <ctime>
@@ -368,6 +370,11 @@ const char* ModuleFileSystem::GetReadPaths() const
 	return paths;
 }
 
+int ModuleFileSystem::GetInt()
+{
+	return 0;
+}
+
 size_t AssimpWrite(aiFile* file, const char* data, size_t size, size_t chunks)
 {
 	PHYSFS_sint64 ret = PHYSFS_write((PHYSFS_File*)file->UserData, (void*)data, size, chunks);
@@ -468,3 +475,39 @@ aiFileIO* ModuleFileSystem::GetAssimpIO()
 	return AssimpIO;
 }
 
+void ModuleFileSystem::AddInt(JSON_Object* object, string section, int value)
+{
+	json_object_set_number(object, section.c_str(), value);
+}
+
+void ModuleFileSystem::AddFloat(JSON_Object* object, string section, float value)
+{
+	json_object_set_number(object, section.c_str(), value);
+}
+
+void ModuleFileSystem::AddString(JSON_Object* object, string section, string value)
+{
+	json_object_set_string(object, section.c_str(), value.c_str());
+}
+
+void ModuleFileSystem::AddBool(JSON_Object* object, string section, bool value)
+{
+	json_object_set_boolean(object, section.c_str(), value);
+}
+
+void ModuleFileSystem::AddUInt(JSON_Object* object, string section, uint value)
+{
+	json_object_set_number(object, section.c_str(), value);
+}
+
+JSON_Object* ModuleFileSystem::AddSection(JSON_Object* object, string section)
+{
+	json_object_set_value(object, section.c_str(), json_value_init_object());
+	return json_object_get_object(object, section.c_str());
+}
+
+string ModuleFileSystem::FromJSONtoString(JSON_Value* object)
+{
+	string file(json_serialize_to_string_pretty(object));
+	return file;
+}

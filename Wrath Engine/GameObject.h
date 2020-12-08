@@ -8,6 +8,7 @@
 #include <map>
 
 #include "MathGeoLib/Geometry/AABB.h"
+#include "Parson/parson.h"
 
 struct Mesh;
 
@@ -30,6 +31,8 @@ public:
 	Component* AddComponent(Component_Type comp_type);
 	GameObject* AddChildren(std::string name);
 
+	void SaveGameObject(JSON_Object* object);
+
 	void Update();
 
 	Component* GetComponent(Component_Type comp_type);
@@ -45,6 +48,7 @@ public:
 	bool selected = false;
 
 	uint uuid;
+	uint parentUUID;
 };
 
 #endif 

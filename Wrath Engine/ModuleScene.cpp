@@ -11,6 +11,7 @@
 
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
+#include "Parson/parson.h"
 
 ModuleScene::ModuleScene(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -27,7 +28,7 @@ bool ModuleScene::Start()
 	root = new GameObject(nullptr, "Root");
 	//App->loader->Import("BakerHouse.fbx");
 	//mainCamera = new ComponentCamera
-
+	//SaveScene();
 	return true;
 }
 
@@ -44,6 +45,19 @@ update_status ModuleScene::Update(float dt)
 {
 
 	return UPDATE_CONTINUE;
+}
+
+void ModuleScene::SaveScene()
+{
+	JSON_Value* sceneValue = json_value_init_object();
+	JSON_Object* sceneFile = json_value_get_object(sceneValue);
+
+	for (int i = 0; i < gameobjects.size(); ++i)
+	{
+		gameobjects[i]->SaveGameObject(sceneFile);
+	}
+	
+	json_value_free(sceneValue);
 }
 
 void ModuleScene::Draw()

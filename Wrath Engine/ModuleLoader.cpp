@@ -44,11 +44,6 @@ ModuleLoader::ModuleLoader(Application* app, bool start_enabled) : Module(app, s
 
 ModuleLoader::~ModuleLoader() {}
 
-bool ModuleLoader::Init(const JSON_Object& config) 
-{ 
-	return true; 
-}
-
 bool ModuleLoader::Start() 
 { 
 	return true; 
@@ -128,101 +123,15 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 
 		ImportMesh(mesh, new_mesh, path, meshColour);
 
-		/*new_mesh->num_vertices = mesh->mNumVertices;
-		new_mesh->vertices = new float[new_mesh->num_vertices * 3];
-		memcpy(new_mesh->vertices, mesh->mVertices, sizeof(float) * new_mesh->num_vertices * 3);
-		LOG("New mesh with %d vertices", new_mesh->num_vertices);
-
-		new_mesh->normals = new float[new_mesh->num_vertices * 3];
-		memcpy(new_mesh->normals, mesh->mNormals, sizeof(float) * new_mesh->num_vertices * 3);*/
-
-		//if (mesh->HasTextureCoords(0))
-		//{
-		//	new_mesh->texture_coords = new float[mesh->mNumVertices * 2];
-
-		//	for (uint j = 0; j < mesh->mNumVertices * 2; j += 2)
-		//	{
-		//		new_mesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
-		//		new_mesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
-		//	}
-		//}
-
 		if (scene->HasMaterials())
 		{
 			ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
 
-			aiString material_path;
-			material->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
-
-			string material_name = material_path.C_Str();
-
-			for (int i = material_name.size() - 1; i >= 0; i--)
-			{
-				if (material_name[i] == '/' || material_name[i] == '\\')
-				{
-					material_name = material_name.substr(i+1, material_name.length()-1);
-					break;
-				}
-			}
-
-			string materialFullPath = path;
-
-			for (int i = materialFullPath.size() - 1; i >= 0; i--)
-			{
-				if (materialFullPath[i] == '/' || materialFullPath[i] == '\\')
-				{
-					break;
-				}
-				else
-				{
-					materialFullPath.pop_back();
-				}
-			}
-
-			materialFullPath += material_name;
-			new_material->textureID = Texturing(new_material, materialFullPath.c_str());
-			new_material->name = material_name;
-
-
-			if (new_material->textureID == 0)
-			{
-				path = "Assets/Textures/" + material_name;
-				new_material->textureID = Texturing(new_material, path.c_str());
-				LOG("%s", path);
-			}
+			ImportMaterial(material, new_material, path);
 		}
 
 		if (mesh->HasFaces())
 		{
-			/*LOG("New mesh with %d face", mesh->mNumFaces);
-			int faceIndex = 0;
-			new_mesh->num_indices = mesh->mNumFaces * 3;
-			new_mesh->indices = new uint[new_mesh->num_indices];
-			for (uint i = 0; i < mesh->mNumFaces; ++i)
-			{
-				if (mesh->mFaces[i].mNumIndices != 3) 
-				{ 
-					LOG("WARNING, geometry face with != 3 indices!"); 
-				}
-				else 
-				{ 
-					memcpy(&new_mesh->indices[faceIndex * 3], mesh->mFaces[i].mIndices, 3 * sizeof(uint)); 
-					faceIndex++;
-				}
-			}*/
-			/*if (faceIndex > 0)
-			{
-				glGenBuffers(1, (GLuint*)&(new_mesh->id_indices));
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, new_mesh->id_indices);
-				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * new_mesh->num_indices, new_mesh->indices, GL_STATIC_DRAW);
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-				glGenBuffers(1, (GLuint*)&(new_mesh->id_texcoords));
-				glBindBuffer(GL_TEXTURE_COORD_ARRAY, new_mesh->id_texcoords);
-				glBufferData(GL_TEXTURE_COORD_ARRAY, sizeof(uint) * new_mesh->num_vertices * 2, new_mesh->texture_coords, GL_STATIC_DRAW);
-				glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
-			}*/
-
 			App->scene->gameobjects.push_back(newGO);
 		}
 	}
@@ -237,6 +146,8 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 
 bool ModuleLoader::ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, string path, aiColor3D colour)
 {
+	bool ret = false;
+
 	compMesh->num_vertices = mesh->mNumVertices;
 	compMesh->vertices = new float[compMesh->num_vertices * 3];
 	memcpy(compMesh->vertices, mesh->mVertices, sizeof(float) * compMesh->num_vertices * 3);
@@ -245,20 +156,23 @@ bool ModuleLoader::ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, strin
 	compMesh->normals = new float[compMesh->num_vertices * 3];
 	memcpy(compMesh->normals, mesh->mNormals, sizeof(float) * compMesh->num_vertices * 3);
 
-	if (mesh->HasTextureCoords(0))
-	{
-		compMesh->texture_coords = new float[mesh->mNumVertices * 2];
-
-		for (uint j = 0; j < mesh->mNumVertices * 2; j += 2)
-		{
-			compMesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
-			compMesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
-		}
-	}
-
 	if (mesh->HasFaces())
 	{
+		ret = true;
 		LOG("New mesh with %d face", mesh->mNumFaces);
+
+		if (mesh->HasTextureCoords(0))
+		{
+			compMesh->num_texture = mesh->mNumVertices;
+			compMesh->texture_coords = new float[compMesh->num_texture * 2];
+
+			for (uint j = 0; j < compMesh->num_texture * 2; j += 2)
+			{
+				compMesh->texture_coords[j] = mesh->mTextureCoords[0][j / 2].x;
+				compMesh->texture_coords[j + 1] = mesh->mTextureCoords[0][j / 2].y;
+			}
+		}
+
 		int faceIndex = 0;
 		compMesh->num_indices = mesh->mNumFaces * 3;
 		compMesh->indices = new uint[compMesh->num_indices];
@@ -267,6 +181,8 @@ bool ModuleLoader::ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, strin
 			if (mesh->mFaces[i].mNumIndices != 3)
 			{
 				LOG("WARNING, geometry face with != 3 indices!");
+				ret = false;
+				break;
 			}
 			else
 			{
@@ -288,61 +204,176 @@ bool ModuleLoader::ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, strin
 			glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
 		}
 	}
+	else
+	{
+		ret = false;
+	}
 
 	compMesh->colour = { colour.r, colour.g, colour.b, 1.f };
 
-	SaveMesh(compMesh);
+	if (ret)
+	{
+		SaveMesh(compMesh);
+	}
+
+	return ret;
+}
+
+bool ModuleLoader::ImportMaterial(const aiMaterial* material, ComponentMaterial* compMat, string path)
+{
+	bool ret;
+
+	aiString material_path;
+	material->GetTexture(aiTextureType_DIFFUSE, 0, &material_path);
+
+	string material_name = material_path.C_Str();
+
+	for (int i = material_name.size() - 1; i >= 0; i--)
+	{
+		if (material_name[i] == '/' || material_name[i] == '\\')
+		{
+			material_name = material_name.substr(i + 1, material_name.length() - 1);
+			break;
+		}
+	}
+
+	string materialFullPath = path;
+
+	for (int i = materialFullPath.size() - 1; i >= 0; i--)
+	{
+		if (materialFullPath[i] == '/' || materialFullPath[i] == '\\')
+		{
+			break;
+		}
+		else
+		{
+			materialFullPath.pop_back();
+		}
+	}
+
+	materialFullPath += material_name;
+	compMat->textureID = Texturing(compMat, materialFullPath.c_str());
+	compMat->name = material_name;
+
+
+	if (compMat->textureID == 0)
+	{
+		path = "Assets/Textures/" + material_name;
+		compMat->textureID = Texturing(compMat, path.c_str());
+		LOG("%s", path);
+	}
+
+	//SaveMaterial(compMat);
+
+	return true;
+}
+
+bool ModuleLoader::SaveMaterial(ComponentMaterial* compMat)
+{
+	//Texture Info
+	uint texID = sizeof(int);
+
+	uint wSize = sizeof(int);
+	uint hSize = sizeof(int);
+
+	//Name
+	uint nameSize = sizeof(int) * compMat->name.length();
+
+	//Path
+	uint pathSize = sizeof(int) * compMat->path.length();
+
+	//Saving Shit
+	int totalSize = texID + wSize + hSize + nameSize + pathSize;
+	char* buffer = new char[totalSize];
+	char* pointer = buffer;
+
+	memcpy(pointer, &texID, sizeof(int));
+	pointer += sizeof(int);
+
+	memcpy(pointer, &wSize, sizeof(int));
+	pointer += sizeof(int);
+
+	memcpy(pointer, &hSize, sizeof(int));
+	pointer += sizeof(int);
+
+	memcpy(pointer, &nameSize, sizeof(int));
+	pointer += sizeof(int);
+
+	memcpy(pointer, &pathSize, sizeof(int));
+	pointer += sizeof(int);
+
+
+	FILE* fMaterial;
+	fMaterial = fopen("Assets\Models\materialInfo.wrth", "w");
+	fputs(buffer, fMaterial);
+	fclose(fMaterial);
+
+	RELEASE_ARRAY(buffer);
 
 	return true;
 }
 
 bool ModuleLoader::SaveMesh(ComponentMesh* compMesh)
 {
+	uint bytes;
+	uint ranges[4] = { compMesh->num_vertices, compMesh->num_normals, compMesh->num_texture, compMesh->num_indices};
+
 	//Vertices
-	uint numVSize = sizeof(int);
 	uint vSize = sizeof(float) * compMesh->num_vertices * 3;
 
 	uint nSize = sizeof(float) * compMesh->num_vertices * 3;
 
-	uint texCoordSize = sizeof(float) * compMesh->num_vertices * 2;
+	uint texCoordSize = 0;
+	if (compMesh->texture_coords)
+	{
+		texCoordSize = sizeof(float) * compMesh->num_vertices * 2;
+	}
 
 	//Indices
-	uint numISize = sizeof(int);
-	uint iSize = sizeof(uint) * compMesh->num_indices * 3;
-
-	//Colour
-	uint cSize = sizeof(float) * 4;
+	uint iSize = sizeof(uint) * compMesh->num_indices;
 
 	//Saving Shit
-	int totalSize = numVSize + vSize + nSize + texCoordSize + numISize + iSize + cSize;
+	uint totalSize = sizeof(ranges) + vSize + nSize + texCoordSize + iSize + sizeof(float) * 3;
 	char* buffer = new char[totalSize];
 	char* pointer = buffer; 
 
-	memcpy(pointer, &numVSize, sizeof(int));
-	pointer += sizeof(int);
+	bytes = sizeof(ranges);
+	memcpy(pointer, ranges, bytes);
+	pointer += bytes;
 
-	memcpy(pointer, &vSize, sizeof(float));
-	pointer += sizeof(float);
+	bytes = vSize;
+	memcpy(pointer, compMesh->vertices, bytes);
+	pointer += bytes;
 
-	memcpy(pointer, &nSize, sizeof(float));
-	pointer += sizeof(float);
+	bytes = nSize;
+	memcpy(pointer, compMesh->normals, bytes);
+	pointer += bytes;
 
-	memcpy(pointer, &texCoordSize, sizeof(float));
-	pointer += sizeof(float);
+	if (compMesh->texture_coords)
+	{
+		bytes = texCoordSize;
+		memcpy(pointer, compMesh->texture_coords, bytes);
+		pointer += bytes;
+	}
 
-	memcpy(pointer, &numISize, sizeof(int));
-	pointer += sizeof(int);
+	bytes = iSize;
+	memcpy(pointer, compMesh->indices, bytes);
+	pointer += bytes;
 
-	memcpy(pointer, &iSize, sizeof(uint));
-	pointer += sizeof(uint);
+	float cSize[3] = { compMesh->colour.x, compMesh->colour.y, compMesh->colour.z };
+	bytes = sizeof(float) * 3;
+	memcpy(pointer, cSize, bytes);
 
-	memcpy(pointer, &cSize, sizeof(float));
-	pointer += sizeof(float);
+	string pathName = "Assets\\Models\\";
+	pathName += std::to_string(compMesh->parent->uuid) + ".wrth";
 
 	FILE* fMesh;
-	fMesh = fopen("Assets\Models\meshInfo.wrth", "w");
-	fputs(buffer, fMesh);
-	fclose(fMesh);
+	fMesh = fopen(pathName.c_str(), "w");
+	if (fMesh != NULL)
+	{
+		fwrite(buffer, sizeof(char), totalSize, fMesh);
+		fclose(fMesh);
+	}
 
 	RELEASE_ARRAY(buffer);
 

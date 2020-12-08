@@ -14,7 +14,6 @@
 #include "imgui/imgui_impl_opengl2.h"
 
 #include "Devil/includes/il.h"
-#include "Parson/parson.h"
 #include "Assimp/include/version.h"
 
 ModuleInterface::ModuleInterface(Application* app, bool start_enabled) : Module(app, start_enabled) {}

@@ -10,6 +10,8 @@ int close_sdl_rwops(SDL_RWops* rw);
 typedef unsigned int uint;
 struct aiFileIO;
 
+//class JSON_Object;
+
 class ModuleFileSystem : public Module
 {
 public:
@@ -42,6 +44,22 @@ public:
 	const char* GetBasePath() const;
 	const char* GetWritePath() const;
 	const char* GetReadPaths() const;
+
+	//JSON get values
+	int GetInt();
+	float GetFloat();
+	string GetString();
+	bool GetBool();
+	uint GetUint();
+
+	//JSON set values
+	void AddInt(JSON_Object* object, string section, int value);
+	void AddFloat(JSON_Object* object, string section, float value);
+	void AddString(JSON_Object* object, string section, string value);
+	void AddBool(JSON_Object* object, string section, bool value);
+	void AddUInt(JSON_Object* object, string section, uint value);
+	JSON_Object* AddSection(JSON_Object* object, string section);
+	string FromJSONtoString(JSON_Value* object);
 
 private:
 	void CreateAssimpIO();

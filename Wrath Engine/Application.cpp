@@ -1,3 +1,4 @@
+#include "Globals.h"
 #include "Application.h"
 #include <Windows.h>
 
@@ -67,6 +68,8 @@ bool Application::Init()
 		ret = item->data->Init();
 		item = item->next;
 	}
+
+	StartPCGRNG();
 
 	// After all Init calls we call Start() in all modules
 	LOG("Application Start --------------");

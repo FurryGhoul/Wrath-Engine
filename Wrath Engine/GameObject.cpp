@@ -1,3 +1,6 @@
+#include "Application.h"
+#include "ModuleFileSystem.h"
+
 #include "GameObject.h"
 #include "Component.h"
 #include "ComponentMesh.h"
@@ -5,16 +8,22 @@
 #include "ComponentTransform.h"
 #include "ComponentCamera.h"
 
+#include "Parson/parson.h"
+
 GameObject::GameObject() 
 { 
-	//uuid = Generate_UUID();
+	uuid = Generate_UUID();
 	this->parent = nullptr;
 	this->name = "";
 }
 
 GameObject::GameObject(GameObject* parent, string name)
 {
-	//uuid = Generate_UUID();
+	uuid = Generate_UUID();
+	if (parent)
+	{
+		parentUUID = parent->uuid;
+	}
 	this->parent = parent;
 	this->name = name;
 }
@@ -31,6 +40,13 @@ GameObject* GameObject::AddChildren(std::string name)
 	GameObject* ret = new GameObject(this, name);
 	children.push_back(ret);
 	return ret;
+}
+
+void GameObject::SaveGameObject(JSON_Object* object)
+{
+	string section("GO_Section");
+	JSON_Object* objectGO = App->file_system->AddSection(object, section);
+	App->file_system->AddInt(objectGO, "tamanyo pene", 69);
 }
 
 void GameObject::AddParent(GameObject* newparent, GameObject* child)
