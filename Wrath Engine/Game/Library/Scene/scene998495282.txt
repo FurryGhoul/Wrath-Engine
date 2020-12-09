@@ -1,0 +1,8 @@
+{
+    "Game Objects": {
+        "UUID": 710725388,
+        "Name": "Spot001.Target",
+        "Translation": 0,
+        "Parent_UUID": -1985192979
+    }
+}

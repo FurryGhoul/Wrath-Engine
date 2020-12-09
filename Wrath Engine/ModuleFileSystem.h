@@ -58,6 +58,8 @@ public:
 	void AddString(JSON_Object* object, string section, string value);
 	void AddBool(JSON_Object* object, string section, bool value);
 	void AddUInt(JSON_Object* object, string section, uint value);
+	void AddVec3(JSON_Object* object, string section, float3 value);
+	void AddVec4(JSON_Object* object, string section, vec4 value);
 	JSON_Object* AddSection(JSON_Object* object, string section);
 	string FromJSONtoString(JSON_Value* object);
 

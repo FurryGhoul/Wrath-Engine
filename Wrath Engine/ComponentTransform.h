@@ -17,6 +17,10 @@ public:
 	void SetGlobalMatrix(float4x4 newGlobal);
 
 	void SetTransformation(math::float4x4 localM);
+
+	float3 compTranslation;
+	float3 compScale;
+	Quat compRotation;
 	
 private:
 	math::float4x4 localMatrix;

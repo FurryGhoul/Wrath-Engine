@@ -1,0 +1,531 @@
+{
+    "Game Objects": [
+        {
+            "UUID": -488899358,
+            "Name": "RootNode",
+            "Translation": 0
+        },
+        {
+            "UUID": -1535746072,
+            "Parent_UUID": -488899358,
+            "Name": "Sky001_$AssimpFbx$_Translation",
+            "Translation": 58.960910797119141
+        },
+        {
+            "UUID": 710261997,
+            "Parent_UUID": -1535746072,
+            "Name": "Sky001_$AssimpFbx$_PreRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": 2101227660,
+            "Parent_UUID": 710261997,
+            "Name": "Sky001_$AssimpFbx$_PostRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": 1536441404,
+            "Parent_UUID": 2101227660,
+            "Name": "Sky001",
+            "Translation": 0
+        },
+        {
+            "UUID": -279487296,
+            "Parent_UUID": -488899358,
+            "Name": "Dummy001_$AssimpFbx$_PreRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": -660260262,
+            "Parent_UUID": -279487296,
+            "Name": "Dummy001_$AssimpFbx$_Rotation",
+            "Translation": 0
+        },
+        {
+            "UUID": -1674928913,
+            "Parent_UUID": -660260262,
+            "Name": "Dummy001",
+            "Translation": 0
+        },
+        {
+            "UUID": 515433117,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_004",
+            "Translation": 0
+        },
+        {
+            "UUID": -782090435,
+            "Parent_UUID": 515433117,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -893252197,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_001",
+            "Translation": 2.1210729528320371e-07
+        },
+        {
+            "UUID": 1001232127,
+            "Parent_UUID": -893252197,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 300654105,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_007",
+            "Translation": -1.5106878663573298e-06
+        },
+        {
+            "UUID": 9892135,
+            "Parent_UUID": 300654105,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 365493702,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_008",
+            "Translation": -2.0522466002148576e-06
+        },
+        {
+            "UUID": 1292310327,
+            "Parent_UUID": 365493702,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1156690306,
+            "Parent_UUID": -1674928913,
+            "Name": "Line002",
+            "Translation": 0
+        },
+        {
+            "UUID": 1541011619,
+            "Parent_UUID": -1156690306,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 1830478974,
+            "Parent_UUID": -1674928913,
+            "Name": "Plane001",
+            "Translation": 0
+        },
+        {
+            "UUID": -242863652,
+            "Parent_UUID": 1830478974,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 1511350412,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_010",
+            "Translation": 8.5538641769744572e-07
+        },
+        {
+            "UUID": -41667627,
+            "Parent_UUID": 1511350412,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 1534002794,
+            "Parent_UUID": 1511350412,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1082876037,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_011",
+            "Translation": -1.5106878663573298e-06
+        },
+        {
+            "UUID": -1106524778,
+            "Parent_UUID": -1082876037,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -136546162,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_013",
+            "Translation": 5.0146070407208754e-07
+        },
+        {
+            "UUID": -499815902,
+            "Parent_UUID": -136546162,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 156495765,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_014",
+            "Translation": 0
+        },
+        {
+            "UUID": 1297582078,
+            "Parent_UUID": 156495765,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 855803855,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_016",
+            "Translation": 8.5538641769744572e-07
+        },
+        {
+            "UUID": 1080460239,
+            "Parent_UUID": 855803855,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1982103706,
+            "Parent_UUID": 855803855,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 264345500,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_017",
+            "Translation": 8.5538641769744572e-07
+        },
+        {
+            "UUID": -1283296842,
+            "Parent_UUID": 264345500,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1026155627,
+            "Parent_UUID": 264345500,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -398678095,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_022",
+            "Translation": 0
+        },
+        {
+            "UUID": -637351029,
+            "Parent_UUID": -398678095,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 1796792918,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_023",
+            "Translation": -1.5106878663573298e-06
+        },
+        {
+            "UUID": 2138315988,
+            "Parent_UUID": 1796792918,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -603844045,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_024",
+            "Translation": -0.069194458425045013
+        },
+        {
+            "UUID": 441404385,
+            "Parent_UUID": -603844045,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 154096652,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_026",
+            "Translation": 0
+        },
+        {
+            "UUID": -77920606,
+            "Parent_UUID": 154096652,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1717423083,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_028",
+            "Translation": -9.3834518111179932e-07
+        },
+        {
+            "UUID": -524918436,
+            "Parent_UUID": -1717423083,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 232284352,
+            "Parent_UUID": -1674928913,
+            "Name": "Object010",
+            "Translation": 0
+        },
+        {
+            "UUID": -907275376,
+            "Parent_UUID": 232284352,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 1345006145,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_030",
+            "Translation": -9.3834518111179932e-07
+        },
+        {
+            "UUID": -1599523348,
+            "Parent_UUID": 1345006145,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -191556332,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_031",
+            "Translation": -9.3834518111179932e-07
+        },
+        {
+            "UUID": -2099780505,
+            "Parent_UUID": -191556332,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1942419302,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_032",
+            "Translation": 0
+        },
+        {
+            "UUID": -525588690,
+            "Parent_UUID": -1942419302,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 245309753,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_033",
+            "Translation": 5.0146070407208754e-07
+        },
+        {
+            "UUID": -289518631,
+            "Parent_UUID": 245309753,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 353771238,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_034",
+            "Translation": 0
+        },
+        {
+            "UUID": 973605884,
+            "Parent_UUID": 353771238,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -308800059,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_035",
+            "Translation": -9.3834518111179932e-07
+        },
+        {
+            "UUID": -813957423,
+            "Parent_UUID": -308800059,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1881665783,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_036",
+            "Translation": 5.0146070407208754e-07
+        },
+        {
+            "UUID": -767243107,
+            "Parent_UUID": -1881665783,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1607553239,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_037",
+            "Translation": 0
+        },
+        {
+            "UUID": 1421802421,
+            "Parent_UUID": -1607553239,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1969090110,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_038",
+            "Translation": 0
+        },
+        {
+            "UUID": -500910500,
+            "Parent_UUID": -1969090110,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1787939367,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_039",
+            "Translation": -9.3834518111179932e-07
+        },
+        {
+            "UUID": 1414402304,
+            "Parent_UUID": -1787939367,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": -1938163934,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_040",
+            "Translation": -9.3834518111179932e-07
+        },
+        {
+            "UUID": 1425261512,
+            "Parent_UUID": -1938163934,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 63017765,
+            "Parent_UUID": -1674928913,
+            "Name": "City_building_041",
+            "Translation": 2.1210729528320371e-07
+        },
+        {
+            "UUID": 864602000,
+            "Parent_UUID": 63017765,
+            "Name": "",
+            "Translation": -431602080
+        },
+        {
+            "UUID": 1757468702,
+            "Parent_UUID": -488899358,
+            "Name": "Camera001_$AssimpFbx$_Translation",
+            "Translation": -97.031112670898438
+        },
+        {
+            "UUID": -118548358,
+            "Parent_UUID": 1757468702,
+            "Name": "Camera001_$AssimpFbx$_PreRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": 1515067781,
+            "Parent_UUID": -118548358,
+            "Name": "Camera001_$AssimpFbx$_Rotation",
+            "Translation": 0
+        },
+        {
+            "UUID": -1226388290,
+            "Parent_UUID": 1515067781,
+            "Name": "Camera001",
+            "Translation": 0
+        },
+        {
+            "UUID": -570209932,
+            "Parent_UUID": -488899358,
+            "Name": "Camera001.Target_$AssimpFbx$_Translation",
+            "Translation": -35.064212799072266
+        },
+        {
+            "UUID": 358447788,
+            "Parent_UUID": -570209932,
+            "Name": "Camera001.Target_$AssimpFbx$_PreRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": -779034568,
+            "Parent_UUID": 358447788,
+            "Name": "Camera001.Target_$AssimpFbx$_Rotation",
+            "Translation": 0
+        },
+        {
+            "UUID": -438129891,
+            "Parent_UUID": -779034568,
+            "Name": "Camera001.Target",
+            "Translation": 0
+        },
+        {
+            "UUID": -1073787214,
+            "Parent_UUID": -488899358,
+            "Name": "Spot001_$AssimpFbx$_Translation",
+            "Translation": 6.2041376622801181e-06
+        },
+        {
+            "UUID": -1582764000,
+            "Parent_UUID": -1073787214,
+            "Name": "Spot001_$AssimpFbx$_PreRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": 752525469,
+            "Parent_UUID": -1582764000,
+            "Name": "Spot001_$AssimpFbx$_Rotation",
+            "Translation": 0
+        },
+        {
+            "UUID": -1055012336,
+            "Parent_UUID": 752525469,
+            "Name": "Spot001_$AssimpFbx$_PostRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": 294480670,
+            "Parent_UUID": -1055012336,
+            "Name": "Spot001",
+            "Translation": 0
+        },
+        {
+            "UUID": -1788244040,
+            "Parent_UUID": -488899358,
+            "Name": "Spot001.Target_$AssimpFbx$_Translation",
+            "Translation": -2.6648158382158726e-06
+        },
+        {
+            "UUID": 647427264,
+            "Parent_UUID": -1788244040,
+            "Name": "Spot001.Target_$AssimpFbx$_PreRotation",
+            "Translation": 0
+        },
+        {
+            "UUID": 903806499,
+            "Parent_UUID": 647427264,
+            "Name": "Spot001.Target_$AssimpFbx$_Rotation",
+            "Translation": 0
+        },
+        {
+            "UUID": -785773300,
+            "Parent_UUID": 903806499,
+            "Name": "Spot001.Target",
+            "Translation": 0
+        }
+    ]
+}

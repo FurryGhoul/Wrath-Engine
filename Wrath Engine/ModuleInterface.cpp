@@ -81,6 +81,11 @@ update_status ModuleInterface::PreUpdate(float dt)
 		{
 			ImGui::MenuItem("New Scene", false, true);
 
+			if (ImGui::MenuItem("Save Scene", false, true))
+			{
+				App->scene->SaveScene();
+			}
+
 			if (ImGui::MenuItem("Close", "ALT+F4"))
 			{
 				ImGui::EndMenu();

@@ -1,5 +1,6 @@
 #pragma once
 #include "Globals.h"
+#include "Parson/parson.h"
 
 class GameObject;
 
@@ -14,7 +15,7 @@ public:
 
 	virtual void ComponentUpdate();
 
-	//virtual void SaveComponent(PHYSFS_File* sceneFile);
+	//virtual void SaveComponent(JSON_Object* object);
 
 public:
 	Component_Type c_type;

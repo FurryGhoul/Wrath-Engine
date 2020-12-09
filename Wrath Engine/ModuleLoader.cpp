@@ -101,6 +101,9 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 
 	ComponentTransform* transform = (ComponentTransform*)GO->AddComponent(TRANSFORM);
 	transform->SetTransformation(new_local);
+	transform->compTranslation = new_translation;
+	transform->compScale = new_scale;
+	transform->compRotation = new_rotation;
 
 	for (int i = 0; i < node->mNumMeshes; ++i)
 	{
@@ -270,46 +273,6 @@ bool ModuleLoader::ImportMaterial(const aiMaterial* material, ComponentMaterial*
 
 bool ModuleLoader::SaveMaterial(ComponentMaterial* compMat)
 {
-	//Texture Info
-	uint texID = sizeof(int);
-
-	uint wSize = sizeof(int);
-	uint hSize = sizeof(int);
-
-	//Name
-	uint nameSize = sizeof(int) * compMat->name.length();
-
-	//Path
-	uint pathSize = sizeof(int) * compMat->path.length();
-
-	//Saving Shit
-	int totalSize = texID + wSize + hSize + nameSize + pathSize;
-	char* buffer = new char[totalSize];
-	char* pointer = buffer;
-
-	memcpy(pointer, &texID, sizeof(int));
-	pointer += sizeof(int);
-
-	memcpy(pointer, &wSize, sizeof(int));
-	pointer += sizeof(int);
-
-	memcpy(pointer, &hSize, sizeof(int));
-	pointer += sizeof(int);
-
-	memcpy(pointer, &nameSize, sizeof(int));
-	pointer += sizeof(int);
-
-	memcpy(pointer, &pathSize, sizeof(int));
-	pointer += sizeof(int);
-
-
-	FILE* fMaterial;
-	fMaterial = fopen("Assets\Models\materialInfo.wrth", "w");
-	fputs(buffer, fMaterial);
-	fclose(fMaterial);
-
-	RELEASE_ARRAY(buffer);
-
 	return true;
 }
 

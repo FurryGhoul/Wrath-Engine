@@ -500,6 +500,17 @@ void ModuleFileSystem::AddUInt(JSON_Object* object, string section, uint value)
 	json_object_set_number(object, section.c_str(), value);
 }
 
+void ModuleFileSystem::AddVec3(JSON_Object* object, string section, float3 value)
+{
+	JSON_Value* jsonTranslation = json_value_init_array();
+	json_object_set_value(object, section.c_str(), jsonTranslation);
+	
+	json_array_append_number(json_value_get_array(jsonTranslation), value.x);
+	json_array_append_number(json_value_get_array(jsonTranslation), value.y);
+	json_array_append_number(json_value_get_array(jsonTranslation), value.z);
+
+}
+
 JSON_Object* ModuleFileSystem::AddSection(JSON_Object* object, string section)
 {
 	json_object_set_value(object, section.c_str(), json_value_init_object());

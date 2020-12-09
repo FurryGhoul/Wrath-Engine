@@ -26,9 +26,7 @@ bool ModuleScene::Start()
 	LOG("Loading scene");
 
 	root = new GameObject(nullptr, "Root");
-	//App->loader->Import("BakerHouse.fbx");
-	//mainCamera = new ComponentCamera
-	//SaveScene();
+
 	return true;
 }
 
@@ -50,11 +48,26 @@ update_status ModuleScene::Update(float dt)
 void ModuleScene::SaveScene()
 {
 	JSON_Value* sceneValue = json_value_init_object();
-	JSON_Object* sceneFile = json_value_get_object(sceneValue);
+	JSON_Value* sceneObjects = json_value_init_array();
+	json_object_set_value(json_object(sceneValue), "Game Objects", sceneObjects);
 
 	for (int i = 0; i < gameobjects.size(); ++i)
 	{
-		gameobjects[i]->SaveGameObject(sceneFile);
+		JSON_Value* objectGO = json_value_init_object();
+		gameobjects[i]->SaveGameObject(json_object(objectGO));
+		json_array_append_value(json_array(sceneObjects), objectGO);
+	}
+
+	string filePath = "Library\\Scene\\scene";
+	string buffer = App->file_system->FromJSONtoString(sceneValue);
+	buffer += "\0";
+	FILE* sceneFile;
+	filePath += std::to_string(root->uuid) + ".txt";
+	sceneFile = fopen(filePath.c_str(), "w");
+	if (sceneFile != NULL)
+	{
+		fwrite(buffer.c_str(), sizeof(char), buffer.size(), sceneFile);
+		fclose(sceneFile);
 	}
 	
 	json_value_free(sceneValue);

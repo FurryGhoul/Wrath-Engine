@@ -44,9 +44,13 @@ GameObject* GameObject::AddChildren(std::string name)
 
 void GameObject::SaveGameObject(JSON_Object* object)
 {
-	string section("GO_Section");
-	JSON_Object* objectGO = App->file_system->AddSection(object, section);
-	App->file_system->AddInt(objectGO, "tamanyo pene", 69);
+	App->file_system->AddInt(object, "UUID", uuid);
+	if (parent)
+	{
+		App->file_system->AddInt(object, "Parent_UUID", parentUUID);
+	}
+	App->file_system->AddString(object, "Name", name.c_str());
+	App->file_system->AddVec3(object, "Translation", ((ComponentTransform*)GetComponent(TRANSFORM))->compTranslation);
 }
 
 void GameObject::AddParent(GameObject* newparent, GameObject* child)
