@@ -15,7 +15,7 @@ public:
 
 	virtual void ComponentUpdate();
 
-	//virtual void SaveComponent(JSON_Object* object);
+	virtual void SaveComponent(JSON_Object* object);
 
 public:
 	Component_Type c_type;

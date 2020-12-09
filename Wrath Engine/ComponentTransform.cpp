@@ -51,3 +51,8 @@ void ComponentTransform::SetTransformation(math::float4x4 localM)
 	localMatrix = localM;
 }
 
+void ComponentTransform::SaveComponent(JSON_Object* object)
+{
+
+}
+

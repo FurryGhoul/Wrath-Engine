@@ -14,3 +14,5 @@ Component::~Component() {}
 Component_Type Component::GetCompType() { return c_type; }
 
 void Component::ComponentUpdate() {}
+
+void Component::SaveComponent(JSON_Object* object) {}

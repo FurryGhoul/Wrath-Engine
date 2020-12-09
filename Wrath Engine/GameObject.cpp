@@ -50,7 +50,21 @@ void GameObject::SaveGameObject(JSON_Object* object)
 		App->file_system->AddInt(object, "Parent_UUID", parentUUID);
 	}
 	App->file_system->AddString(object, "Name", name.c_str());
-	App->file_system->AddVec3(object, "Translation", ((ComponentTransform*)GetComponent(TRANSFORM))->compTranslation);
+
+	math::float4x4 transform = ((ComponentTransform*)GetComponent(TRANSFORM))->GetGlobalMatrix();
+	App->file_system->AddVec3(object, "Translation", transform.TranslatePart());
+	App->file_system->AddVec3(object, "Scale", transform.ExtractScale());
+	App->file_system->AddVec3(object, "Rotation", transform.RotatePart().ToEulerXYZ());
+
+	JSON_Value* objectComponents = json_value_init_array();
+	json_object_set_value(object, "Components", objectComponents);
+
+	for (list<Component*>::iterator iter = components.begin(); iter != components.end(); ++iter)
+	{
+		JSON_Value* objectComp = json_value_init_object();
+		(*iter)->SaveComponent(json_object(objectComp));
+		json_array_append_value(json_array(objectComponents), objectComp);
+	}
 }
 
 void GameObject::AddParent(GameObject* newparent, GameObject* child)

@@ -18,6 +18,8 @@ public:
 
 	void SetTransformation(math::float4x4 localM);
 
+	void SaveComponent(JSON_Object* object);
+
 	float3 compTranslation;
 	float3 compScale;
 	Quat compRotation;

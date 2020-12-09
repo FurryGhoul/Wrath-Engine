@@ -12,6 +12,8 @@ public:
 
 	~ComponentMesh();
 
+	void SaveComponent(JSON_Object* object);
+
 public:
 	// index in VRAM
 	uint id_indices = 0;
@@ -35,4 +37,6 @@ public:
 
 	//Colour
 	float4 colour = { 0.f, 0.f, 0.f, 0.f };
+
+	string path; 
 };

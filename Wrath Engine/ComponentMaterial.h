@@ -10,6 +10,8 @@ public:
 	ComponentMaterial(Component_Type type, GameObject* parent);
 	~ComponentMaterial();
 
+	void SaveComponent(JSON_Object* object);
+
 public:
 	uint textureID;
 	uint width;
