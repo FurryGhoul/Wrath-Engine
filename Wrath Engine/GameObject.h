@@ -27,12 +27,14 @@ public:
 	GameObject(GameObject* parent, string name);
 	~GameObject();
 
-	void AddParent(GameObject* newparent, GameObject* child);
+	void AddParent(GameObject* newparent);
 	Component* AddComponent(Component_Type comp_type);
 	GameObject* AddChildren(std::string name);
 
 	void SaveGameObject(JSON_Object* object);
 	GameObject* LoadGameObject(JSON_Object* object);
+
+	void CalculateGlobal();
 
 	void Update();
 

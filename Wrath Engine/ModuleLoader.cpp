@@ -94,6 +94,11 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 	App->scene->root->children.push_back(GO);
 	App->scene->gameobjects.push_back(GO);
 
+	if (GO->parent == App->scene->root)
+	{
+		App->scene->mainGOs.push_back(GO);
+	}
+
 	aiVector3D translation;
 	aiVector3D scale;
 	aiQuaternion rotation;
@@ -115,7 +120,7 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 	{
 		const aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 	
-		GameObject* newGO = new GameObject(GO, mesh->mName.C_Str());
+		GameObject* newGO = new GameObject(GO, node->mName.C_Str());
 		GO->children.push_back(newGO);
 
 		ComponentMesh* new_mesh = (ComponentMesh*)newGO->AddComponent(MESH);
@@ -142,6 +147,11 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 		if (mesh->HasFaces())
 		{
 			App->scene->gameobjects.push_back(newGO);
+		}
+
+		if (newGO->parent == App->scene->root)
+		{
+			App->scene->mainGOs.push_back(newGO);
 		}
 	}
 
@@ -333,8 +343,9 @@ bool ModuleLoader::SaveMesh(ComponentMesh* compMesh)
 	bytes = sizeof(float) * 3;
 	memcpy(pointer, cSize, bytes);
 
-	string pathName = "Assets\\Models\\";
-	pathName += std::to_string(compMesh->parent->uuid) + ".wrth";
+	string pathName = "Library\\Mesh\\";
+	pathName += compMesh->parent->name.c_str();
+	pathName += ".wrth";
 
 	FILE* fMesh;
 	fMesh = fopen(pathName.c_str(), "w");

@@ -72,8 +72,6 @@ void GameObject::SaveGameObject(JSON_Object* object)
 		(*iter)->SaveComponent(json_object(objectComp));
 		json_array_append_value(json_array(objectComponents), objectComp);
 	}
-
-
 }
 
 GameObject* GameObject::LoadGameObject(JSON_Object* object)
@@ -83,12 +81,52 @@ GameObject* GameObject::LoadGameObject(JSON_Object* object)
 	objectToLoad->parentUUID = App->file_system->GetInt(object, "Parent_UUID");
 	objectToLoad->name = App->file_system->GetString(object, "Name");
 
+	ComponentTransform* transform = (ComponentTransform*)objectToLoad->AddComponent(TRANSFORM);
+	float3 jsonTranslation = App->file_system->GetVec3(object, "Translation");
+	float3 jsonScale = App->file_system->GetVec3(object, "Scale");
+	Quat jsonRotation = App->file_system->GetVec4(object, "Rotation");
+	float4x4 jsonLocal = float4x4::FromTRS(jsonTranslation, jsonRotation, jsonScale);
+
+	transform->SetTransformation(jsonLocal);
+	transform->compTranslation = jsonTranslation;
+	transform->compScale = jsonScale;
+	transform->compRotation = jsonRotation;
+
+	JSON_Array* components = json_object_get_array(object, "Component");
+
+	for (int i = 0; i < json_array_get_count(components); ++i)
+	{
+		JSON_Object* jsonComponent = json_array_get_object(components, i);
+		int type = App->file_system->GetInt(object, "Type:");
+
+		if (type == 1)
+		{
+			ComponentMesh* mesh = ((ComponentMesh*)jsonComponent)->LoadComponent(object);
+			mesh = (ComponentMesh*)objectToLoad->AddComponent((Component_Type)type);
+		}
+
+		if (type == 2)
+		{
+			ComponentMaterial* material = ((ComponentMaterial*)jsonComponent)->LoadComponent(object);
+			material = (ComponentMaterial*)objectToLoad->AddComponent((Component_Type)type);
+		}
+	}
+
 	return objectToLoad;
 }
 
-void GameObject::AddParent(GameObject* newparent, GameObject* child)
+void GameObject::CalculateGlobal()
 {
-	if (newparent != parent) child->parent = newparent;
+	((ComponentTransform*)GetComponent(TRANSFORM))->CalculateGlobalMatrix(((ComponentTransform*)GetComponent(TRANSFORM))->GetLocalMatrix());
+	for (int i = 0; i < children.size(); ++i)
+	{
+		children[i]->CalculateGlobal();
+	}
+}
+
+void GameObject::AddParent(GameObject* newparent)
+{
+	if (newparent != parent) parent = newparent;
 }
 
 Component* GameObject::AddComponent(Component_Type comp_type)

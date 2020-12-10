@@ -33,6 +33,7 @@ public:
 	GameObject* root;
 
 	vector<GameObject*> gameobjects;
+	vector<GameObject*> mainGOs;
 	vector<ComponentCamera*> cameras;
 
 	LineSegment ray;

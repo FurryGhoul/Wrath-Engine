@@ -11,6 +11,7 @@ public:
 	~ComponentMaterial();
 
 	void SaveComponent(JSON_Object* object);
+	ComponentMaterial* LoadComponent(JSON_Object* object);
 
 public:
 	uint textureID;

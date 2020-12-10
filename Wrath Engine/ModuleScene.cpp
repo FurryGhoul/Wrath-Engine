@@ -77,13 +77,28 @@ void ModuleScene::LoadScene(string filePath)
 {
 	JSON_Value* sceneValue = json_parse_file(filePath.c_str());
 	JSON_Array* gameObjects = json_object_get_array(json_object(sceneValue), "Game Objects");
-
-	vector<GameObject*> objectsToLoad;
+	vector<GameObject*> objectWithParent; 
 
 	for (int i = 0; i < json_array_get_count(gameObjects); ++i)
 	{
 		JSON_Object* jsonGO = json_array_get_object(gameObjects, i);
 		GameObject* loadedGO = ((GameObject*)jsonGO)->LoadGameObject(json_object(sceneValue));
+		gameobjects.push_back(loadedGO);
+		if (loadedGO->parentUUID != 0)
+		{
+			objectWithParent.push_back(loadedGO);
+		}
+	}
+
+	for (int i = 0; i < objectWithParent.size(); ++i)
+	{
+		for (int j = 0; j < gameobjects.size(); ++j)
+		{
+			if (objectWithParent[i]->parentUUID == gameobjects[j]->uuid)
+			{
+				objectWithParent[i]->AddParent(gameobjects[j]);
+			}
+		}
 	}
 }
 

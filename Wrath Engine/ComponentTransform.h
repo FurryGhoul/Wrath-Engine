@@ -16,6 +16,8 @@ public:
 	math::float4x4 GetGlobalMatrix();
 	void SetGlobalMatrix(float4x4 newGlobal);
 
+	void CalculateGlobalMatrix(float4x4 newLocal);
+
 	void SetTransformation(math::float4x4 localM);
 
 	void SaveComponent(JSON_Object* object);

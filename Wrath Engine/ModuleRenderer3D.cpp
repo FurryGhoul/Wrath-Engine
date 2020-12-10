@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 
+#include "GameObject.h"
 #include "ComponentMesh.h"
 
 #include "Glew/include/glew.h"
@@ -110,6 +111,11 @@ bool ModuleRenderer3D::Init()
 
 update_status ModuleRenderer3D::Update(float dt)
 {
+	for (int i = 0; i < App->scene->mainGOs.size(); ++i)
+	{
+		App->scene->mainGOs[i]->CalculateGlobal();
+	}
+
 	if (lightning) { lights[0].Active(true); }
 	else lights[0].Active(false);
 	if (backface) { glEnable(GL_CULL_FACE); }

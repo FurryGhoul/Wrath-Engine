@@ -261,17 +261,13 @@ void ModuleInterface::CreateSaveSceneWindow(bool* open)
 	ImGui::OpenPopup("Save your scene");
 	if (ImGui::BeginPopupModal("Save your scene"))
 	{
-		if (ImGui::InputText("Name", sceneName, IM_ARRAYSIZE(sceneName), ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue))
+		name = sceneName;
+		ImGui::InputText("Name", sceneName, IM_ARRAYSIZE(sceneName), ImGuiInputTextFlags_AutoSelectAll);
+		if (ImGui::Button("Save") || App->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN)
 		{
-			name = sceneName;
 			App->scene->SaveScene(name.c_str());
 		}
-		/*if (ImGui::Button("Save")) 
-		{ 
-			name = sceneName;
-			App->scene->SaveScene(name.c_str()); 
-		} 
-		ImGui::SameLine();*/
+		ImGui::SameLine();
 		if (ImGui::Button("Close")) 
 		{ 
 			ImGui::CloseCurrentPopup(); 

@@ -13,3 +13,10 @@ void ComponentMesh::SaveComponent(JSON_Object* object)
 	App->file_system->AddInt(object, "Type:", 1);
 	//App->file_system->AddString(object, "Path:", path.c_str());
 }
+
+ComponentMesh* ComponentMesh::LoadComponent(JSON_Object* object)
+{
+	ComponentMesh* mesh = new ComponentMesh();
+	App->file_system->GetString(object, "Path:");
+	return mesh;
+}

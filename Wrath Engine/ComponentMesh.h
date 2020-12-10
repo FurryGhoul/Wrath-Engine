@@ -3,7 +3,6 @@
 #include "GameObject.h"
 #include "MathGeoLib/Math/float4.h"
 
-class ComponentMaterial;
 class ComponentMesh : public Component
 {
 public:
@@ -13,6 +12,7 @@ public:
 	~ComponentMesh();
 
 	void SaveComponent(JSON_Object* object);
+	ComponentMesh* LoadComponent(JSON_Object* object);
 
 public:
 	// index in VRAM
