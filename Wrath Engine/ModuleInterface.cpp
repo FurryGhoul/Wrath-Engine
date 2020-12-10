@@ -28,7 +28,8 @@ bool ModuleInterface::Start()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable, ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
 	ImGui::StyleColorsDark();
 
@@ -59,6 +60,12 @@ update_status ModuleInterface::PreUpdate(float dt)
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
 
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+
+	io.WantCaptureKeyboard = true;
+	io.WantCaptureMouse = true;
+	io.WantTextInput = true;
+
 	ImGui::SetNextWindowPos({ 0,20 });
 	ImGui::SetNextWindowSize({ (float)App->window->width, (float)App->window->height });
 	ImGui::SetNextWindowBgAlpha(0.0f);
@@ -81,9 +88,9 @@ update_status ModuleInterface::PreUpdate(float dt)
 		{
 			ImGui::MenuItem("New Scene", false, true);
 
-			if (ImGui::MenuItem("Save Scene", false, true))
+			if (ImGui::MenuItem("Save Scene", NULL, &save_scene_open))
 			{
-				App->scene->SaveScene();
+				//App->scene->SaveScene();
 			}
 
 			if (ImGui::MenuItem("Close", "ALT+F4"))
@@ -140,6 +147,7 @@ update_status ModuleInterface::Update(float dt)
 	if (hierarchy_open)				App->hierarchy->Draw(&hierarchy_open);
 	if (console_open)				App->console->Draw(&console_open);
 	if (inspector_open)				App->inspector->Draw(App->hierarchy->selectedGO, &inspector_open);
+	if (save_scene_open)			this->CreateSaveSceneWindow(&save_scene_open);
 
 	//ImGui::ShowDemoWindow();
 
@@ -242,6 +250,33 @@ void ModuleInterface::CreateControlsWindow(bool* open)
 		ImGui::Text("Use 'Shift' to duplicate movement speed."); ImGui::Separator();
 
 		if (ImGui::Button("Close")) { ImGui::CloseCurrentPopup(); controls_open = false; }
+		ImGui::EndPopup();
+	}
+}
+
+void ModuleInterface::CreateSaveSceneWindow(bool* open)
+{
+	string name;
+	char sceneName[50] = "";
+	ImGui::OpenPopup("Save your scene");
+	if (ImGui::BeginPopupModal("Save your scene"))
+	{
+		if (ImGui::InputText("Name", sceneName, IM_ARRAYSIZE(sceneName), ImGuiInputTextFlags_AutoSelectAll | ImGuiInputTextFlags_EnterReturnsTrue))
+		{
+			name = sceneName;
+			App->scene->SaveScene(name.c_str());
+		}
+		/*if (ImGui::Button("Save")) 
+		{ 
+			name = sceneName;
+			App->scene->SaveScene(name.c_str()); 
+		} 
+		ImGui::SameLine();*/
+		if (ImGui::Button("Close")) 
+		{ 
+			ImGui::CloseCurrentPopup(); 
+			save_scene_open = false; 
+		}
 		ImGui::EndPopup();
 	}
 }

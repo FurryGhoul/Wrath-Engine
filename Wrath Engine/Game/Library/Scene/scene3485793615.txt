@@ -1,5 +1,0 @@
-{
-    "GO_Section": {
-        "tamanyo pene": 69
-    }
-}

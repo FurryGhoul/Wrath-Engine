@@ -370,9 +370,50 @@ const char* ModuleFileSystem::GetReadPaths() const
 	return paths;
 }
 
-int ModuleFileSystem::GetInt()
+int ModuleFileSystem::GetInt(JSON_Object* object, string section)
 {
-	return 0;
+	return json_object_get_number(object, section.c_str());
+}
+
+float ModuleFileSystem::GetFloat(JSON_Object* object, string section)
+{
+	return json_object_get_number(object, section.c_str());
+}
+
+string ModuleFileSystem::GetString(JSON_Object* object, string section)
+{
+	return json_object_get_string(object, section.c_str());
+}
+
+bool ModuleFileSystem::GetBool(JSON_Object* object, string section)
+{
+	return json_object_get_boolean(object, section.c_str());
+}
+
+uint ModuleFileSystem::GetUint(JSON_Object* object, string section)
+{
+	return json_object_get_number(object, section.c_str());
+}
+
+float3 ModuleFileSystem::GetVec3(JSON_Object* object, string section)
+{
+	float3 vector; 
+	JSON_Array* jsonVector = json_object_get_array(object, section.c_str());
+	vector.x = json_array_get_number(jsonVector, 0);
+	vector.y = json_array_get_number(jsonVector, 1);
+	vector.z = json_array_get_number(jsonVector, 2);
+	return vector;
+}
+
+Quat ModuleFileSystem::GetVec4(JSON_Object* object, string section)
+{
+	Quat vector;
+	JSON_Array* jsonVector = json_object_get_array(object, section.c_str());
+	vector.x = json_array_get_number(jsonVector, 0);
+	vector.y = json_array_get_number(jsonVector, 1);
+	vector.z = json_array_get_number(jsonVector, 2);
+	vector.w = json_array_get_number(jsonVector, 3);
+	return vector;
 }
 
 size_t AssimpWrite(aiFile* file, const char* data, size_t size, size_t chunks)

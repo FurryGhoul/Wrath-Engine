@@ -46,11 +46,13 @@ public:
 	const char* GetReadPaths() const;
 
 	//JSON get values
-	int GetInt();
-	float GetFloat();
-	string GetString();
-	bool GetBool();
-	uint GetUint();
+	int GetInt(JSON_Object* object, string section);
+	float GetFloat(JSON_Object* object, string section);
+	string GetString(JSON_Object* object, string section);
+	bool GetBool(JSON_Object* object, string section);
+	uint GetUint(JSON_Object* object, string section);
+	float3 GetVec3(JSON_Object* object, string section);
+	Quat GetVec4(JSON_Object* object, string section);
 
 	//JSON set values
 	void AddInt(JSON_Object* object, string section, int value);

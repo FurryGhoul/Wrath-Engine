@@ -64,6 +64,12 @@ update_status ModuleLoader::PostUpdate(float dt)
 	return UPDATE_CONTINUE; 
 }
 
+bool ModuleLoader::OwnImport(const string& file)
+{
+	App->scene->LoadScene(file);
+	return true;
+}
+
 bool ModuleLoader::Import(const string& pFile)
 {
 	string file_path = pFile;

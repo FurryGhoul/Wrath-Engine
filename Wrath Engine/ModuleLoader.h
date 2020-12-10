@@ -28,6 +28,7 @@ public:
 		
 	bool CleanUp();
 	bool Import(const string& pFile);
+	bool OwnImport(const string& file);
 
 	bool ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, string path, aiColor3D colour);
 	bool ImportMaterial(const aiMaterial* material, ComponentMaterial* compMat, string path);

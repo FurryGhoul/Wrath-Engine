@@ -32,6 +32,7 @@ public:
 	GameObject* AddChildren(std::string name);
 
 	void SaveGameObject(JSON_Object* object);
+	GameObject* LoadGameObject(JSON_Object* object);
 
 	void Update();
 

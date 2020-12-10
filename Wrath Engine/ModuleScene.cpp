@@ -45,7 +45,7 @@ update_status ModuleScene::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-void ModuleScene::SaveScene()
+void ModuleScene::SaveScene(string fileName)
 {
 	JSON_Value* sceneValue = json_value_init_object();
 	JSON_Value* sceneObjects = json_value_init_array();
@@ -58,11 +58,11 @@ void ModuleScene::SaveScene()
 		json_array_append_value(json_array(sceneObjects), objectGO);
 	}
 
-	string filePath = "Library\\Scene\\scene";
+	string filePath = "Library\\Scene\\";
 	string buffer = App->file_system->FromJSONtoString(sceneValue);
 	buffer += "\0";
 	FILE* sceneFile;
-	filePath += std::to_string(root->uuid) + ".txt";
+	filePath += fileName + ".json";
 	sceneFile = fopen(filePath.c_str(), "w");
 	if (sceneFile != NULL)
 	{
@@ -71,6 +71,20 @@ void ModuleScene::SaveScene()
 	}
 	
 	json_value_free(sceneValue);
+}
+
+void ModuleScene::LoadScene(string filePath)
+{
+	JSON_Value* sceneValue = json_parse_file(filePath.c_str());
+	JSON_Array* gameObjects = json_object_get_array(json_object(sceneValue), "Game Objects");
+
+	vector<GameObject*> objectsToLoad;
+
+	for (int i = 0; i < json_array_get_count(gameObjects); ++i)
+	{
+		JSON_Object* jsonGO = json_array_get_object(gameObjects, i);
+		GameObject* loadedGO = ((GameObject*)jsonGO)->LoadGameObject(json_object(sceneValue));
+	}
 }
 
 void ModuleScene::Draw()

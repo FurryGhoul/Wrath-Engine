@@ -19,8 +19,8 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void SaveScene();
-	//void LoadScene(PHYSFS_File* sceneFile);
+	void SaveScene(string fileName);
+	void LoadScene(string filePath);
 
 	void Draw();
 

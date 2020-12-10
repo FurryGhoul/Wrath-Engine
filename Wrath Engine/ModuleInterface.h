@@ -19,6 +19,7 @@ public:
 	void CreateAboutWindow(bool* open);
 	void CreateHardwareWindow(bool* open);
 	void CreateControlsWindow(bool* open);
+	void CreateSaveSceneWindow(bool* open);
 
 public:
 	bool about_open = false;
@@ -31,6 +32,7 @@ public:
 	bool controls_open = false;
 
 	bool close_engine = false;
+	bool save_scene_open = false;
 
 private:
 	bool show_demo_window = false;
