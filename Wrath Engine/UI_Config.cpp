@@ -82,6 +82,7 @@ void UI_Config::Draw(bool* open)
 
 		if (ImGui::CollapsingHeader("Renderer"))
 		{
+			ImGui::Checkbox("Bounding Box Active", &App->renderer3D->boundingBoxes);
 			ImGui::Checkbox("Axis Active", &App->scene_ui->active_axis);
 			ImGui::Checkbox("Grid Active", &App->scene_ui->active_grid);
 			ImGui::Checkbox("Lighting", &App->renderer3D->lightning);

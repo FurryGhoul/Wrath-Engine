@@ -36,6 +36,9 @@ public:
 
 	void CalculateGlobal();
 
+	void CalculateAABB();
+	AABB GetBoundingBox();
+
 	void Update();
 
 	Component* GetComponent(Component_Type comp_type);
@@ -52,6 +55,10 @@ public:
 
 	uint uuid;
 	uint parentUUID;
+
+	AABB boundingBox;
+	AABB obb;
+	AABB aabb;
 };
 
 #endif 

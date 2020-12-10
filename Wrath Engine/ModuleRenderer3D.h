@@ -4,6 +4,9 @@
 #include "glmath.h"
 #include "Light.h"
 
+#include "MathGeoLib/MathGeoLib.h"
+#include "MathGeoLib/Geometry/AABB.h"
+
 #define MAX_LIGHTS 8
 
 class ModuleRenderer3D : public Module
@@ -20,6 +23,7 @@ public:
 
 	void ActivateWireframe();
 	void DrawNormals(ComponentMesh* mesh);
+	void DrawBoundingBox(const AABB& BB);
 
 	void OnResize(int width, int height);
 
@@ -40,4 +44,5 @@ public:
 	bool lights_on = false;
 	bool wireframe = false;
 	bool textured = true;
+	bool boundingBoxes = false;
 };

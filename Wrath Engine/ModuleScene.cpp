@@ -146,6 +146,7 @@ void ModuleScene::Draw()
 						}
 
 					}
+
 					glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 					glColor3f(1.0, 1.0, 1.0);

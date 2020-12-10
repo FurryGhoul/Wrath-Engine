@@ -153,6 +153,8 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 		{
 			App->scene->mainGOs.push_back(newGO);
 		}
+
+		newGO->CalculateAABB();
 	}
 
 	for (int i = 0; i < node->mNumChildren; ++i)

@@ -15,6 +15,7 @@ GameObject::GameObject()
 	uuid = Generate_UUID();
 	this->parent = nullptr;
 	this->name = "";
+	boundingBox.SetNegativeInfinity();
 }
 
 GameObject::GameObject(GameObject* parent, string name)
@@ -26,13 +27,17 @@ GameObject::GameObject(GameObject* parent, string name)
 	}
 	this->parent = parent;
 	this->name = name;
+	boundingBox.SetNegativeInfinity();
 }
 
 GameObject::~GameObject() {}
 
 void GameObject::Update()
 {
-	for (list<Component*>::iterator iter = components.begin(); iter != components.end(); ++iter) { (*iter)->ComponentUpdate(); }
+	for (list<Component*>::iterator iter = components.begin(); iter != components.end(); ++iter) 
+	{ 
+		(*iter)->ComponentUpdate(); 
+	}
 }
 
 GameObject* GameObject::AddChildren(std::string name)
@@ -174,5 +179,32 @@ Component* GameObject::GetComponent(Component_Type comp_type)
 		}
 	}
 	return ret;
+}
+
+void GameObject::CalculateAABB()
+{
+	if (ComponentMesh* mesh = (ComponentMesh*)GetComponent(MESH))
+	{
+		boundingBox.Enclose((float3*)mesh->vertices, mesh->num_vertices);
+	}
+
+	if (children.size() <= 0)
+	{
+		boundingBox.TransformAsAABB(((ComponentTransform*)GetComponent(TRANSFORM))->GetGlobalMatrix());
+	}
+
+	if (children.size() > 0)
+	{
+		for (auto item = children.begin(); item != children.end(); item++)
+		{
+			boundingBox.Enclose((*item)->boundingBox);
+			(*item)->CalculateAABB();
+		}
+	}
+}
+
+AABB GameObject::GetBoundingBox()
+{
+	return boundingBox;
 }
 
