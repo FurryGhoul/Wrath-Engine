@@ -24,6 +24,7 @@ public:
 	void ActivateWireframe();
 	void DrawNormals(ComponentMesh* mesh);
 	void DrawBoundingBox(const AABB& BB);
+	void DrawRay();
 
 	void OnResize(int width, int height);
 
@@ -34,9 +35,13 @@ public:
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 
+	LineSegment ray;
+
 	uint buffer_tex = 0;
 	uint fbo = 0;
 	uint rbo;
+
+	bool changedFOV = false;
 
 	bool vsync = false;
 	bool lightning = true;

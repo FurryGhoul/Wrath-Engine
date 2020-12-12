@@ -4,6 +4,7 @@
 #include "ModuleWindow.h"
 
 #include "UI_Config.h"
+#include "UI_Scene.h"
 
 #include "MathGeoLib/Math/float3.h"
 #include "MathGeoLib/MathGeoLib.h"

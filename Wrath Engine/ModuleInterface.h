@@ -34,6 +34,12 @@ public:
 	bool close_engine = false;
 	bool save_scene_open = false;
 
+	float uiScreenX;
+	float uiScreenY;
+	float uiScreenW;
+	float uiScreenH;
+
+
 private:
 	bool show_demo_window = false;
 

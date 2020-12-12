@@ -24,15 +24,24 @@ void UI_Scene::Draw(bool* open)
 {
 	if (ImGui::Begin("Scene", open, ImGuiWindowFlags_NoScrollbar))
 	{
-		vec2 win_size = (ImGui::GetWindowSize().x, ImGui::GetWindowSize().y);
-		vec2 screen_size = (App->window->width, App->window->height);
+		vec2 win_size = { ImGui::GetWindowSize().x, ImGui::GetWindowSize().y };
 
-		ImGui::SetCursorPos(ImVec2(win_size.x - screen_size.x, win_size.y - screen_size.y));
-		ImGui::Image((ImTextureID)App->renderer3D->buffer_tex, ImVec2(App->window->width, App->window->height), { 1,1 }, { 0,0 });
+		ImGui::SetCursorPos(ImVec2(0, 0));
 
-		if (active_grid) DrawGrid(grid_size);
-		if (active_axis) DrawAxis(&active_axis);
+		App->ui->uiScreenX = ImGui::GetWindowPos().x + ImGui::GetCursorPos().x;
+		App->ui->uiScreenY = ImGui::GetWindowPos().y + ImGui::GetCursorPos().y;
 
+		if (App->ui->uiScreenW != win_size.x || App->ui->uiScreenH != win_size.y)
+		{
+			float newAspectRatio = win_size.x/ win_size.y;
+			App->camera->editorCamera->SetAspectRatio(newAspectRatio);
+			App->renderer3D->changedFOV = true;
+			App->ui->uiScreenW = win_size.x;
+			App->ui->uiScreenH = win_size.y;
+			LOG("x %f, y %f", win_size.x, win_size.y);
+		}
+
+		ImGui::Image((ImTextureID)App->renderer3D->buffer_tex, ImVec2(win_size.x, win_size.y), { 0,1 }, { 1,0 });
 	}
 	ImGui::End();
 }

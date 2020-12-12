@@ -148,20 +148,31 @@ update_status ModuleRenderer3D::Update(float dt)
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
-	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glBindTexture(GL_TEXTURE_2D, buffer_tex);
-
-	glClearColor(0.3f, 0.3f, 0.5f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//TODO: update this shit when frustrum is done
 	//glMatrixMode(App->camera->editorCamera->GetProjectionMatrix());
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	glViewport(0, 0, App->window->width, App->window->height);
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
+
+	if (changedFOV)
+	{
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glLoadMatrixf(App->camera->editorCamera->GetProjectionMatrix());
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		changedFOV = false;
+	}
+
 	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 	glLoadMatrixf(App->camera->editorCamera->GetViewMatrix());
 
 	lights[0].SetPos(App->camera->cameraPos.x, App->camera->cameraPos.y, App->camera->cameraPos.z);
 	for (uint i = 0; i < MAX_LIGHTS; ++i) lights[i].Render();
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
 	return UPDATE_CONTINUE;
 }
@@ -169,8 +180,21 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
+	glClearColor(0.3f, 0.3f, 0.5f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glLoadIdentity();
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	glLoadMatrixf(App->camera->editorCamera->GetViewMatrix());
+
 	int result = 0;
 	App->scene->Draw();
+	DrawRay();
+	if (App->scene_ui->active_grid) App->scene_ui->DrawGrid(App->scene_ui->grid_size);
+	if (App->scene_ui->active_axis) App->scene_ui->DrawAxis(App->scene_ui->active_axis);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -178,6 +202,7 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &result);
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 	SDL_GL_SwapWindow(App->window->window);
+
 
 	return UPDATE_CONTINUE;
 }
@@ -263,10 +288,26 @@ void ModuleRenderer3D::DrawBoundingBox(const AABB& boundingbox)
 	glLineWidth(1.0f);
 }
 
+void ModuleRenderer3D::DrawRay()
+{
+	glLineWidth(2.0f);
+
+	glBegin(GL_LINES);
+
+	glColor4f(1.0f, 0.0f, 0.0f, 1.0f);
+	glVertex3f(ray.a.x, ray.a.y, ray.a.z);
+	glVertex3f(ray.b.x, ray.b.y, ray.b.z);
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
+	glEnd();
+
+	glLineWidth(1.0f);
+}
+
 void ModuleRenderer3D::OnResize(int width, int height)
 {
 	glViewport(0, 0, width, height);
-
+	LOG("henlo");
 	App->window->width = width;
 	App->window->height = height;
 

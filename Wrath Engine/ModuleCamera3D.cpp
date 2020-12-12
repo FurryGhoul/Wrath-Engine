@@ -3,8 +3,11 @@
 #include "ModuleCamera3D.h"
 
 #include "ComponentCamera.h"
+#include "ComponentMesh.h"
+#include "ComponentTransform.h"
 
 #include <math.h>
+#include <queue>
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
@@ -49,8 +52,12 @@ update_status ModuleCamera3D::Update(float dt)
 	float speed = 9.0f * dt;
 	float wheel = 100.0f * dt;
 
-	int mouse_x = -App->input->GetMouseXMotion();
+	int mouse_x = App->input->GetMouseXMotion();
 	int mouse_y = -App->input->GetMouseYMotion();
+
+
+	//LOG("x: %f, y: %f", ImGui::GetMousePos().x, ImGui::GetMousePos().y);
+	//LOG("sX: %f, sY: %f", App->ui->uiScreenX, App->ui->uiScreenY);
 
 	float DeltaX = (float)mouse_x * Sensitivity;
 	float DeltaY = (float)mouse_y * Sensitivity;;
@@ -114,6 +121,22 @@ update_status ModuleCamera3D::Update(float dt)
 		}
 		
 		editorCamera->camera_frustum.pos = cameraPos = cameraRef - editorCamera->camera_frustum.front*newPos.Length();
+	}
+
+	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->GetMouseButton(SDL_BUTTON_LEFT) != KEY_REPEAT && App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT)
+	{
+		GameObject* selectedGO = StartMousePicking();
+
+		if (App->hierarchy->selectedGO)
+		{
+			App->hierarchy->selectedGO->selected = false;
+		}
+
+		if (selectedGO)
+		{
+			App->hierarchy->selectedGO = selectedGO;
+			selectedGO->selected = true;
+		}
 	}
 
 	if (App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT)	//Move camera
@@ -180,4 +203,82 @@ mat4x4 ModuleCamera3D::At(const vec3& right, const vec3& up, const vec3& dir)
 	mat4x4 matrix_2 = { X.x, X.y, X.z, -cameraPos.x, Y.x, Y.y, Y.z, -cameraPos.y, Z.x, Z.y, Z.z, -cameraPos.z, 0, 0, 0, 1 };
 
 	return matrix_1 * matrix_2;
+}
+
+GameObject* ModuleCamera3D::StartMousePicking()
+{
+	GameObject* objectToSelect = nullptr;
+
+	float mouseX = ImGui::GetMousePos().x - App->ui->uiScreenX;
+	float mouseY = ImGui::GetMousePos().y - App->ui->uiScreenY;
+	mouseX = (mouseX/(App->ui->uiScreenW / 2)) - 1;
+	mouseY = (mouseY/(App->ui->uiScreenH / 2)) - 1;
+
+	//LOG("X %f | Y %f", mouseX, -mouseY);
+
+	LineSegment picking = editorCamera->camera_frustum.UnProjectLineSegment(mouseX, -mouseY);
+	App->renderer3D->ray = picking;
+
+	std::priority_queue <Hit_Object*, std::vector<Hit_Object*>, Hit_Distance> hitObjects;
+	float hitDistance = 0;
+	float endDistance = 0;
+
+	for (auto item = App->scene->gameobjects.begin(); item != App->scene->gameobjects.end(); item++)
+	{
+		bool hit = picking.Intersects((*item)->boundingBox, hitDistance, endDistance);
+		if (hit)
+		{
+			Hit_Object* hitObject = new Hit_Object((*item), hitDistance);
+			hitObjects.push(hitObject);
+		}
+	}
+
+	float closestDist = -1;
+	float actualDist = 0;
+
+	while (!hitObjects.empty())
+	{
+		Hit_Object* auxObject = hitObjects.top();
+		actualDist = FindClosest(auxObject->gameObject, picking);
+		hitObjects.pop();
+
+		if (actualDist > -1 && (actualDist < closestDist || closestDist == -1))
+		{
+			closestDist = actualDist;
+			objectToSelect = auxObject->gameObject;
+		}
+	}
+
+	return objectToSelect;
+}
+
+float ModuleCamera3D::FindClosest(GameObject* hitobject, LineSegment ray)
+{
+	float ret = -1.f;
+
+	ComponentTransform* hitTransform = ((ComponentTransform*)hitobject->GetComponent(TRANSFORM));
+	ComponentMesh* hitMesh = ((ComponentMesh*)hitobject->GetComponent(MESH));
+
+	ray.Transform(hitTransform->GetGlobalMatrix().Inverted());
+
+	if (hitMesh != nullptr)
+	{
+		float hitDistance;
+		float3 hitPoint;
+		for (int i = 0; i < hitMesh->num_indices; i += 3)
+		{
+			math::Triangle meshTriangle;
+			meshTriangle.a = { hitMesh->vertices[hitMesh->indices[i]*3], hitMesh->vertices[hitMesh->indices[i]*3 + 1], hitMesh->vertices[hitMesh->indices[i]*3 + 2] };
+			meshTriangle.b = { hitMesh->vertices[hitMesh->indices[i + 1] * 3], hitMesh->vertices[hitMesh->indices[i + 1] * 3 + 1], hitMesh->vertices[hitMesh->indices[i + 1] * 3 + 2] };
+			meshTriangle.c = { hitMesh->vertices[hitMesh->indices[i + 2] * 3], hitMesh->vertices[hitMesh->indices[i + 2] * 3 + 1], hitMesh->vertices[hitMesh->indices[i + 2] * 3 + 2] };
+			bool hit = ray.Intersects(meshTriangle, &hitDistance, &hitPoint);
+
+			if (hit && hitDistance > 0 && (hitDistance < ret || ret == -1))
+			{
+				ret = hitDistance;
+			}
+		}
+	}
+
+	return ret;
 }

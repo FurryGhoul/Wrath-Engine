@@ -128,6 +128,8 @@
     <ClInclude Include="Glew\include\wglew.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="ImGuizmo\ImGuizmo.h" />
+    <ClInclude Include="ImGuizmo\ImSequencer.h" />
     <ClInclude Include="ModuleFileSystem.h" />
     <ClInclude Include="ModuleLoader.h" />
     <ClInclude Include="Parson\parson.h" />
@@ -237,6 +239,8 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="Global.cpp" />
+    <ClCompile Include="ImGuizmo\ImGuizmo.cpp" />
+    <ClCompile Include="ImGuizmo\ImSequencer.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
     <ClCompile Include="ImGui\imgui_demo.cpp" />
     <ClCompile Include="ImGui\imgui_draw.cpp" />
