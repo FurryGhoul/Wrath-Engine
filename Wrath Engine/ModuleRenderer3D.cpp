@@ -1,9 +1,11 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleCamera3D.h"
 
 #include "GameObject.h"
 #include "ComponentMesh.h"
+#include "ComponentCamera.h"
 
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -152,7 +154,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glClearColor(0.3f, 0.3f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//TODO: update this shit when frustrum is done
-	//glMatrixMode(GL_PROJECTION);
+	//glMatrixMode(App->camera->editorCamera->GetProjectionMatrix());
 	glLoadIdentity();
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();

@@ -23,6 +23,7 @@ public:
 	void LoadScene(string filePath);
 
 	void Draw();
+	void GameObjectsToDraw();
 
 	void AddCamera();
 
@@ -34,6 +35,7 @@ public:
 
 	vector<GameObject*> gameobjects;
 	vector<GameObject*> mainGOs;
+	vector<GameObject*> objectsToDraw;
 	vector<ComponentCamera*> cameras;
 
 	LineSegment ray;

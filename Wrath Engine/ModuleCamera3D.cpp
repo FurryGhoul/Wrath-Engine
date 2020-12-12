@@ -49,7 +49,7 @@ update_status ModuleCamera3D::Update(float dt)
 	float speed = 9.0f * dt;
 	float wheel = 100.0f * dt;
 
-	int mouse_x = +App->input->GetMouseXMotion();
+	int mouse_x = -App->input->GetMouseXMotion();
 	int mouse_y = -App->input->GetMouseYMotion();
 
 	float DeltaX = (float)mouse_x * Sensitivity;
@@ -105,11 +105,15 @@ update_status ModuleCamera3D::Update(float dt)
 		if (mouse_y != 0)
 		{
 			Quat rotation = Quat::RotateAxisAngle(editorCamera->camera_frustum.WorldRight(), DeltaY);
-			editorCamera->camera_frustum.front = rotation.Mul(editorCamera->camera_frustum.front).Normalized();
-			editorCamera->camera_frustum.up = rotation.Mul(editorCamera->camera_frustum.up).Normalized();
+
+			if (rotation.Mul(editorCamera->camera_frustum.up).Normalized().y > 0.0f)
+			{
+				editorCamera->camera_frustum.up = rotation.Mul(editorCamera->camera_frustum.up).Normalized();
+				editorCamera->camera_frustum.front = rotation.Mul(editorCamera->camera_frustum.front).Normalized();
+			}			
 		}
 		
-		editorCamera->camera_frustum.pos = cameraPos = cameraRef + editorCamera->camera_frustum.front*newPos.Length();
+		editorCamera->camera_frustum.pos = cameraPos = cameraRef - editorCamera->camera_frustum.front*newPos.Length();
 	}
 
 	if (App->input->GetMouseButton(SDL_BUTTON_MIDDLE) == KEY_REPEAT)	//Move camera

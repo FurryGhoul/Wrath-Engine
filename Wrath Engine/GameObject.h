@@ -52,6 +52,7 @@ public:
 	vector<GameObject*> children;
 
 	bool selected = false;
+	bool drawable = false;
 
 	uint uuid;
 	uint parentUUID;

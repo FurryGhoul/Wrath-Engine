@@ -104,7 +104,9 @@ void ModuleScene::LoadScene(string filePath)
 
 void ModuleScene::Draw()
 {
-	for (auto item = gameobjects.begin(); item != gameobjects.end(); item++)
+	GameObjectsToDraw();
+
+	for (auto item = objectsToDraw.begin(); item != objectsToDraw.end(); item++)
 	{
 		for (auto iter = (*item)->components.begin(); iter != (*item)->components.end(); ++iter)
 		{
@@ -121,7 +123,7 @@ void ModuleScene::Draw()
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
 				glVertexPointer(3, GL_FLOAT, 0, &mesh->vertices[0]);
 
-				if (ComponentMaterial* material = (ComponentMaterial*)(*iter)->parent->GetComponent(MATERIAL) )
+				if (ComponentMaterial* material = (ComponentMaterial*)(*iter)->parent->GetComponent(MATERIAL))
 				{
 					glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 					glBindTexture(GL_TEXTURE_2D, material->textureID);
@@ -172,6 +174,25 @@ void ModuleScene::Draw()
 	if (App->renderer3D->wireframe)
 	{
 		App->renderer3D->ActivateWireframe();
+	}
+}
+
+void ModuleScene::GameObjectsToDraw()
+{
+	objectsToDraw.clear();
+	ComponentCamera* auxCam = App->camera->editorCamera;
+	for (auto item = gameobjects.begin(); item != gameobjects.end(); ++item)
+	{
+		if (auxCam->ContainsAABB((*item)->boundingBox))
+		{
+			(*item)->drawable = true;
+			objectsToDraw.push_back((*item));
+		}
+
+		else
+		{
+			(*item)->drawable = false;
+		}
 	}
 }
 
