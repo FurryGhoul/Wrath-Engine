@@ -1,7 +1,7 @@
 {
     "Game Objects": [
         {
-            "UUID": 297802642,
+            "UUID": -1517101470,
             "Name": "RootNode",
             "Translation": [
                 0,
@@ -25,9 +25,9 @@
             ]
         },
         {
-            "UUID": -545027929,
-            "Parent_UUID": 297802642,
-            "Name": "Sky001_$AssimpFbx$_Translation",
+            "UUID": -1689455669,
+            "Parent_UUID": -1517101470,
+            "Name": "Sky001",
             "Translation": [
                 18.153732299804688,
                 0,
@@ -39,144 +39,19 @@
                 1
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1650782434,
-            "Parent_UUID": -545027929,
-            "Name": "Sky001_$AssimpFbx$_PreRotation",
-            "Translation": [
+                -0.99999994039535522,
                 0,
                 0,
                 0
             ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
             "Number of Components": 0,
             "Components": [
                 {}
             ]
         },
         {
-            "UUID": 409086625,
-            "Parent_UUID": 1650782434,
-            "Name": "Sky001_$AssimpFbx$_PostRotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1830973965,
-            "Parent_UUID": 409086625,
-            "Name": "Sky001",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -715629637,
-            "Parent_UUID": 297802642,
-            "Name": "Dummy001_$AssimpFbx$_PreRotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1092702667,
-            "Parent_UUID": -715629637,
-            "Name": "Dummy001_$AssimpFbx$_Rotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1915438464,
-            "Parent_UUID": 1092702667,
+            "UUID": -1396123752,
+            "Parent_UUID": -1517101470,
             "Name": "Dummy001",
             "Translation": [
                 0,
@@ -189,10 +64,10 @@
                 1
             ],
             "Rotation": [
+                -0.70710676908493042,
                 0,
                 0,
-                0,
-                1
+                0.70710676908493042
             ],
             "Number of Components": 0,
             "Components": [
@@ -200,8 +75,8 @@
             ]
         },
         {
-            "UUID": 1736063081,
-            "Parent_UUID": 1915438464,
+            "UUID": -874474718,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_004",
             "Translation": [
                 -41.47589111328125,
@@ -219,37 +94,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1581145618,
-            "Parent_UUID": 1736063081,
-            "Name": "City_building_004",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building03_c.tga"
@@ -257,8 +107,8 @@
             ]
         },
         {
-            "UUID": -321982617,
-            "Parent_UUID": 1915438464,
+            "UUID": 915303591,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_001",
             "Translation": [
                 17.707164764404297,
@@ -276,37 +126,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1680086994,
-            "Parent_UUID": -321982617,
-            "Name": "City_building_001",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V02_C.png"
@@ -314,8 +139,8 @@
             ]
         },
         {
-            "UUID": 1850757953,
-            "Parent_UUID": 1915438464,
+            "UUID": 876796674,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_007",
             "Translation": [
                 16.010492324829102,
@@ -333,37 +158,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1603313999,
-            "Parent_UUID": 1850757953,
-            "Name": "City_building_007",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building_016_c.tga"
@@ -371,8 +171,8 @@
             ]
         },
         {
-            "UUID": 1651014656,
-            "Parent_UUID": 1915438464,
+            "UUID": -1739631437,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_008",
             "Translation": [
                 40.979995727539063,
@@ -390,37 +190,12 @@
                 0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1479661168,
-            "Parent_UUID": 1651014656,
-            "Name": "City_building_008",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building_025_c.tga"
@@ -428,8 +203,8 @@
             ]
         },
         {
-            "UUID": -1535564164,
-            "Parent_UUID": 1915438464,
+            "UUID": 2046353871,
+            "Parent_UUID": -1396123752,
             "Name": "Line002",
             "Translation": [
                 -2.1597719192504883,
@@ -447,37 +222,12 @@
                 -0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1918319664,
-            "Parent_UUID": -1535564164,
-            "Name": "Line002",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": ""
@@ -485,8 +235,8 @@
             ]
         },
         {
-            "UUID": -452036204,
-            "Parent_UUID": 1915438464,
+            "UUID": 341745860,
+            "Parent_UUID": -1396123752,
             "Name": "Plane001",
             "Translation": [
                 -0.02860260009765625,
@@ -504,37 +254,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 395997992,
-            "Parent_UUID": -452036204,
-            "Name": "Plane001",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": ""
@@ -542,8 +267,8 @@
             ]
         },
         {
-            "UUID": -257929512,
-            "Parent_UUID": 1915438464,
+            "UUID": 620483024,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_010",
             "Translation": [
                 25.154010772705078,
@@ -561,37 +286,15 @@
                 0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
+            "Number of Components": 3,
             "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1437986002,
-            "Parent_UUID": -257929512,
-            "Name": "City_building_010",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Number of Components": 2,
-            "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
+                {
+                    "Type:": 1
+                },
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 01_c.tga"
@@ -599,40 +302,8 @@
             ]
         },
         {
-            "UUID": -385661601,
-            "Parent_UUID": -257929512,
-            "Name": "City_building_010",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Number of Components": 2,
-            "Components": [
-                {
-                    "Type:": 1
-                },
-                {},
-                {
-                    "Type:": 2,
-                    "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 01_c.tga"
-                }
-            ]
-        },
-        {
-            "UUID": -380690732,
-            "Parent_UUID": 1915438464,
+            "UUID": 1893187596,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_011",
             "Translation": [
                 30.134540557861328,
@@ -650,37 +321,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 973395306,
-            "Parent_UUID": -380690732,
-            "Name": "City_building_011",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building_016_c.tga"
@@ -688,8 +334,8 @@
             ]
         },
         {
-            "UUID": 81960186,
-            "Parent_UUID": 1915438464,
+            "UUID": 1367054048,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_013",
             "Translation": [
                 -42.288055419921875,
@@ -707,37 +353,12 @@
                 0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1580107353,
-            "Parent_UUID": 81960186,
-            "Name": "City_building_013",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 06_ c.tga"
@@ -745,8 +366,8 @@
             ]
         },
         {
-            "UUID": 1621481952,
-            "Parent_UUID": 1915438464,
+            "UUID": 1259752550,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_014",
             "Translation": [
                 -19.439706802368164,
@@ -764,37 +385,12 @@
                 1,
                 -4.3711388286737929e-08
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 782632355,
-            "Parent_UUID": 1621481952,
-            "Name": "City_building_014",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building03_c.tga"
@@ -802,8 +398,8 @@
             ]
         },
         {
-            "UUID": -2098929076,
-            "Parent_UUID": 1915438464,
+            "UUID": -1157406929,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_016",
             "Translation": [
                 34.270423889160156,
@@ -821,37 +417,15 @@
                 1,
                 -4.3711388286737929e-08
             ],
-            "Number of Components": 0,
+            "Number of Components": 3,
             "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -926199921,
-            "Parent_UUID": -2098929076,
-            "Name": "City_building_016",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Number of Components": 2,
-            "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
+                {
+                    "Type:": 1
+                },
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 01_c.tga"
@@ -859,40 +433,8 @@
             ]
         },
         {
-            "UUID": 2313555,
-            "Parent_UUID": -2098929076,
-            "Name": "City_building_016",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Number of Components": 2,
-            "Components": [
-                {
-                    "Type:": 1
-                },
-                {},
-                {
-                    "Type:": 2,
-                    "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 01_c.tga"
-                }
-            ]
-        },
-        {
-            "UUID": 658228887,
-            "Parent_UUID": 1915438464,
+            "UUID": -768109181,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_017",
             "Translation": [
                 44.260082244873047,
@@ -910,37 +452,15 @@
                 0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
+            "Number of Components": 3,
             "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -310907930,
-            "Parent_UUID": 658228887,
-            "Name": "City_building_017",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Number of Components": 2,
-            "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
+                {
+                    "Type:": 1
+                },
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 01_c.tga"
@@ -948,40 +468,8 @@
             ]
         },
         {
-            "UUID": -1783973864,
-            "Parent_UUID": 658228887,
-            "Name": "City_building_017",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Number of Components": 2,
-            "Components": [
-                {
-                    "Type:": 1
-                },
-                {},
-                {
-                    "Type:": 2,
-                    "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 01_c.tga"
-                }
-            ]
-        },
-        {
-            "UUID": -1154796659,
-            "Parent_UUID": 1915438464,
+            "UUID": -7721489,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_022",
             "Translation": [
                 -20.831323623657227,
@@ -999,37 +487,12 @@
                 1,
                 1.9470718370939721e-07
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 582864188,
-            "Parent_UUID": -1154796659,
-            "Name": "City_building_022",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building05 _c.tga"
@@ -1037,8 +500,8 @@
             ]
         },
         {
-            "UUID": -1694634789,
-            "Parent_UUID": 1915438464,
+            "UUID": 249112506,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_023",
             "Translation": [
                 42.130641937255859,
@@ -1056,37 +519,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 2040446357,
-            "Parent_UUID": -1694634789,
-            "Name": "City_building_023",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building_016_c.tga"
@@ -1094,8 +532,8 @@
             ]
         },
         {
-            "UUID": -339903303,
-            "Parent_UUID": 1915438464,
+            "UUID": 1739567019,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_024",
             "Translation": [
                 -20.572771072387695,
@@ -1113,37 +551,12 @@
                 1,
                 4.3711388286737929e-08
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -126390708,
-            "Parent_UUID": -339903303,
-            "Name": "City_building_024",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building_025_c.tga"
@@ -1151,8 +564,8 @@
             ]
         },
         {
-            "UUID": -1871978517,
-            "Parent_UUID": 1915438464,
+            "UUID": -1967730477,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_026",
             "Translation": [
                 31.51188850402832,
@@ -1170,37 +583,12 @@
                 1,
                 4.3711388286737929e-08
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1167620816,
-            "Parent_UUID": -1871978517,
-            "Name": "City_building_026",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building05 _c.tga"
@@ -1208,8 +596,8 @@
             ]
         },
         {
-            "UUID": -871514917,
-            "Parent_UUID": 1915438464,
+            "UUID": -1733097913,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_028",
             "Translation": [
                 13.38798999786377,
@@ -1227,37 +615,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1518955175,
-            "Parent_UUID": -871514917,
-            "Name": "City_building_028",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V01_C.png"
@@ -1265,8 +628,8 @@
             ]
         },
         {
-            "UUID": -1200903524,
-            "Parent_UUID": 1915438464,
+            "UUID": 985470435,
+            "Parent_UUID": -1396123752,
             "Name": "Object010",
             "Translation": [
                 -2.5033531188964844,
@@ -1284,37 +647,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -498925539,
-            "Parent_UUID": -1200903524,
-            "Name": "Object010",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": ""
@@ -1322,8 +660,8 @@
             ]
         },
         {
-            "UUID": 1402159879,
-            "Parent_UUID": 1915438464,
+            "UUID": -1028327618,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_030",
             "Translation": [
                 -42.807239532470703,
@@ -1341,37 +679,12 @@
                 -0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -937425352,
-            "Parent_UUID": 1402159879,
-            "Name": "City_building_030",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V01_C.png"
@@ -1379,8 +692,8 @@
             ]
         },
         {
-            "UUID": 361916666,
-            "Parent_UUID": 1915438464,
+            "UUID": -207871981,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_031",
             "Translation": [
                 -34.679481506347656,
@@ -1398,37 +711,12 @@
                 -0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1135127832,
-            "Parent_UUID": 361916666,
-            "Name": "City_building_031",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V01_C.png"
@@ -1436,8 +724,8 @@
             ]
         },
         {
-            "UUID": -1930739663,
-            "Parent_UUID": 1915438464,
+            "UUID": -159139346,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_032",
             "Translation": [
                 -29.478403091430664,
@@ -1455,37 +743,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1117045285,
-            "Parent_UUID": -1930739663,
-            "Name": "City_building_032",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building03_c.tga"
@@ -1493,8 +756,8 @@
             ]
         },
         {
-            "UUID": 2060501184,
-            "Parent_UUID": 1915438464,
+            "UUID": -1549478953,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_033",
             "Translation": [
                 -32.361495971679688,
@@ -1512,37 +775,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 147089953,
-            "Parent_UUID": 2060501184,
-            "Name": "City_building_033",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 06_ c.tga"
@@ -1550,8 +788,8 @@
             ]
         },
         {
-            "UUID": 1767183863,
-            "Parent_UUID": 1915438464,
+            "UUID": -956614135,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_034",
             "Translation": [
                 16.049516677856445,
@@ -1569,37 +807,12 @@
                 -0.7071068286895752,
                 0.70710670948028564
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1627386624,
-            "Parent_UUID": 1767183863,
-            "Name": "City_building_034",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building05 _c.tga"
@@ -1607,8 +820,8 @@
             ]
         },
         {
-            "UUID": -420384647,
-            "Parent_UUID": 1915438464,
+            "UUID": -1573855148,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_035",
             "Translation": [
                 13.38798999786377,
@@ -1626,37 +839,12 @@
                 0,
                 1
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -137059212,
-            "Parent_UUID": -420384647,
-            "Name": "City_building_035",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V01_C.png"
@@ -1664,8 +852,8 @@
             ]
         },
         {
-            "UUID": -1569262518,
-            "Parent_UUID": 1915438464,
+            "UUID": -902373030,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_036",
             "Translation": [
                 -31.216331481933594,
@@ -1683,37 +871,12 @@
                 -0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1857794036,
-            "Parent_UUID": -1569262518,
-            "Name": "City_building_036",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building 06_ c.tga"
@@ -1721,8 +884,8 @@
             ]
         },
         {
-            "UUID": 41839428,
-            "Parent_UUID": 1915438464,
+            "UUID": 1771377497,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_037",
             "Translation": [
                 -20.317693710327148,
@@ -1740,37 +903,12 @@
                 1,
                 1.9470718370939721e-07
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1645315778,
-            "Parent_UUID": 41839428,
-            "Name": "City_building_037",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building05 _c.tga"
@@ -1778,8 +916,8 @@
             ]
         },
         {
-            "UUID": -2027552111,
-            "Parent_UUID": 1915438464,
+            "UUID": -1406352088,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_038",
             "Translation": [
                 -41.649002075195313,
@@ -1797,37 +935,12 @@
                 -0.7071068286895752,
                 0.70710670948028564
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1398239616,
-            "Parent_UUID": -2027552111,
-            "Name": "City_building_038",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\building05 _c.tga"
@@ -1835,8 +948,8 @@
             ]
         },
         {
-            "UUID": 1000780299,
-            "Parent_UUID": 1915438464,
+            "UUID": -1236242319,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_039",
             "Translation": [
                 -42.807239532470703,
@@ -1854,37 +967,12 @@
                 -0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 350728777,
-            "Parent_UUID": 1000780299,
-            "Name": "City_building_039",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V01_C.png"
@@ -1892,8 +980,8 @@
             ]
         },
         {
-            "UUID": 641472067,
-            "Parent_UUID": 1915438464,
+            "UUID": 1172216872,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_040",
             "Translation": [
                 -34.679481506347656,
@@ -1911,37 +999,12 @@
                 -0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1548158870,
-            "Parent_UUID": 641472067,
-            "Name": "City_building_040",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V01_C.png"
@@ -1949,8 +1012,8 @@
             ]
         },
         {
-            "UUID": 1289811632,
-            "Parent_UUID": 1915438464,
+            "UUID": -1865400367,
+            "Parent_UUID": -1396123752,
             "Name": "City_building_041",
             "Translation": [
                 30.695278167724609,
@@ -1968,37 +1031,12 @@
                 0.70710676908493042,
                 0.70710676908493042
             ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -2046592883,
-            "Parent_UUID": 1289811632,
-            "Name": "City_building_041",
-            "Translation": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Scale": [
-                -431602080,
-                -431602080,
-                -431602080
-            ],
-            "Rotation": [
-                -431602080,
-                -431602080,
-                -431602080,
-                -431602080
-            ],
             "Number of Components": 2,
             "Components": [
+                {},
                 {
                     "Type:": 1
                 },
-                {},
                 {
                     "Type:": 2,
                     "Path:": "C:\\Users\\ivand\\Documents\\GitHub\\Wrath-Engine\\Wrath Engine\\Game\\street\\Building_V02_C.png"
@@ -2006,9 +1044,9 @@
             ]
         },
         {
-            "UUID": 1893467040,
-            "Parent_UUID": 297802642,
-            "Name": "Camera001_$AssimpFbx$_Translation",
+            "UUID": -889989756,
+            "Parent_UUID": -1517101470,
+            "Name": "Camera001",
             "Translation": [
                 -78.312431335449219,
                 45.251216888427734,
@@ -2016,64 +1054,14 @@
             ],
             "Scale": [
                 1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -843940674,
-            "Parent_UUID": 1893467040,
-            "Name": "Camera001_$AssimpFbx$_PreRotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1053413553,
-            "Parent_UUID": -843940674,
-            "Name": "Camera001_$AssimpFbx$_Rotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
                 0.99999994039535522,
                 0.99999994039535522
             ],
             "Rotation": [
-                -0.19855600595474243,
-                0.56070470809936523,
-                0.75774872303009033,
-                -0.26833298802375793
+                0.049339786171913147,
+                0.93228733539581299,
+                0.13933119177818298,
+                -0.33014035224914551
             ],
             "Number of Components": 0,
             "Components": [
@@ -2081,34 +1069,9 @@
             ]
         },
         {
-            "UUID": -1918393261,
-            "Parent_UUID": 1053413553,
-            "Name": "Camera001",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1495337055,
-            "Parent_UUID": 297802642,
-            "Name": "Camera001.Target_$AssimpFbx$_Translation",
+            "UUID": -460691940,
+            "Parent_UUID": -1517101470,
+            "Name": "Camera001.Target",
             "Translation": [
                 -28.132621765136719,
                 20.873329162597656,
@@ -2116,64 +1079,14 @@
             ],
             "Scale": [
                 1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1860417934,
-            "Parent_UUID": 1495337055,
-            "Name": "Camera001.Target_$AssimpFbx$_PreRotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1727433766,
-            "Parent_UUID": -1860417934,
-            "Name": "Camera001.Target_$AssimpFbx$_Rotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
                 0.99999994039535522,
                 1
             ],
             "Rotation": [
-                -0.19855606555938721,
-                0.56070470809936523,
-                0.75774872303009033,
-                -0.26833304762840271
+                0.049339786171913147,
+                0.93228733539581299,
+                0.13933119177818298,
+                -0.33014047145843506
             ],
             "Number of Components": 0,
             "Components": [
@@ -2181,34 +1094,9 @@
             ]
         },
         {
-            "UUID": -2113306713,
-            "Parent_UUID": 1727433766,
-            "Name": "Camera001.Target",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1922752478,
-            "Parent_UUID": 297802642,
-            "Name": "Spot001_$AssimpFbx$_Translation",
+            "UUID": -1480520784,
+            "Parent_UUID": -1517101470,
+            "Name": "Spot001",
             "Translation": [
                 -66.721267700195313,
                 141.93412780761719,
@@ -2220,60 +1108,10 @@
                 1
             ],
             "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -872669803,
-            "Parent_UUID": 1922752478,
-            "Name": "Spot001_$AssimpFbx$_PreRotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -537342642,
-            "Parent_UUID": -872669803,
-            "Name": "Spot001_$AssimpFbx$_Rotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0.15443940460681915,
-                -0.15443937480449677,
                 -0.69003510475158691,
-                0.69003516435623169
+                -0.15443938970565796,
+                -0.69003510475158691,
+                0.15443941950798035
             ],
             "Number of Components": 0,
             "Components": [
@@ -2281,59 +1119,9 @@
             ]
         },
         {
-            "UUID": 533701634,
-            "Parent_UUID": -537342642,
-            "Name": "Spot001_$AssimpFbx$_PostRotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1379160598,
-            "Parent_UUID": 533701634,
-            "Name": "Spot001",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": 1787013016,
-            "Parent_UUID": 297802642,
-            "Name": "Spot001.Target_$AssimpFbx$_Translation",
+            "UUID": -706894478,
+            "Parent_UUID": -1517101470,
+            "Name": "Spot001.Target",
             "Translation": [
                 28.890945434570313,
                 -60.963882446289063,
@@ -2345,85 +1133,10 @@
                 1
             ],
             "Rotation": [
+                5.9604644775390625e-08,
                 0,
                 0,
-                0,
-                1
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1663134113,
-            "Parent_UUID": 1787013016,
-            "Name": "Spot001.Target_$AssimpFbx$_PreRotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                -0.70710676908493042,
-                0,
-                0,
-                0.70710676908493042
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -107108082,
-            "Parent_UUID": -1663134113,
-            "Name": "Spot001.Target_$AssimpFbx$_Rotation",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0.7071068286895752,
-                0,
-                0,
-                0.70710670948028564
-            ],
-            "Number of Components": 0,
-            "Components": [
-                {}
-            ]
-        },
-        {
-            "UUID": -1658675017,
-            "Parent_UUID": -107108082,
-            "Name": "Spot001.Target",
-            "Translation": [
-                0,
-                0,
-                0
-            ],
-            "Scale": [
-                1,
-                1,
-                1
-            ],
-            "Rotation": [
-                0,
-                0,
-                0,
-                1
+                0.99999994039535522
             ],
             "Number of Components": 0,
             "Components": [

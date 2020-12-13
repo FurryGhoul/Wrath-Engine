@@ -13,7 +13,7 @@ public:
 	ComponentCamera(Component_Type type, GameObject* parent);
 	~ComponentCamera();
 
-	bool Update();
+	bool ComponentUpdate();
 
 	void DrawFrustrum();
 	void DrawRay();
@@ -30,4 +30,7 @@ public:
 
 	Frustum camera_frustum;
 	AABB camera_BB;
+
+	bool active = false;
+	bool culling = false;
 };

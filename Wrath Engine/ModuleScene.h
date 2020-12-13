@@ -26,12 +26,14 @@ public:
 	void GameObjectsToDraw();
 
 	void DeleteGameObject(GameObject* objecttodelete, bool erasefromparent = true);
+	GameObject* GetGameObjectFromUUID(uint uuid);
 
 	void AddCamera();
 
 public:
 	/*vector<uint> indices;
 	vector<vec3> vertexs;*/	
+	ComponentCamera* activeCamera;
 
 	GameObject* root;
 

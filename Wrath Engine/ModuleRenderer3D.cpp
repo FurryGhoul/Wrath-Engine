@@ -176,7 +176,11 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 	int result = 0;
 	App->scene->Draw();
-	DrawRay();
+	if (App->scene->activeCamera != nullptr)
+	{
+		App->scene->activeCamera->DrawFrustrum();
+	}
+	//DrawRay();
 	if (App->scene_ui->active_grid) App->scene_ui->DrawGrid(App->scene_ui->grid_size);
 	if (App->scene_ui->active_axis) App->scene_ui->DrawAxis(App->scene_ui->active_axis);
 

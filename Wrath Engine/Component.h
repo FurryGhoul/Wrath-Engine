@@ -9,11 +9,11 @@ class Component
 public:
 	Component();
 	Component(Component_Type type, GameObject* parent);
-	~Component();
+	virtual~Component();
 
 	Component_Type GetCompType();
 
-	virtual void ComponentUpdate();
+	virtual bool ComponentUpdate();
 
 	virtual void SaveComponent(JSON_Object* object);
 

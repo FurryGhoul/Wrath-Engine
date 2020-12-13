@@ -36,7 +36,13 @@ GameObject::GameObject(GameObject* parent, string name)
 
 GameObject::~GameObject() 
 {
+	for (list<Component*>::iterator iter = components.begin(); iter != components.end(); ++iter)
+	{
+		delete((*iter));
+		(*iter) = nullptr;
+	}
 
+	components.clear();
 }
 
 void GameObject::Update()
@@ -50,7 +56,7 @@ void GameObject::Update()
 GameObject* GameObject::AddChildren(std::string name)
 {
 	GameObject* ret = new GameObject(this, name);
-	children.push_back(ret);
+	App->scene->gameobjects.push_back(ret);
 	return ret;
 }
 
@@ -231,11 +237,6 @@ AABB GameObject::RecalculateAABB()
 		}
 	}
 
-	if (name == "Dummy001")
-	{
-		LOG("PUTA");
-	}
-
 	boundingBox = newBoundingBox;
 
 	return newBoundingBox;
@@ -244,5 +245,42 @@ AABB GameObject::RecalculateAABB()
 AABB GameObject::GetBoundingBox()
 {
 	return boundingBox;
+}
+
+void GameObject::ReParenting(GameObject* newParent)
+{
+	if (newParent != parent && newParent != nullptr)
+	{
+		GameObject* finalParent = newParent;
+		while (finalParent->parent != nullptr)
+		{
+			if (finalParent->parent == this)
+			{
+				return;
+			}	
+			finalParent = finalParent->parent;
+		}
+
+		if (parent != nullptr)
+		{
+			for (auto item = parent->children.begin(); item != parent->children.end(); ++item)
+			{
+				if ((*item) == this)
+				{
+					parent->children.erase(item);
+					break;
+				}
+			}
+		}
+
+		parent = newParent;
+		parent->children.push_back(this);
+
+		ComponentTransform* transform = (ComponentTransform*)GetComponent(TRANSFORM);
+		transform->SetLocalMatrix(((ComponentTransform*)parent->GetComponent(TRANSFORM))->GetGlobalMatrix().Inverted() * transform->GetGlobalMatrix());
+		transform->GetLocalMatrix().Decompose(transform->compTranslation, transform->compRotation, transform->compScale);
+
+		App->scene->root->RecalculateAABB();
+	}
 }
 

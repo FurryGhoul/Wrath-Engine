@@ -36,9 +36,16 @@ void UI_Hierarchy::Draw(bool* open)
 {
 	if (ImGui::Begin("Hierarchy", open))
 	{
+		if (ImGui::Button("Create Camera"))
+		{
+			App->scene->AddCamera();
+		}
 		for (auto item = App->scene->root->children.begin(); item != App->scene->root->children.end(); ++item)
 		{
-			CreateTreeHierarchy((*item));
+			if (CreateTreeHierarchy((*item)))
+			{
+				item = App->scene->root->children.begin();
+			}
 		}
 
 		ImGui::Separator();
@@ -47,8 +54,10 @@ void UI_Hierarchy::Draw(bool* open)
 	ImGui::End();
 }
 
-void UI_Hierarchy::CreateTreeHierarchy(GameObject* gameObject)
+bool UI_Hierarchy::CreateTreeHierarchy(GameObject* gameObject)
 {
+	bool ret = false;
+
 	uint flags;
 	flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
 
@@ -63,6 +72,27 @@ void UI_Hierarchy::CreateTreeHierarchy(GameObject* gameObject)
 	}
 
 	bool opened = ImGui::TreeNodeEx(gameObject->name.c_str(), flags);
+
+	if (ImGui::BeginDragDropSource())
+	{
+		ImGui::SetDragDropPayload("ReParenting", &gameObject->uuid, sizeof(uint));
+		ImGui::Text(gameObject->name.c_str());
+		ImGui::EndDragDropSource();
+	}
+
+	if (ImGui::BeginDragDropTarget())
+	{
+		if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ReParenting", ImGuiDragDropFlags_SourceAllowNullID))
+		{
+			GameObject* dragGO = App->scene->GetGameObjectFromUUID(*(uint*)payload->Data);
+			if (dragGO != nullptr)
+			{
+				dragGO->ReParenting(gameObject);
+				ret = true;
+			}
+		}
+		ImGui::EndDragDropTarget();
+	}
 
 	if (ImGui::BeginPopupContextItem((gameObject->name + "rightClick").c_str(), 1))
 	{
@@ -93,11 +123,16 @@ void UI_Hierarchy::CreateTreeHierarchy(GameObject* gameObject)
 		{
 			for (auto item = gameObject->children.begin(); item != gameObject->children.end(); ++item)
 			{
-				CreateTreeHierarchy((*item));
+				if (CreateTreeHierarchy((*item)))
+				{
+					item = gameObject->children.begin();
+				}
 			}
 		}
 		ImGui::TreePop();
 	}
+
+	return ret;
 }
 
 void UI_Hierarchy::AddToDelete(GameObject* objectToDelete)

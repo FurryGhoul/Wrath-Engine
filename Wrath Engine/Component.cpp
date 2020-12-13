@@ -13,6 +13,6 @@ Component::~Component() {}
 
 Component_Type Component::GetCompType() { return c_type; }
 
-void Component::ComponentUpdate() {}
+bool Component::ComponentUpdate() { return true; }
 
 void Component::SaveComponent(JSON_Object* object) {}

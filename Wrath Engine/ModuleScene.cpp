@@ -43,6 +43,11 @@ update_status ModuleScene::Update(float dt)
 {
 	for (auto item = gameobjects.begin(); item != gameobjects.end(); ++item)
 	{
+		(*item)->Update();
+	}
+
+	for (auto item = gameobjects.begin(); item != gameobjects.end(); ++item)
+	{
 		if ((*item)->erase)
 		{
 			DeleteGameObject((*item));
@@ -187,10 +192,24 @@ void ModuleScene::Draw()
 void ModuleScene::GameObjectsToDraw()
 {
 	objectsToDraw.clear();
-	ComponentCamera* auxCam = App->camera->editorCamera;
+	activeCamera = App->camera->editorCamera;
+	for (auto item = cameras.begin(); item != cameras.end(); ++item)
+	{
+		if ((*item)->active)
+		{
+			activeCamera = (*item);
+			App->camera->editorCamera->active = false;
+		}
+		else
+		{
+			activeCamera = App->camera->editorCamera;
+			App->camera->editorCamera->active = true;
+		}
+	}
+
 	for (auto item = gameobjects.begin(); item != gameobjects.end(); ++item)
 	{
-		if (auxCam->ContainsAABB((*item)->boundingBox))
+		if (activeCamera->ContainsAABB((*item)->boundingBox) || activeCamera->culling == false)
 		{
 			(*item)->drawable = true;
 			objectsToDraw.push_back((*item));
@@ -235,9 +254,22 @@ void ModuleScene::DeleteGameObject(GameObject* objecttodelete, bool erasefrompar
 	objecttodelete = nullptr;
 }
 
+GameObject* ModuleScene::GetGameObjectFromUUID(uint uuid)
+{
+	for (auto item = gameobjects.begin(); item != gameobjects.end(); ++item)
+	{
+		if ((*item)->uuid == uuid)
+		{
+			return (*item);
+		}
+	}
+
+	return nullptr;
+}
+
 void ModuleScene::AddCamera()
 {
-	string cameraName = "Camera " + cameras.size();
+	string cameraName = "Camera_" + std::to_string(cameras.size());
 	if (cameras.size() == 0)
 	{
 		cameraName = "Camera";

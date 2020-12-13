@@ -8,7 +8,12 @@ ComponentTransform::ComponentTransform()
 
 ComponentTransform::ComponentTransform(Component_Type type, GameObject* parent) : Component(type, parent)
 { 
-	
+	compTranslation = float3::zero;
+	compScale = float3::one;
+	compRotation = Quat::identity;
+
+	localMatrix = float4x4::identity;
+	globalMatrix = float4x4::identity;
 }
 
 ComponentTransform::~ComponentTransform() {}

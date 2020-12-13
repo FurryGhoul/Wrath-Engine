@@ -8,6 +8,7 @@
 #include "ComponentMesh.h"
 #include "ComponentMaterial.h"
 #include "ComponentTransform.h"
+#include "ComponentCamera.h"
 
 #include "MathGeoLib/Math/float4x4.h"
 
@@ -20,6 +21,7 @@ void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 	if (ImGui::Begin("Inspector", open))
 	{
 		static bool foo = false;
+		static bool cameraActive = false;
 		static bool transform = true;
 		const char* name = "";
 
@@ -29,7 +31,7 @@ void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 		ImGui::Text(name);
 		ImGui::Separator();
 		ImGui::Checkbox("Active", &foo);
-		
+
 		if (selectedGO != nullptr)
 		{
 			if (ComponentTransform* transform = (ComponentTransform*)selectedGO->GetComponent(TRANSFORM))
@@ -114,28 +116,6 @@ void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 				ImGui::PopID();
 				ImGui::PopItemWidth();
 
-				/*if (ImGui::DragFloat("", &transform->compTranslation.x, 0.25f)) 
-				{
-					modified = true;
-				}
-				ImGui::SameLine();
-				if (ImGui::DragFloat("", &transform->compTranslation.y, 0.25f))
-				{
-					modified = true;
-				}
-				ImGui::SameLine();
-				if (ImGui::DragFloat("", &transform->compTranslation.z, 0.25f))
-				{
-					modified = true;
-				}
-				if (ImGui::SliderFloat3("Rotation", transform->compRotation.ptr(), 0.0f, 360.0f))
-				{
-					modified = true;
-				}
-				if (ImGui::DragFloat3("Scale", transform->compScale.ptr(), 0.25f, 1.0f, 1000.0f))
-				{
-					modified = true;
-				}*/
 				ImGui::Separator();
 				ImGui::Separator();
 
@@ -173,6 +153,13 @@ void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 				ImGui::Text("Texture Width: %u", material->width);
 				ImGui::Text("Texture Height: %u", material->height);
 				ImGui::Text("Path: MotoresJuan/Game/%s", material->path.c_str());
+			}
+
+			if (ComponentCamera* camera = (ComponentCamera*)selectedGO->GetComponent(CAMERA))
+			{
+				ImGui::Text("Camera");
+				ImGui::Checkbox("Activate Camera", &camera->active);
+				ImGui::Checkbox("Culling", &camera->culling);
 			}
 		}
 	}

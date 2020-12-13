@@ -27,9 +27,12 @@ ComponentCamera::ComponentCamera(Component_Type type, GameObject* parent) : Comp
 ComponentCamera::~ComponentCamera()
 {}
 
-bool ComponentCamera::Update()
+bool ComponentCamera::ComponentUpdate()
 {
-
+	if (parent && (ComponentTransform*)parent->GetComponent(TRANSFORM))
+	{
+		camera_frustum.SetWorldMatrix(((ComponentTransform*)parent->GetComponent(TRANSFORM))->GetGlobalMatrix().Float3x4Part());
+	}
 	return true;
 }
 

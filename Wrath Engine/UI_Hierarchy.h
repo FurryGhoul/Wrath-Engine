@@ -13,7 +13,7 @@ public:
 	update_status Update(float dt);
 
 	void Draw(bool* open);
-	void CreateTreeHierarchy(GameObject* gameObject);
+	bool CreateTreeHierarchy(GameObject* gameObject);
 
 	void AddToDelete(GameObject* objectToDelete);
 

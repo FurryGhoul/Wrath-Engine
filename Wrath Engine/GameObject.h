@@ -40,6 +40,8 @@ public:
 	AABB RecalculateAABB();
 	AABB GetBoundingBox();
 
+	void ReParenting(GameObject* newParent);
+
 	void Update();
 
 	Component* GetComponent(Component_Type comp_type);
