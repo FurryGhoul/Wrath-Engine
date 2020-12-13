@@ -25,6 +25,8 @@ public:
 	void Draw();
 	void GameObjectsToDraw();
 
+	void DeleteGameObject(GameObject* objecttodelete, bool erasefromparent = true);
+
 	void AddCamera();
 
 public:

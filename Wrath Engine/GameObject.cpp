@@ -34,7 +34,10 @@ GameObject::GameObject(GameObject* parent, string name)
 	boundingBox.SetNegativeInfinity();
 }
 
-GameObject::~GameObject() {}
+GameObject::~GameObject() 
+{
+
+}
 
 void GameObject::Update()
 {

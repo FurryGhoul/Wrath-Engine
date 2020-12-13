@@ -38,36 +38,74 @@ void UI_Hierarchy::Draw(bool* open)
 	{
 		for (auto item = App->scene->root->children.begin(); item != App->scene->root->children.end(); ++item)
 		{
-			ImGui::Text((*item)->name.c_str());
-
-			if (ImGui::IsItemClicked(0))
-			{
-				if (selectedGO != (*item))
-				{
-					if (selectedGO != nullptr)
-					{
-						selectedGO->selected = false;
-					}
-					selectedGO = (*item);
-					selectedGO->selected = true;
-				}
-			}
+			CreateTreeHierarchy((*item));
 		}
+
 		ImGui::Separator();
 		static int slices = 30; static int stacks = 30;
-
-		if (ImGui::CollapsingHeader("Create Primitives"))
-		{
-			ImGui::Separator();
-
-			if (ImGui::Button("Create Cube")){}
-
-			if (ImGui::Button("Create Plane")){}
-
-			if (ImGui::Button("Create Sphere")){}
-
-			if (ImGui::Button("Create Cone")){}
-		}
 	}
 	ImGui::End();
+}
+
+void UI_Hierarchy::CreateTreeHierarchy(GameObject* gameObject)
+{
+	uint flags;
+	flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+
+	if (gameObject->selected)
+	{
+		flags |= ImGuiTreeNodeFlags_Selected;
+	}
+
+	if (gameObject->children.size() <= 0)
+	{
+		flags |= ImGuiTreeNodeFlags_Leaf;
+	}
+
+	bool opened = ImGui::TreeNodeEx(gameObject->name.c_str(), flags);
+
+	if (ImGui::BeginPopupContextItem((gameObject->name + "rightClick").c_str(), 1))
+	{
+		if (ImGui::Button("Delete"))
+		{
+			AddToDelete(gameObject);
+			selectedGO = nullptr;
+		}
+		ImGui::EndPopup();
+	}
+
+	if (ImGui::IsItemClicked(0))
+	{
+		if (selectedGO != gameObject)
+		{
+			if (selectedGO != nullptr)
+			{
+				selectedGO->selected = false;
+			}
+			selectedGO = gameObject;
+			selectedGO->selected = true;
+		}
+	}
+
+	if (opened)
+	{
+		if (gameObject->children.size() > 0)
+		{
+			for (auto item = gameObject->children.begin(); item != gameObject->children.end(); ++item)
+			{
+				CreateTreeHierarchy((*item));
+			}
+		}
+		ImGui::TreePop();
+	}
+}
+
+void UI_Hierarchy::AddToDelete(GameObject* objectToDelete)
+{
+	objectToDelete->erase = true;
+
+	for (auto item = objectToDelete->children.begin(); item != objectToDelete->children.end(); ++item)
+	{
+		AddToDelete((*item));
+	}
 }

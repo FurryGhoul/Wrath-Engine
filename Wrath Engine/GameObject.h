@@ -54,6 +54,7 @@ public:
 
 	bool selected = false;
 	bool drawable = false;
+	bool erase = false;
 
 	uint uuid;
 	uint parentUUID;

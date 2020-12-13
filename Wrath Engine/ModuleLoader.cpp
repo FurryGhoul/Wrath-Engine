@@ -66,7 +66,7 @@ update_status ModuleLoader::PostUpdate(float dt)
 
 bool ModuleLoader::OwnImport(const string& file)
 {
-	App->scene->LoadScene(file);
+	//App->scene->LoadScene(file);
 	return true;
 }
 
@@ -173,8 +173,6 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 
 				ImportMaterial(material, new_material, path);
 			}
-
-			App->scene->gameobjects.push_back(newGO);
 		}
 		else
 		{

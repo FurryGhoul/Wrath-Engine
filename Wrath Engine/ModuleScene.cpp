@@ -41,7 +41,14 @@ bool ModuleScene::CleanUp()
 // Update
 update_status ModuleScene::Update(float dt)
 {
-
+	for (auto item = gameobjects.begin(); item != gameobjects.end(); ++item)
+	{
+		if ((*item)->erase)
+		{
+			DeleteGameObject((*item));
+			item = gameobjects.begin();
+		}
+	}
 	return UPDATE_CONTINUE;
 }
 
@@ -194,6 +201,38 @@ void ModuleScene::GameObjectsToDraw()
 			(*item)->drawable = false;
 		}
 	}
+}
+
+void ModuleScene::DeleteGameObject(GameObject* objecttodelete, bool erasefromparent)
+{
+	for (auto item = gameobjects.begin(); item != gameobjects.end(); ++item)
+	{
+		if ((*item) == objecttodelete)
+		{
+			gameobjects.erase(item);
+			break;
+		}
+	}
+
+	if (objecttodelete->parent != nullptr)
+	{
+		for (auto item = objecttodelete->parent->children.begin(); item != objecttodelete->parent->children.end(); ++item)
+		{
+			if ((*item) == objecttodelete)
+			{
+				objecttodelete->parent->children.erase(item);
+				break;
+			}
+		}
+	}
+
+	for (auto item = objecttodelete->children.begin(); item != objecttodelete->children.end(); ++item)
+	{
+		(*item)->parent = nullptr;
+	}
+
+	delete(objecttodelete);
+	objecttodelete = nullptr;
 }
 
 void ModuleScene::AddCamera()
