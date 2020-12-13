@@ -21,6 +21,8 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	void RecalculateGlobalMatrix(GameObject* parent);
+
 	void ActivateWireframe();
 	void DrawNormals(ComponentMesh* mesh);
 	void DrawBoundingBox(const AABB& BB);

@@ -83,6 +83,8 @@ bool ModuleLoader::Import(const string& pFile)
 	}
 	else { LOG("Error loading scene %s", file_path); }
 
+	App->scene->root->RecalculateAABB();
+
 	aiReleaseImport(scene);
 
 	return true;
@@ -90,23 +92,42 @@ bool ModuleLoader::Import(const string& pFile)
 
 bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* node, GameObject* parent, string path)
 {
-	GameObject* GO = new GameObject(parent, node->mName.C_Str());
-	App->scene->root->children.push_back(GO);
-	App->scene->gameobjects.push_back(GO);
-
-	if (GO->parent == App->scene->root)
-	{
-		App->scene->mainGOs.push_back(GO);
-	}
-
 	aiVector3D translation;
 	aiVector3D scale;
 	aiQuaternion rotation;
+
 	node->mTransformation.Decompose(scale, rotation, translation);
 
 	float3 new_translation = { translation.x, translation.y, translation.z };
 	float3 new_scale = { scale.x, scale.y, scale.z };
 	Quat new_rotation = Quat(rotation.x, rotation.y, rotation.z, rotation.w);
+
+	std::string name = node->mName.C_Str();
+	static const char* transformNodes[5] = { "$AssimpFbx$_PreRotation", "$AssimpFbx$_Rotation", "$AssimpFbx$_PostRotation","$AssimpFbx$_Scaling", "$AssimpFbx$_Translation" };
+
+	for (int i = 0; i < 5; i++)
+	{
+		if (name.find(transformNodes[i]) != string::npos && node->mNumChildren > 0)
+		{
+			node = node->mChildren[0];
+
+			node->mTransformation.Decompose(scale, rotation, translation);
+
+			new_translation += { translation.x, translation.y, translation.z };
+			new_scale = { scale.x * new_scale.x, scale.y * new_scale.y, scale.z * new_scale.z };
+			new_rotation = new_rotation * Quat(rotation.x, rotation.y, rotation.z, rotation.w);
+
+			name = node->mName.C_Str();
+			i = -1;
+		}
+	}
+
+	GameObject* GO = new GameObject(parent, node->mName.C_Str());
+	if (parent == nullptr)
+	{
+		App->scene->root->children.push_back(GO);
+	}
+	App->scene->gameobjects.push_back(GO);
 
 	float4x4 new_local = float4x4::FromTRS(new_translation, new_rotation, new_scale);
 
@@ -116,45 +137,49 @@ bool ModuleLoader::RecursiveLoadChildren(const aiScene* scene, const aiNode* nod
 	transform->compScale = new_scale;
 	transform->compRotation = new_rotation;
 
+	int failCount = 0;
+	
 	for (int i = 0; i < node->mNumMeshes; ++i)
 	{
 		const aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 	
-		GameObject* newGO = new GameObject(GO, node->mName.C_Str());
-		GO->children.push_back(newGO);
+		GameObject* newGO = GO;
+
+		if (i > failCount)
+		{
+			newGO = new GameObject();
+			newGO->parent = parent;
+			newGO->name = GO->name + "_" + std::to_string(i);
+
+			ComponentTransform* childTransform = (ComponentTransform*)newGO->AddComponent(TRANSFORM);
+			childTransform->SetTransformation(new_local);
+			childTransform->compTranslation = new_translation;
+			childTransform->compScale = new_scale;
+			childTransform->compRotation = new_rotation;
+		}
 
 		ComponentMesh* new_mesh = (ComponentMesh*)newGO->AddComponent(MESH);
-
-		ComponentTransform* new_transform = (ComponentTransform*)newGO->AddComponent(TRANSFORM);
-
-		new_transform->SetLocalMatrix(transform->GetLocalMatrix());
-		new_transform->SetGlobalMatrix(transform->GetGlobalMatrix());
 
 		aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 		aiColor3D meshColour(1.f, 1.f, 1.f);
 
 		material->Get(AI_MATKEY_COLOR_DIFFUSE, meshColour);
 
-		ImportMesh(mesh, new_mesh, path, meshColour);
-
-		if (scene->HasMaterials())
+		if (ImportMesh(mesh, new_mesh, path, meshColour))
 		{
-			ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
+			if (scene->HasMaterials())
+			{
+				ComponentMaterial* new_material = (ComponentMaterial*)newGO->AddComponent(MATERIAL);
 
-			ImportMaterial(material, new_material, path);
-		}
+				ImportMaterial(material, new_material, path);
+			}
 
-		if (mesh->HasFaces())
-		{
 			App->scene->gameobjects.push_back(newGO);
 		}
-
-		if (newGO->parent == App->scene->root)
+		else
 		{
-			App->scene->mainGOs.push_back(newGO);
+			failCount++;
 		}
-
-		newGO->CalculateAABB();
 	}
 
 	for (int i = 0; i < node->mNumChildren; ++i)
@@ -223,6 +248,10 @@ bool ModuleLoader::ImportMesh(const aiMesh* mesh, ComponentMesh* compMesh, strin
 			glBindBuffer(GL_TEXTURE_COORD_ARRAY, compMesh->id_texcoords);
 			glBufferData(GL_TEXTURE_COORD_ARRAY, sizeof(uint) * compMesh->num_vertices * 2, compMesh->texture_coords, GL_STATIC_DRAW);
 			glBindBuffer(GL_TEXTURE_COORD_ARRAY, 0);
+		}
+		else
+		{
+			ret = false;
 		}
 	}
 	else

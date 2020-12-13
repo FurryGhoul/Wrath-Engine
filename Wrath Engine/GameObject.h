@@ -37,6 +37,7 @@ public:
 	void CalculateGlobal();
 
 	void CalculateAABB();
+	AABB RecalculateAABB();
 	AABB GetBoundingBox();
 
 	void Update();

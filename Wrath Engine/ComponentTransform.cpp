@@ -35,9 +35,9 @@ void ComponentTransform::SetGlobalMatrix(float4x4 newGlobal)
 
 void ComponentTransform::CalculateGlobalMatrix(float4x4 newLocal)
 {
-	if (parent->parent != nullptr)
+	if (parent != nullptr)
 	{
-		ComponentTransform* parentTranform = (ComponentTransform*)parent->parent->GetComponent(TRANSFORM);
+		ComponentTransform* parentTranform = (ComponentTransform*)parent->GetComponent(TRANSFORM);
 		if (parentTranform != nullptr)
 		{
 			globalMatrix = parentTranform->globalMatrix * newLocal;

@@ -36,7 +36,7 @@ void UI_Hierarchy::Draw(bool* open)
 {
 	if (ImGui::Begin("Hierarchy", open))
 	{
-		for (auto item = App->scene->gameobjects.begin(); item != App->scene->gameobjects.end(); ++item)
+		for (auto item = App->scene->root->children.begin(); item != App->scene->root->children.end(); ++item)
 		{
 			ImGui::Text((*item)->name.c_str());
 
@@ -47,11 +47,9 @@ void UI_Hierarchy::Draw(bool* open)
 					if (selectedGO != nullptr)
 					{
 						selectedGO->selected = false;
-						for (int i = 0; i < selectedGO->children.size(); ++i) { selectedGO->children[i]->selected = false; }
 					}
 					selectedGO = (*item);
 					selectedGO->selected = true;
-					for (int i = 0; i < selectedGO->children.size(); ++i) { selectedGO->children[i]->selected = true; }
 				}
 			}
 		}

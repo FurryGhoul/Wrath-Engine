@@ -34,7 +34,6 @@ public:
 	GameObject* root;
 
 	vector<GameObject*> gameobjects;
-	vector<GameObject*> mainGOs;
 	vector<GameObject*> objectsToDraw;
 	vector<ComponentCamera*> cameras;
 

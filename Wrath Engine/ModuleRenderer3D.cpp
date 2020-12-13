@@ -6,6 +6,7 @@
 #include "GameObject.h"
 #include "ComponentMesh.h"
 #include "ComponentCamera.h"
+#include "ComponentTransform.h"
 
 #include "Glew/include/glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -113,10 +114,7 @@ bool ModuleRenderer3D::Init()
 
 update_status ModuleRenderer3D::Update(float dt)
 {
-	for (int i = 0; i < App->scene->mainGOs.size(); ++i)
-	{
-		App->scene->mainGOs[i]->CalculateGlobal();
-	}
+	RecalculateGlobalMatrix(App->scene->root);
 
 	if (lightning) { lights[0].Active(true); }
 	else lights[0].Active(false);
@@ -126,19 +124,6 @@ update_status ModuleRenderer3D::Update(float dt)
 	else { glDisable(GL_LIGHTING); }
 	if (textured) { glEnable(GL_TEXTURE_2D); }
 	else { glDisable(GL_TEXTURE_2D); }
-
-	for (int i = 0; i < App->scene->gameobjects.size(); ++i)
-	{
-		if (App->scene->gameobjects[i]->selected)
-		{
-			DrawBoundingBox(App->scene->gameobjects[i]->boundingBox);
-		}
-
-		if (boundingBoxes)
-		{
-			DrawBoundingBox(App->scene->gameobjects[i]->boundingBox);
-		}
-	}
 
 	glEnable(GL_COLOR_MATERIAL);
 
@@ -195,6 +180,19 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	if (App->scene_ui->active_grid) App->scene_ui->DrawGrid(App->scene_ui->grid_size);
 	if (App->scene_ui->active_axis) App->scene_ui->DrawAxis(App->scene_ui->active_axis);
 
+	for (int i = 0; i < App->scene->gameobjects.size(); ++i)
+	{
+		if (App->scene->gameobjects[i]->selected)
+		{
+			DrawBoundingBox(App->scene->gameobjects[i]->boundingBox);
+		}
+
+		if (boundingBoxes)
+		{
+			DrawBoundingBox(App->scene->gameobjects[i]->boundingBox);
+		}
+	}
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -215,6 +213,30 @@ bool ModuleRenderer3D::CleanUp()
 	SDL_GL_DeleteContext(context);
 
 	return true;
+}
+
+void ModuleRenderer3D::RecalculateGlobalMatrix(GameObject* parent)
+{
+	if (ComponentTransform* transform = (ComponentTransform*)parent->GetComponent(TRANSFORM))
+	{
+		if (parent->parent != nullptr)
+		{
+			ComponentTransform* parentTranform = (ComponentTransform*)parent->parent->GetComponent(TRANSFORM);
+			if (parentTranform != nullptr)
+			{
+				transform->SetGlobalMatrix(parentTranform->GetGlobalMatrix() * transform->GetLocalMatrix());
+			}
+		}
+		else
+		{
+			transform->SetGlobalMatrix(transform->GetLocalMatrix());
+		}
+	}
+
+	for (auto item = parent->children.begin(); item != parent->children.end(); item++)
+	{
+		RecalculateGlobalMatrix((*item));
+	}
 }
 
 void ModuleRenderer3D::ActivateWireframe()

@@ -26,6 +26,10 @@ GameObject::GameObject(GameObject* parent, string name)
 		parentUUID = parent->uuid;
 	}
 	this->parent = parent;
+	if (parent != nullptr)
+	{
+		parent->children.push_back(this);
+	}
 	this->name = name;
 	boundingBox.SetNegativeInfinity();
 }
@@ -201,6 +205,37 @@ void GameObject::CalculateAABB()
 			(*item)->CalculateAABB();
 		}
 	}
+}
+
+AABB GameObject::RecalculateAABB()
+{
+	AABB newBoundingBox;
+	newBoundingBox.SetNegativeInfinity();
+
+	if (!children.empty())
+	{
+		for (auto item = children.begin(); item != children.end(); ++item)
+		{
+			newBoundingBox.Enclose((*item)->RecalculateAABB());
+		}
+	}
+	else
+	{
+		if (ComponentMesh* mesh = (ComponentMesh*)GetComponent(MESH))
+		{
+			newBoundingBox.Enclose((float3*)mesh->vertices, mesh->num_vertices);
+			newBoundingBox.TransformAsAABB(((ComponentTransform*)GetComponent(TRANSFORM))->GetGlobalMatrix());
+		}
+	}
+
+	if (name == "Dummy001")
+	{
+		LOG("PUTA");
+	}
+
+	boundingBox = newBoundingBox;
+
+	return newBoundingBox;
 }
 
 AABB GameObject::GetBoundingBox()
