@@ -158,7 +158,19 @@ void UI_Inspector::Draw(GameObject* selectedGO, bool* open)
 			if (ComponentCamera* camera = (ComponentCamera*)selectedGO->GetComponent(CAMERA))
 			{
 				ImGui::Text("Camera");
-				ImGui::Checkbox("Activate Camera", &camera->active);
+				if (ImGui::Checkbox("Activate Camera", &camera->active))
+				{
+					if (camera->active)
+					{
+						for (auto item = App->scene->cameras.begin(); item != App->scene->cameras.end(); ++item)
+						{
+							if ((*item) != camera)
+							{
+								(*item)->active = false;
+							}
+						}
+					}
+				}
 				ImGui::Checkbox("Culling", &camera->culling);
 			}
 		}

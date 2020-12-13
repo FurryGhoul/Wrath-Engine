@@ -26,6 +26,7 @@ bool ModuleScene::Start()
 	LOG("Loading scene");
 
 	root = new GameObject(nullptr, "Root");
+	App->loader->Import("Assets\\street\\Street environment_V01.FBX");
 
 	return true;
 }
@@ -193,17 +194,12 @@ void ModuleScene::GameObjectsToDraw()
 {
 	objectsToDraw.clear();
 	activeCamera = App->camera->editorCamera;
+	App->camera->editorCamera->active = true;
 	for (auto item = cameras.begin(); item != cameras.end(); ++item)
 	{
 		if ((*item)->active)
 		{
 			activeCamera = (*item);
-			App->camera->editorCamera->active = false;
-		}
-		else
-		{
-			activeCamera = App->camera->editorCamera;
-			App->camera->editorCamera->active = true;
 		}
 	}
 

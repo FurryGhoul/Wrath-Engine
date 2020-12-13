@@ -29,9 +29,13 @@ ComponentCamera::~ComponentCamera()
 
 bool ComponentCamera::ComponentUpdate()
 {
-	if (parent && (ComponentTransform*)parent->GetComponent(TRANSFORM))
+	if (parent)
 	{
-		camera_frustum.SetWorldMatrix(((ComponentTransform*)parent->GetComponent(TRANSFORM))->GetGlobalMatrix().Float3x4Part());
+		if (ComponentTransform* transform = (ComponentTransform*)parent->GetComponent(TRANSFORM))
+		{
+			float4x4 currentLocal = float4x4::FromTRS(transform->compTranslation, transform->compRotation, transform->compScale);
+			camera_frustum.SetWorldMatrix(currentLocal.Float3x4Part());
+		}
 	}
 	return true;
 }

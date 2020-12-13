@@ -27,8 +27,10 @@ In the scene window, the movement controls is as follows:
 - Use 'F' to focus the camera on the object.
 - Use 'Shift' to duplicate movement speed.
 
-The Hierarchy window is still in progress, so far it suports creating basic primitives, plane and cube, as well as a display of an fbx hierarchy with each childs. 
+The Hierarchy window is still in progress, so far it supports creating a camera as well as a display of an fbx hierarchy with each childs in a tree manner. The user can also delete game objects as well as move them around chaning their parent. 
 The Console window shows info about the actions done by the application.
+The Inspector window shows information about the selected game objects regarding their transform, mesh and material. The users can also edit the transform through the window moving, rotating and scaling the objects. 
+As for the cameras the user can decide which camera is active, which one is culling and move them.
 The Configuration window has the following submenus:
 
 - Application: This section displays the info about the engine as well as some data.
@@ -39,6 +41,7 @@ The Configuration window has the following submenus:
 From the menu, the user can:
 
 # File
+- And Save the scene, but with no load.
 - Close the application.
 
 # Help
@@ -51,6 +54,14 @@ From the menu, the user can:
 
 This section allows the user to activate/desactivate the windows displayed on screen. 
 The windows can be moved freely arround and organized as the user rathers using docking.
+
+# Scene
+
+There is a fully implemented mouse picking, so the users can select any game object in the scene, but their is no guizmo implemented. 
+
+# Not Done
+
+There are no resources implemented, the load functions aren't working henceworth they are disabled, there is no play, pause or stop button and you can't change the mesh or material of any game objects.
 
 ## License
 

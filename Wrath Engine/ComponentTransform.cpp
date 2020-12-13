@@ -3,7 +3,12 @@
 
 ComponentTransform::ComponentTransform() 
 { 
+	compTranslation = float3::zero;
+	compScale = float3::one;
+	compRotation = Quat::identity;
 
+	localMatrix = float4x4::identity;
+	globalMatrix = float4x4::identity;
 }
 
 ComponentTransform::ComponentTransform(Component_Type type, GameObject* parent) : Component(type, parent)
@@ -12,8 +17,8 @@ ComponentTransform::ComponentTransform(Component_Type type, GameObject* parent) 
 	compScale = float3::one;
 	compRotation = Quat::identity;
 
-	localMatrix = float4x4::identity;
-	globalMatrix = float4x4::identity;
+	localMatrix = float4x4::FromTRS(compTranslation, compRotation, compScale);
+	globalMatrix = localMatrix;
 }
 
 ComponentTransform::~ComponentTransform() {}

@@ -42,9 +42,12 @@ void UI_Hierarchy::Draw(bool* open)
 		}
 		for (auto item = App->scene->root->children.begin(); item != App->scene->root->children.end(); ++item)
 		{
-			if (CreateTreeHierarchy((*item)))
+			if ((*item) != nullptr)
 			{
-				item = App->scene->root->children.begin();
+				if (CreateTreeHierarchy((*item)))
+				{
+					item = App->scene->root->children.begin();
+				}
 			}
 		}
 
@@ -70,9 +73,9 @@ bool UI_Hierarchy::CreateTreeHierarchy(GameObject* gameObject)
 	{
 		flags |= ImGuiTreeNodeFlags_Leaf;
 	}
-
+	
 	bool opened = ImGui::TreeNodeEx(gameObject->name.c_str(), flags);
-
+	
 	if (ImGui::BeginDragDropSource())
 	{
 		ImGui::SetDragDropPayload("ReParenting", &gameObject->uuid, sizeof(uint));
