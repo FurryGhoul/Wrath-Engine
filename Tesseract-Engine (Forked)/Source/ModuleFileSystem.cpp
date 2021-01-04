@@ -128,6 +128,15 @@ bool ModuleFileSystem::fileExists(const char* path, const char* atDirectory, con
 	return PHYSFS_exists(getFullPath(path, atDirectory, withExtension).c_str());
 }
 
+std::string ModuleFileSystem::ImportShaders(std::string path)
+{
+	ifstream t(path.c_str());
+	stringstream buffer;
+	buffer << t.rdbuf();
+
+	return buffer.str();
+}
+
 uint ModuleFileSystem::readFile(const char * path, char** buffer)
 {
 	PHYSFS_file* file = PHYSFS_openRead(path);
@@ -135,7 +144,7 @@ uint ModuleFileSystem::readFile(const char * path, char** buffer)
 	{
 		PHYSFS_sint32 size = (PHYSFS_sint32)PHYSFS_fileLength(file);
 		*buffer = new char[size];
-		uint read = PHYSFS_read(file, *buffer, 1, size);
+		uint read = PHYSFS_readBytes(file, *buffer, size);
 		PHYSFS_close(file);
 
 		if (read != size)
@@ -415,6 +424,10 @@ uint ModuleFileSystem::manageDroppedFiles(const char* path)
 	else if (extension == "png" || extension == "dds" || extension == "tga")
 	{
 		ret = App->resources->ImportFile(full_path.c_str(), R_TEXTURE);
+	}
+	else if (extension == "vrtx" || extension == "frg")
+	{
+
 	}
 	else
 	{

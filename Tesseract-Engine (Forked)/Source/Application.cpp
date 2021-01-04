@@ -10,6 +10,7 @@
 #include "ModuleMeshes.h"
 #include "ModuleFileSystem.h"
 #include "ModuleSceneLoader.h"
+#include "ModuleShaders.h"
 
 #include "JSONManager.h"
 
@@ -37,6 +38,7 @@ Application::Application()
 	textures = new ModuleTextures();
 	meshes = new ModuleMeshes();
 	fileSystem = new ModuleFileSystem();
+	shaders = new ModuleShaders();
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -48,6 +50,7 @@ Application::Application()
 	AddModule(camera);
 	AddModule(input);
 	AddModule(scene_loader);
+	AddModule(shaders);
 	AddModule(textures);
 	AddModule(meshes);
 

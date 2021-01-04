@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Panel.h"
 #include "Timer.h"
+#include <string>
 
 class ModuleFileSystem : public Module
 {
@@ -21,6 +22,7 @@ public:
 
 	bool fileExists(const char* path, const char* atDirectory = nullptr, const char* withExtension = nullptr);
 
+	std::string ImportShaders(std::string path);
 	uint readFile(const char* path, char** buffer);
 	uint writeFile(const char* path, const void* buffer, uint size, bool overwrite = false);
 

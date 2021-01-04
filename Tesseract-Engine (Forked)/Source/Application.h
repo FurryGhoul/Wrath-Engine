@@ -30,6 +30,7 @@ class ModuleTextures;
 class ModuleFileSystem;
 class ModuleSceneLoader;
 class ModuleResource;
+class ModuleShaders;
 
 class Application
 {
@@ -47,6 +48,7 @@ public:
 	ModuleMeshes* meshes = nullptr;
 	ModuleFileSystem* fileSystem = nullptr;
 	ModuleSceneLoader* scene_loader= nullptr;
+	ModuleShaders* shaders = nullptr;
 
 	Timer	game_timer;
 	bool GameMode = false;
