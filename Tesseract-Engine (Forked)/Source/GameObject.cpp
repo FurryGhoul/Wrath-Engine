@@ -61,10 +61,12 @@ void GameObject::Update()
 		if (mesh != nullptr)
 		{
 			//comented to test the frustum culling
-			glPushMatrix();
+			/*glPushMatrix();
 			glMultMatrixf((float*)transformation->globalMatrix.Transposed().v);
 			mesh->Update();
-			glPopMatrix();
+			glPopMatrix();*/
+			mesh->DrawMesh();
+			glBindVertexArray(0);
 
 		}
 

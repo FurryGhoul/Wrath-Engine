@@ -4,6 +4,7 @@
 #include "Component.h"
 #include "ComponentMesh.h"
 #include "ComponentCamera.h"
+#include "ComponentTexture.h"
 #include "ComponentTransformation.h"
 #include "GameObject.h"
 #include "ModuleMeshes.h"
@@ -12,6 +13,7 @@
 
 #include "Resource.h"
 #include "ResourceMesh.h"
+#include "ResourceTexture.h"
 
 #ifdef _DEBUG
 //#define TEST_MEMORY_MANAGER
@@ -178,10 +180,26 @@ void ComponentMesh::DrawMesh()
 		return;
 
 	ComponentTransformation* transform = (ComponentTransformation*)gameObject->GetComponent(TRANSFORMATION);
+	ComponentTexture* material = (ComponentTexture*)gameObject->GetComponent(MATERIAL);
+
+	ResourceTexture* texture = nullptr;
+
+	if (material)
+	{
+		texture = (ResourceTexture*)App->resources->GetResource(material->RUID);
+	}
+
+	int hasTexture = 0;
+
+	if (texture && texture->GL_id > 0)
+	{
+		hasTexture = 1;
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture->GL_id);
+	}
 
 	glUseProgram(shader);
 	glBindVertexArray(mesh->VAO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->IBO);
 	
 	int projectionMatrix = glGetUniformLocation(shader, "projection");
 	glUniformMatrix4fv(projectionMatrix, 1, GL_FALSE, App->camera->camera->getProjectionMatrix());
@@ -190,7 +208,10 @@ void ComponentMesh::DrawMesh()
 	glUniformMatrix4fv(viewMatrix, 1, GL_FALSE, App->camera->camera->getViewMatrix());
 
 	int modelMatrix = glGetUniformLocation(shader, "model_matrix");
-	glUniformMatrix4fv(modelMatrix, 1, GL_FALSE, (float*)transform->globalMatrix.v);
+	glUniformMatrix4fv(modelMatrix, 1, GL_TRUE, (float*)transform->globalMatrix.v);
+
+	int textureChecker = glGetUniformLocation(shader, "hasTexture");
+	glUniform1i(textureChecker, hasTexture);
 
 	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
 	glUseProgram(0);

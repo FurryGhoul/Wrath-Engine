@@ -237,8 +237,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	//Draw Scene  ---------------------------	
-
-	App->scene_intro->Draw();
 	
 	MPlane base_plane(0, 1, 0, 0);
 	base_plane.axis = true;
@@ -259,6 +257,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 
 		glLineWidth(1.0f);
 	}
+
+	App->scene_intro->Draw();
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	App->gui->Draw();
