@@ -29,6 +29,7 @@ void ResourceMesh::setImportDefaults(JSON_Value & importSettings)
 bool ResourceMesh::LoadInMemory()
 {
 	LoadMesh();
+	LoadVRAM();
 
 	glGenBuffers(1, (GLuint*)&(id_indices));
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_indices);
@@ -38,13 +39,48 @@ bool ResourceMesh::LoadInMemory()
 	return true;
 }
 
-
-
 bool ResourceMesh::UnloadFromMemory()
 {
 	glDeleteBuffers(1, &id_indices);
 
 	return true;
+}
+
+void ResourceMesh::LoadVRAM()
+{
+	if (VAO != 0 || VBO != 0 || IBO != 0)
+	{
+		glDeleteVertexArrays(1, &VAO);
+		glDeleteBuffers(1, &VBO);
+		glDeleteBuffers(1, &IBO);
+	}
+
+	glGenVertexArrays(1, &VAO);
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &IBO);
+
+	glBindVertexArray(VAO);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float)*num_vertices * 11, vertexInfo, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float)*num_vertices * 11, (void*)0);
+	glEnableVertexAttribArray(0);
+
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float)*num_vertices * 11, (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
+
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(float)*num_vertices * 11, (void*)(6 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+
+	glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, sizeof(float)*num_vertices * 11, (void*)(9 * sizeof(float)));
+	glEnableVertexAttribArray(3);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint)*num_indices, indices, GL_STATIC_DRAW);
+
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 bool ResourceMesh::LoadMesh()
@@ -122,6 +158,46 @@ bool ResourceMesh::LoadMesh()
 	boundingBox.Enclose((float3*)vertices, num_vertices);
 
 	RELEASE_ARRAY(cursor);
+
+	int size = num_vertices * 11;
+	vertexInfo = new float[size];
+
+	int vertexIter = 0;
+	int normalIter = 0;
+	int texCoordIter = 0;
+
+	for (int i = 0; i < size; i += 11)
+	{
+		vertexInfo[i + 0] = vertices[vertexIter + 0];
+		vertexInfo[i + 1] = vertices[vertexIter + 1];
+		vertexInfo[i + 2] = vertices[vertexIter + 2];
+
+		vertexIter += 3;
+
+		vertexInfo[i + 3] = normals[normalIter + 0];
+		vertexInfo[i + 4] = normals[normalIter + 1];
+		vertexInfo[i + 5] = normals[normalIter + 2];
+
+		normalIter += 3;
+
+		vertexInfo[i + 6] = color[0];
+		vertexInfo[i + 7] = color[1];
+		vertexInfo[i + 8] = color[2];
+
+		if (texCoords)
+		{
+			vertexInfo[i + 9] = texCoords[texCoordIter + 0];
+			vertexInfo[i + 10] = texCoords[texCoordIter + 1];
+		}
+		else
+		{
+			vertexInfo[i + 9] = 0;
+			vertexInfo[i + 10] = 0;
+		}
+
+		texCoordIter += 2;
+	}
+
 	return ret;
 }
 

@@ -3,8 +3,12 @@
 #include "ModuleResource.h"
 #include "Component.h"
 #include "ComponentMesh.h"
+#include "ComponentCamera.h"
+#include "ComponentTransformation.h"
 #include "GameObject.h"
 #include "ModuleMeshes.h"
+#include "ModuleShaders.h"
+#include "ModuleCamera3D.h"
 
 #include "Resource.h"
 #include "ResourceMesh.h"
@@ -162,4 +166,32 @@ void ComponentMesh::Load(JSON_Value* component)
 
 	App->resources->GetResource(RUID)->LoadtoMemory();
 
+}
+
+void ComponentMesh::DrawMesh()
+{
+	uint shader = App->shaders->GetShader("default_shader");
+
+	ResourceMesh* mesh = (ResourceMesh*)App->resources->GetResource(RUID);
+
+	if (!active || mesh == nullptr)
+		return;
+
+	ComponentTransformation* transform = (ComponentTransformation*)gameObject->GetComponent(TRANSFORMATION);
+
+	glUseProgram(shader);
+	glBindVertexArray(mesh->VAO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->IBO);
+	
+	int projectionMatrix = glGetUniformLocation(shader, "projection");
+	glUniformMatrix4fv(projectionMatrix, 1, GL_FALSE, App->camera->camera->getProjectionMatrix());
+
+	int viewMatrix = glGetUniformLocation(shader, "view");
+	glUniformMatrix4fv(viewMatrix, 1, GL_FALSE, App->camera->camera->getViewMatrix());
+
+	int modelMatrix = glGetUniformLocation(shader, "model_matrix");
+	glUniformMatrix4fv(modelMatrix, 1, GL_FALSE, (float*)transform->globalMatrix.v);
+
+	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
+	glUseProgram(0);
 }

@@ -45,6 +45,8 @@ public:
 	bool CompileShader(Shader* shader);
 	bool CompileShaderProgram(ShaderProgram* shaderProgram);
 
+	uint GetShader(std::string name);
+
 public:
 	std::vector<ShaderProgram*> shaderPrograms;
 };

@@ -21,6 +21,8 @@ public:
 	void Save(JSON_Value* component) const;
 	void Load(JSON_Value* component);
 
+	void DrawMesh();
+
 private:
 
 	bool color=true;

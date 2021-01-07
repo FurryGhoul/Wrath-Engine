@@ -19,6 +19,7 @@ public:
 	bool LoadInMemory();
 	bool LoadMesh();
 	bool UnloadFromMemory();
+	void LoadVRAM();
 
 public:
 
@@ -41,6 +42,10 @@ public:
 
 	AABB boundingBox;
 
+	float* vertexInfo; 
+	uint VAO;
+	uint IBO;
+	uint VBO;
 };
 
 #endif // !__RESOURCEMESH_H__

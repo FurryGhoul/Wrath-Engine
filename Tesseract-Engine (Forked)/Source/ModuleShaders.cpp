@@ -79,12 +79,6 @@ bool ModuleShaders::CompileShader(Shader * shader)
 		shader->ID = glCreateShader(GL_FRAGMENT_SHADER);
 	}
 
-	/*int size = strlen(shader->code.c_str());
-	++size;
-
-	char* buffer = new char[size];
-	strcpy(buffer, shader->code.c_str());*/
-
 	const char* shaderCode = shader->code.c_str();
 	glShaderSource(shader->ID, 1, &shaderCode, NULL);
 	glCompileShader(shader->ID);
@@ -132,4 +126,16 @@ bool ModuleShaders::CompileShaderProgram(ShaderProgram * shaderProgram)
 	}
 
 	return ret;
+}
+
+uint ModuleShaders::GetShader(std::string name)
+{
+	for (int i = 0; i < shaderPrograms.size(); ++i)
+	{
+		if (shaderPrograms[i]->name == name)
+		{
+			return shaderPrograms[i]->ID;
+		}
+	}
+	return 0;
 }

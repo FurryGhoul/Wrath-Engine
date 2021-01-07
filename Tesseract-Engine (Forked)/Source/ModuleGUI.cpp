@@ -2,7 +2,7 @@
 #include "ModuleGUI.h"
 #include "ImGui\imgui.h"
 #include "ImGui\imgui_impl_sdl.h"
-#include "ImGui\imgui_impl_opengl2.h"
+#include "ImGui\imgui_impl_opengl3.h"
 #include "ImGuizmo\ImGuizmo.h"
 
 #include "Panel.h"
@@ -49,7 +49,8 @@ bool ModuleGUI::Init(JSON_File* document)
 	io.IniFilename = "Settings/imgui.ini";
 
 	ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
-	ImGui_ImplOpenGL2_Init();
+	const char* glsl_version = "#version 140";
+	ImGui_ImplOpenGL3_Init(glsl_version);
 
 	panels.push_back(hardwareInfo = new PanelHardwareInfo("Hardware Info"));
 	
@@ -114,7 +115,7 @@ bool ModuleGUI::Start()
 
 update_status ModuleGUI::PreUpdate(float dt)
 {
-	ImGui_ImplOpenGL2_NewFrame();
+	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplSDL2_NewFrame(App->window->window);
 	ImGui::NewFrame();
 	ImGuizmo::BeginFrame();
@@ -134,7 +135,7 @@ update_status ModuleGUI::PreUpdate(float dt)
 	ImGui::PopStyleVar(3);
 
 	ImGuiID dockspace_id = ImGui::GetID("MyDockspace");
-	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_RenderWindowBg);
+	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
 	return update_status(UPDATE_CONTINUE);
 }
@@ -224,7 +225,7 @@ bool ModuleGUI::CleanUp()
 	console = nullptr;
 
 	ImGui_ImplSDL2_Shutdown();
-	ImGui_ImplOpenGL2_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();
 	ImGui::DestroyContext();
 
 	return true;
@@ -350,7 +351,7 @@ void ModuleGUI::Draw()
 	ImGui::End();
 
 	ImGui::Render();
-	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 bool ModuleGUI::isMouseOnGUI() const
