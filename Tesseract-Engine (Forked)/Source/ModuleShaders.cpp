@@ -34,6 +34,7 @@ Shader * ModuleShaders::AddShader(std::string path)
 	App->fileSystem->splitPath(path.c_str(), &filePath, &filename, &extension);
 
 	newShader->name = filename;
+	newShader->path = path;
 
 	if (extension == "vrtx")
 	{
@@ -50,6 +51,8 @@ Shader * ModuleShaders::AddShader(std::string path)
 	{
 		return nullptr;
 	}
+
+	shaders.push_back(newShader);
 
 	return newShader;
 }
@@ -69,6 +72,11 @@ ShaderProgram * ModuleShaders::AddShaderProgram(std::string name, std::string ve
 bool ModuleShaders::CompileShader(Shader * shader)
 {
 	bool ret = false;
+
+	if (shader->ID != 0)
+	{
+		glDeleteShader(shader->ID);
+	}
 
 	if (shader->type == ShaderType::VERTEX)
 	{
@@ -105,6 +113,11 @@ bool ModuleShaders::CompileShaderProgram(ShaderProgram * shaderProgram)
 {
 	bool ret = false;
 
+	if (shaderProgram->ID != 0)
+	{
+		glDeleteProgram(shaderProgram->ID);
+	}
+
 	if (shaderProgram->fragmentShader && shaderProgram->vertexShader)
 	{
 		int success;
@@ -126,6 +139,14 @@ bool ModuleShaders::CompileShaderProgram(ShaderProgram * shaderProgram)
 	}
 
 	return ret;
+}
+
+void ModuleShaders::UpdateShaders()
+{
+	for (int i = 0; i < shaderPrograms.size(); ++i)
+	{
+		CompileShaderProgram(shaderPrograms[i]);
+	}
 }
 
 uint ModuleShaders::GetShader(std::string name)

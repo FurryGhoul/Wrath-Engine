@@ -2,12 +2,14 @@
 #include "PanelShaderEditor.h"
 
 #include "ModuleGUI.h"
+#include "ModuleShaders.h"
 #include "ModuleFileSystem.h"
 
 PanelShaderEditor::PanelShaderEditor(const char* name) : Panel(name)
 {
 	editor.SetLanguageDefinition(TextEditor::LanguageDefinition::GLSL());
 	shaderPath = "";
+	shader = nullptr;
 }
 
 
@@ -27,10 +29,23 @@ void PanelShaderEditor::Draw()
 		{
 			if (ImGui::MenuItem("Save"))
 			{
-				auto textToSave = editor.GetText();
-				uint size = sizeof(char) * textToSave.c_str;
-				char* buffer = new char[size];
-				//App->fileSystem->writeFile(shaderPath.c_str(), buffer, size, true);
+				if (shader)
+				{
+					std::string backupCode;
+					backupCode = shader->code;
+					auto textToSave = editor.GetText();
+					shader->code = textToSave;
+
+					if (App->shaders->CompileShader(shader))
+					{
+						App->fileSystem->writeFile(shader->path.c_str(), textToSave.c_str(), textToSave.size(), true);
+						App->shaders->UpdateShaders();
+					}
+					else
+					{
+						shader->code = backupCode;
+					}
+				}
 			}
 
 			ImGui::EndMenu();
@@ -86,5 +101,47 @@ void PanelShaderEditor::Draw()
 	editor.Render("ShaderEditor");
 
 	ImGui::EndChild();
+	ImGui::SameLine();
+
+	ImGui::BeginChild("Shader Selector");
+	ImGui::Text("Select Shader:");
+	std::string shaderName;
+	if (shader)
+	{
+		shaderName = shader->name;
+	}
+	else
+	{
+		shaderName = "none";
+	}
+	if (ImGui::BeginCombo("shaders", shaderName.c_str()))
+	{
+		for (int i = 0; i < App->shaders->shaders.size() + 1; ++i)
+		{
+			bool selected = false;
+			std::string aux_name;
+			if (i == App->shaders->shaders.size())
+			{
+				aux_name = "none";
+				if (ImGui::Selectable(aux_name.c_str(), &selected))
+				{
+					shader = nullptr;
+					editor.SetText("");
+				}
+				continue;
+			}
+
+			aux_name = App->shaders->shaders[i]->name;
+
+			if (ImGui::Selectable(aux_name.c_str(), &selected))
+			{
+				shader = App->shaders->shaders[i];
+				editor.SetText(App->shaders->shaders[i]->code);
+			}
+		}
+		ImGui::EndCombo();
+	}
+	ImGui::EndChild();
+
 	ImGui::End();
 }

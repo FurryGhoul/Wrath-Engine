@@ -6,6 +6,8 @@
 
 #include <string>
 
+struct Shader;
+
 class PanelShaderEditor : public Panel
 {
 public:
@@ -14,11 +16,12 @@ public:
 
 	void Draw();
 
-
-
 public:
 	TextEditor editor;
 
 	std::string shaderPath;
+
+	Shader* shader;
+
 };
 #endif // !__PANELSHADEREDITOR_H__

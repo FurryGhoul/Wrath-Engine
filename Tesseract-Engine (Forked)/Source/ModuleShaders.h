@@ -15,6 +15,7 @@ enum class ShaderType
 struct Shader
 {
 	std::string name;
+	std::string path;
 	std::string code;
 	ShaderType type;
 	int ID = -1;
@@ -45,9 +46,12 @@ public:
 	bool CompileShader(Shader* shader);
 	bool CompileShaderProgram(ShaderProgram* shaderProgram);
 
+	void UpdateShaders();
+
 	uint GetShader(std::string name);
 
 public:
 	std::vector<ShaderProgram*> shaderPrograms;
+	std::vector<Shader*> shaders;
 };
 #endif // !MODULE_SHADERS_H
