@@ -20,6 +20,21 @@ bool ModuleShaders::Start()
 	if (defaultShaderProgram)
 	{
 		shaderPrograms.push_back(defaultShaderProgram);
+		defaultShaderProgram->AddUniform(UniformType::GLOBAL, "model_matrix");
+		defaultShaderProgram->AddUniform(UniformType::VIEW, "view");
+		defaultShaderProgram->AddUniform(UniformType::PROJECTION, "projection");
+		defaultShaderProgram->AddUniform(UniformType::TEXTURE, "hasTexture");
+	}
+
+	ShaderProgram* waterShaderProgram = AddShaderProgram("water_shader", "Assets/Shaders/water_vertex_shader.vrtx", "Assets/Shaders/water_fragment_shader.frg");
+	if (waterShaderProgram)
+	{
+		shaderPrograms.push_back(waterShaderProgram);
+		waterShaderProgram->AddUniformFloat(UniformType::FLOAT, "frequency", 5.0f);
+		waterShaderProgram->AddUniform(UniformType::GLOBAL, "model_matrix");
+		waterShaderProgram->AddUniform(UniformType::VIEW, "view");
+		waterShaderProgram->AddUniform(UniformType::PROJECTION, "projection");
+		waterShaderProgram->AddUniform(UniformType::TIME, "time");
 	}
 
 	return ret;
@@ -159,4 +174,16 @@ uint ModuleShaders::GetShader(std::string name)
 		}
 	}
 	return 0;
+}
+
+ShaderProgram * ModuleShaders::GetShaderFromID(uint ID)
+{
+	for (int i = 0; i < shaderPrograms.size(); ++i)
+	{
+		if (shaderPrograms[i]->ID == ID)
+		{
+			return shaderPrograms[i];
+		}
+	}
+	return nullptr;
 }

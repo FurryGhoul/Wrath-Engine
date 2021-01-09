@@ -56,6 +56,8 @@ public:
 	float game_dt = 0.0f;
 	bool GamePaused = false;
 
+	Timer shaderTimer;
+
 private:
 
 	Timer	ms_timer;

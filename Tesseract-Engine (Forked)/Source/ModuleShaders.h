@@ -2,6 +2,7 @@
 #define MODULE_SHADERS_H
 
 #include "Module.h"
+#include "Uniform.h"
 #include <string>
 #include <vector>
 
@@ -27,6 +28,50 @@ struct ShaderProgram
 	int ID = -1;
 	Shader* vertexShader;
 	Shader* fragmentShader;
+
+	std::vector<Uniform*> uniforms;
+
+	void AddUniform(UniformType type, std::string name)
+	{
+		Uniform* newUniform = new Uniform(name, type);
+		uniforms.push_back(newUniform);
+	}
+
+	void AddUniformInt(UniformType type, std::string name, int value)
+	{
+		UniformInt* newInt = new UniformInt(name, type, value);
+		uniforms.push_back(newInt);
+	}
+
+	void AddUniformFloat(UniformType type, std::string name, float value)
+	{
+		UniformFloat* newFloat = new UniformFloat(name, type, value);
+		uniforms.push_back(newFloat);
+	}
+
+	void AddUniformMat4(UniformType type, std::string name, float4x4 value)
+	{
+		UniformMat4* newMat4 = new UniformMat4(name, type, value);
+		uniforms.push_back(newMat4);
+	}
+
+	void AddUniformVec2(UniformType type, std::string name, float2 value)
+	{
+		UniformVec2* newVec2 = new UniformVec2(name, type, value);
+		uniforms.push_back(newVec2);
+	}
+
+	void AddUniformVec3(UniformType type, std::string name, float3 value)
+	{
+		UniformVec3* newVec3 = new UniformVec3(name, type, value);
+		uniforms.push_back(newVec3);
+	}
+
+	void AddUniformVec4(UniformType type, std::string name, float4 value)
+	{
+		UniformVec4* newVec4 = new UniformVec4(name, type, value);
+		uniforms.push_back(newVec4);
+	}
 };
 
 class ModuleShaders : public Module
@@ -49,6 +94,7 @@ public:
 	void UpdateShaders();
 
 	uint GetShader(std::string name);
+	ShaderProgram* GetShaderFromID(uint ID);
 
 public:
 	std::vector<ShaderProgram*> shaderPrograms;

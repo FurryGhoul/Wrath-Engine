@@ -122,6 +122,8 @@ bool Application::Init()
 	GameMode = false;
 	counting = false;
 	game_dt = 0;
+
+	shaderTimer.Start();
 	return ret;
 }
 

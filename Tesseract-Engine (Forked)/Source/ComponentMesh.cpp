@@ -6,10 +6,12 @@
 #include "ComponentCamera.h"
 #include "ComponentTexture.h"
 #include "ComponentTransformation.h"
+#include "ComponentShader.h"
 #include "GameObject.h"
 #include "ModuleMeshes.h"
 #include "ModuleShaders.h"
 #include "ModuleCamera3D.h"
+#include "Uniform.h"
 
 #include "Resource.h"
 #include "ResourceMesh.h"
@@ -172,7 +174,14 @@ void ComponentMesh::Load(JSON_Value* component)
 
 void ComponentMesh::DrawMesh()
 {
-	uint shader = App->shaders->GetShader("default_shader");
+	ComponentShader* shaderComp = (ComponentShader*)gameObject->GetComponent(SHADER);
+	ShaderProgram* shaderProgram = App->shaders->GetShaderFromID(App->shaders->GetShader(shaderComp->name));
+	
+
+	if (!shaderComp)
+	{
+		return;
+	}
 
 	ResourceMesh* mesh = (ResourceMesh*)App->resources->GetResource(RUID);
 
@@ -191,27 +200,49 @@ void ComponentMesh::DrawMesh()
 
 	int hasTexture = 0;
 
+	glUseProgram(shaderProgram->ID);
+	glBindVertexArray(mesh->VAO);
+
 	if (texture && texture->GL_id > 0)
 	{
 		hasTexture = 1;
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture->GL_id);
 	}
-
-	glUseProgram(shader);
-	glBindVertexArray(mesh->VAO);
 	
-	int projectionMatrix = glGetUniformLocation(shader, "projection");
-	glUniformMatrix4fv(projectionMatrix, 1, GL_FALSE, App->camera->camera->getProjectionMatrix());
-
-	int viewMatrix = glGetUniformLocation(shader, "view");
-	glUniformMatrix4fv(viewMatrix, 1, GL_FALSE, App->camera->camera->getViewMatrix());
-
-	int modelMatrix = glGetUniformLocation(shader, "model_matrix");
-	glUniformMatrix4fv(modelMatrix, 1, GL_TRUE, (float*)transform->globalMatrix.v);
-
-	int textureChecker = glGetUniformLocation(shader, "hasTexture");
-	glUniform1i(textureChecker, hasTexture);
+	for (int i = 0; i < shaderProgram->uniforms.size();++i)
+	{
+		if (shaderProgram->uniforms[i]->type == UniformType::PROJECTION)
+		{
+			int projectionMatrix = glGetUniformLocation(shaderProgram->ID, shaderProgram->uniforms[i]->name.c_str());
+			glUniformMatrix4fv(projectionMatrix, 1, GL_FALSE, App->camera->camera->getProjectionMatrix());
+		}
+		else if (shaderProgram->uniforms[i]->type == UniformType::VIEW)
+		{
+			int viewMatrix = glGetUniformLocation(shaderProgram->ID, shaderProgram->uniforms[i]->name.c_str());
+			glUniformMatrix4fv(viewMatrix, 1, GL_FALSE, App->camera->camera->getViewMatrix());
+		}
+		else if (shaderProgram->uniforms[i]->type == UniformType::GLOBAL)
+		{
+			int modelMatrix = glGetUniformLocation(shaderProgram->ID, shaderProgram->uniforms[i]->name.c_str());
+			glUniformMatrix4fv(modelMatrix, 1, GL_TRUE, (float*)transform->globalMatrix.v);
+		}
+		else if (shaderProgram->uniforms[i]->type == UniformType::TIME)
+		{
+			int time = glGetUniformLocation(shaderProgram->ID, shaderProgram->uniforms[i]->name.c_str());
+			glUniform1i(time, App->shaderTimer.ReadTime());
+			LOG("time %d", time);
+		}
+		else if (shaderProgram->uniforms[i]->type == UniformType::TEXTURE)
+		{
+			int textureChecker = glGetUniformLocation(shaderProgram->ID, shaderProgram->uniforms[i]->name.c_str());
+			glUniform1i(textureChecker, hasTexture);
+		}
+		else
+		{
+			shaderProgram->uniforms[i]->LoadToGPU(shaderProgram->ID);
+		}
+	}
 
 	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
 	glUseProgram(0);

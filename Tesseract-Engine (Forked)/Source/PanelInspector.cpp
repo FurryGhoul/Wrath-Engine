@@ -65,7 +65,9 @@ void PanelInspector::Draw()
 				/*if (go->GetComponent(CAMERA) == nullptr)
 					if (ImGui::Selectable("Camera Component"))
 						go->AddComponent(CAMERA);*/
-
+				if (go->GetComponent(SHADER) == nullptr)
+					if (ImGui::Selectable("Shader Component"))
+						go->AddComponent(SHADER);
 				ImGui::EndPopup();
 			}
 		}

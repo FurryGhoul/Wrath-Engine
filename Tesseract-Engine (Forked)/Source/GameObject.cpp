@@ -11,6 +11,7 @@
 #include "ComponentTexture.h"
 #include "ComponentMesh.h"
 #include "ComponentCamera.h"
+#include "ComponentShader.h"
 #include "ResourceMesh.h"
 #include "ResourceTexture.h"
 
@@ -162,6 +163,13 @@ Component* GameObject::AddComponent(componentType type)
 		}
 		ret = camera;
 		break;
+	case SHADER:
+		if (shader == nullptr)
+		{
+			shader = new ComponentShader(this, type);
+			itsNew = true;
+		}
+		ret = shader;
 	}
 
 	if (itsNew)
@@ -187,6 +195,9 @@ void GameObject::RemoveComponent(Component* component)
 		break;
 	case CAMERA:
 		camera = nullptr;
+		break;
+	case SHADER:
+		shader = nullptr;
 		break;
 	}
 
@@ -336,6 +347,7 @@ uint GameObject::Load(JSON_Value* gameobject)
 			Component* component = AddComponent((componentType)componentData->getInt("Type")); //Create the component type
 			component->Load(componentData); //Load its info
 		}
+		AddComponent(SHADER);
 	}
 
 	return gameobject->getUint("UID");

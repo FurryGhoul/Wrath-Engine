@@ -13,6 +13,7 @@
 #include "ComponentTransformation.h"
 #include "ComponentMesh.h"
 #include "ComponentTexture.h"
+#include "ComponentShader.h"
 
 #include "Resource.h"
 #include "ResourceMesh.h"
@@ -232,6 +233,8 @@ GameObject* ModuleSceneLoader::loadGameObject(const aiScene* scene, aiNode* node
 
 			ComponentMesh* mesh = (ComponentMesh*)child->AddComponent(componentType::MESH);
 			mesh->assignResource(meshes[node->mMeshes[i]]->GetUID());
+
+			ComponentShader* shader = (ComponentShader*)child->AddComponent(componentType::SHADER);
 
 			if (textures[scene->mMeshes[node->mMeshes[i]]->mMaterialIndex] != nullptr) //Check that material loaded correctly
 			{

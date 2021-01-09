@@ -13,6 +13,7 @@ class ComponentTransformation;
 class ComponentMesh;
 class ComponentTexture;
 class ComponentCamera;
+class ComponentShader;
 
 enum componentType;
 
@@ -67,6 +68,7 @@ public:
 	ComponentTexture* texture = nullptr;
 	ComponentCamera* camera = nullptr;
 	ComponentTransformation* transformation = nullptr;
+	ComponentShader* shader = nullptr;
 
 private:
 

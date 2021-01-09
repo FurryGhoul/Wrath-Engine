@@ -519,6 +519,15 @@
     <ClInclude Include="PanelShaderEditor.h">
       <Filter>Sources\Modules\Panels</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentShader.h">
+      <Filter>Sources\Modules\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceShader.h">
+      <Filter>Sources\Modules\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Uniform.h">
+      <Filter>Sources\Helpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -838,6 +847,15 @@
     </ClCompile>
     <ClCompile Include="PanelShaderEditor.cpp">
       <Filter>Sources\Modules\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentShader.cpp">
+      <Filter>Sources\Modules\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceShader.cpp">
+      <Filter>Sources\Modules\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Uniform.cpp">
+      <Filter>Sources\Helpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

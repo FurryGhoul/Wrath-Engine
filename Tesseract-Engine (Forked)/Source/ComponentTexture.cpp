@@ -69,10 +69,6 @@ void ComponentTexture::DrawInfo()
 			ImVec2 imageSize = { tex->height *conversionFactor, panelWidth };
 			ImGui::Image((ImTextureID)tex->GL_id, imageSize);
 		}
-		else
-		{
-			
-		}
 	}
 }
 

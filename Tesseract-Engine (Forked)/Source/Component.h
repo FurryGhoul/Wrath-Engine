@@ -14,7 +14,8 @@ enum componentType
 	TRANSFORMATION,
 	MESH,
 	MATERIAL,
-	CAMERA
+	CAMERA,
+	SHADER
 };
 
 enum ResType;

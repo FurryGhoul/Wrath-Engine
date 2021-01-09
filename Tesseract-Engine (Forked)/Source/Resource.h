@@ -10,7 +10,8 @@ enum ResType {
 	NO_TYPE,
 	R_MESH,
 	R_TEXTURE,
-	R_SCENE
+	R_SCENE,
+	R_SHADER
 };
 
 class Resource
@@ -18,6 +19,7 @@ class Resource
 	friend class ModuleResource;
 	friend class ModuleSceneLoader;
 	friend class ModuleMeshes;
+	friend class ModuleShader;
 
 public:
 
