@@ -19,6 +19,7 @@ class PanelAssets;
 class PanelHierarchy;
 class PanelFileDialog;
 class PanelResourcesList;
+class PanelShaderEditor;
 
 class Texture;
 
@@ -71,6 +72,7 @@ public:
 	PanelHierarchy* hierarchy = nullptr;
 	PanelFileDialog* fileDialog = nullptr;
 	PanelResourcesList* resourcesList = nullptr;
+	PanelShaderEditor* shaderEditor = nullptr;
 
 	Texture* folder = nullptr;
 	Texture* file = nullptr;

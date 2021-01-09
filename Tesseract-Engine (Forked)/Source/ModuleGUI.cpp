@@ -1,7 +1,7 @@
 #include "Application.h"
 #include "ModuleGUI.h"
 #include "ImGui\imgui.h"
-#include "ImGui\imgui_impl_sdl.h"
+#include "ImGui/imgui_impl_sdl.h"
 #include "ImGui\imgui_impl_opengl2.h"
 #include "ImGuizmo\ImGuizmo.h"
 
@@ -17,6 +17,7 @@
 #include "PanelHierarchy.h"
 #include "PanelFileDialog.h"
 #include "PanelResourcesList.h"
+#include "PanelShaderEditor.h"
 
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
@@ -27,6 +28,8 @@
 
 #include "ModuleSceneLoader.h"
 #include "ModuleFileSystem.h"
+
+#include "SDL/include/SDL.h"
 
 #ifdef _DEBUG
 //#define TEST_MEMORY_MANAGER
@@ -73,6 +76,8 @@ bool ModuleGUI::Init(JSON_File* document)
 	panels.push_back(fileDialog = new PanelFileDialog("Files"));
 
 	panels.push_back(resourcesList = new PanelResourcesList("Resources"));
+
+	panels.push_back(shaderEditor = new PanelShaderEditor("Shader Editor"));
 
 	//OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
@@ -135,7 +140,7 @@ update_status ModuleGUI::PreUpdate(float dt)
 	ImGui::PopStyleVar(3);
 
 	ImGuiID dockspace_id = ImGui::GetID("MyDockspace");
-	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_RenderWindowBg);
+	ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), ImGuiDockNodeFlags_PassthruCentralNode);
 
 	return update_status(UPDATE_CONTINUE);
 }
@@ -179,6 +184,8 @@ update_status ModuleGUI::Update(float dt)
 				hierarchy->toggleActive();
 			if (ImGui::MenuItem("Assets", NULL, assets->isActive()))
 				assets->toggleActive();
+			if (ImGui::MenuItem("Shader Editor", NULL, shaderEditor->isActive()))
+				shaderEditor->toggleActive();
 			ImGui::EndMenu();
 		}
 

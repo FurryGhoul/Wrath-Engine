@@ -35,7 +35,7 @@ void PanelScene::Draw()
 	ImGui::Begin(name.c_str(), &active, flags);
 
 	ImVec2 newSize = ImGui::GetWindowSize();
-	if (newSize != size)
+	if (newSize.x != size.x || newSize.y != size.y)
 	{
 		resizedLastFrame = true;
 		size = newSize;
@@ -56,7 +56,7 @@ void PanelScene::Draw()
 	ImGui::Image((ImTextureID)App->renderer3D->renderedTexture, { (float)size.x, (float)size.y }, { 0,1 }, { 1,0 });
 	
 	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) != KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_RIGHT) != KEY_REPEAT && App->input->GetMouseButton(SDL_BUTTON_MIDDLE) != KEY_REPEAT)
-		App->gui->hoveringScene = ImGui::IsMouseHoveringWindow();
+		App->gui->hoveringScene = ImGui::IsWindowHovered();
 
 	ImGuizmo::SetDrawlist();
 
