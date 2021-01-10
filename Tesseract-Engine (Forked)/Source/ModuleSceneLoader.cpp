@@ -235,6 +235,7 @@ GameObject* ModuleSceneLoader::loadGameObject(const aiScene* scene, aiNode* node
 			mesh->assignResource(meshes[node->mMeshes[i]]->GetUID());
 
 			ComponentShader* shader = (ComponentShader*)child->AddComponent(componentType::SHADER);
+			//shader->assignResource(shader->shaderID);
 
 			if (textures[scene->mMeshes[node->mMeshes[i]]->mMaterialIndex] != nullptr) //Check that material loaded correctly
 			{
@@ -301,6 +302,7 @@ bool ModuleSceneLoader::saveScene(const char* scene_name, bool isFBX, GameObject
 
 bool ModuleSceneLoader::loadScene(const char* scene_name, bool isFBX)
 {
+	//next_scene_path = scene_name;
 	if (!isFBX)
 	{
 		App->scene_intro->newScene();
@@ -314,7 +316,7 @@ bool ModuleSceneLoader::loadScene(const char* scene_name, bool isFBX)
 		return false;
 
 	JSON_Value* gameObjects = scene->getValue("Game Objects"); //It is an array of values
-	if (gameObjects->getRapidJSONValue()->IsArray()) //Just make sure
+	if (gameObjects && gameObjects->getRapidJSONValue()->IsArray()) //Just make sure
 	{
 		std::map<uint, GameObject*> gameobjects;
 		for (int i = 0; i < gameObjects->getRapidJSONValue()->Size(); i++)

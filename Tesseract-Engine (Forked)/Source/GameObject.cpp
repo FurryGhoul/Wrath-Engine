@@ -347,7 +347,10 @@ uint GameObject::Load(JSON_Value* gameobject)
 			Component* component = AddComponent((componentType)componentData->getInt("Type")); //Create the component type
 			component->Load(componentData); //Load its info
 		}
-		AddComponent(SHADER);
+		//if (GetComponent(MESH))
+		//{
+		//	AddComponent(SHADER);
+		//}
 	}
 
 	return gameobject->getUint("UID");

@@ -1,6 +1,8 @@
 #include "Application.h"
 #include "ModuleShaders.h"
 #include "ModuleFileSystem.h"
+#include "ModuleResource.h"
+#include "ResourceShader.h"
 
 ModuleShaders::ModuleShaders(bool start_enabled) : Module(start_enabled)
 {
@@ -16,8 +18,9 @@ bool ModuleShaders::Start()
 {
 	bool ret = true;
 
-	ShaderProgram* defaultShaderProgram = AddShaderProgram("default_shader", "Assets/Shaders/default_vertex_shader.vrtx", "Assets/Shaders/default_fragment_shader.frg");
-	if (defaultShaderProgram)
+	ResourceShader* defaultShaderProgram = AddShaderProgram("default_shader", "Assets/Shaders/default_vertex_shader.vrtx", "Assets/Shaders/default_fragment_shader.frg");
+	defaultShaderProgram->LoadInMemory();
+	if (defaultShaderProgram->IsLoaded())
 	{
 		shaderPrograms.push_back(defaultShaderProgram);
 		defaultShaderProgram->AddUniform(UniformType::GLOBAL, "model_matrix");
@@ -26,8 +29,9 @@ bool ModuleShaders::Start()
 		defaultShaderProgram->AddUniform(UniformType::TEXTURE, "hasTexture");
 	}
 
-	ShaderProgram* waterShaderProgram = AddShaderProgram("water_shader", "Assets/Shaders/water_vertex_shader.vrtx", "Assets/Shaders/water_fragment_shader.frg");
-	if (waterShaderProgram)
+	ResourceShader* waterShaderProgram = AddShaderProgram("water_shader", "Assets/Shaders/water_vertex_shader.vrtx", "Assets/Shaders/water_fragment_shader.frg");
+	waterShaderProgram->LoadInMemory();
+	if (waterShaderProgram->IsLoaded())
 	{
 		shaderPrograms.push_back(waterShaderProgram);
 		waterShaderProgram->AddUniformFloat(UniformType::FLOAT, "frequency", 5.0f);
@@ -73,14 +77,13 @@ Shader * ModuleShaders::AddShader(std::string path)
 	return newShader;
 }
 
-ShaderProgram * ModuleShaders::AddShaderProgram(std::string name, std::string vertexPath, std::string fragmentPath)
+ResourceShader * ModuleShaders::AddShaderProgram(std::string name, std::string vertexPath, std::string fragmentPath)
 {
-	ShaderProgram* shaderProgram = new ShaderProgram();
+	ResourceShader* shaderProgram = (ResourceShader*)App->resources->AddResource(R_SHADER);
 	shaderProgram->name = name; 
-	shaderProgram->vertexShader = AddShader(vertexPath);
-	shaderProgram->fragmentShader = AddShader(fragmentPath);
 
-	CompileShaderProgram(shaderProgram);
+	shaderProgram->vertexPath = vertexPath;
+	shaderProgram->fragmentPath = fragmentPath;
 
 	return shaderProgram;
 }
@@ -125,7 +128,7 @@ bool ModuleShaders::CompileShader(Shader * shader)
 	return ret;
 }
 
-bool ModuleShaders::CompileShaderProgram(ShaderProgram * shaderProgram)
+bool ModuleShaders::CompileShaderProgram(ResourceShader * shaderProgram)
 {
 	bool ret = false;
 
@@ -177,7 +180,7 @@ uint ModuleShaders::GetShader(std::string name)
 	return 0;
 }
 
-ShaderProgram * ModuleShaders::GetShaderFromID(uint ID)
+ResourceShader * ModuleShaders::GetShaderFromID(uint ID)
 {
 	for (int i = 0; i < shaderPrograms.size(); ++i)
 	{

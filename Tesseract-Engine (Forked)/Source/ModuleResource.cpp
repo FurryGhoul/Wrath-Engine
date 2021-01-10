@@ -8,6 +8,7 @@
 #include "ResourceMesh.h"
 #include "ResourceScene.h"
 #include "ResourceTexture.h"
+#include "ResourceShader.h"
 
 #ifdef _DEBUG
 //#define TEST_MEMORY_MANAGER
@@ -206,6 +207,9 @@ Resource* ModuleResource::AddResource(ResType type, uint forced_uid)
 	case R_SCENE:
 		ret = (Resource*)new ResourceScene(forced_uid, R_SCENE);
 		break;
+	case R_SHADER:
+		ret = (Resource*)new ResourceShader(forced_uid, R_SHADER);
+		break;
 	}
 	
 	resources.insert(std::pair<uint,Resource*>(forced_uid,ret));
@@ -285,6 +289,9 @@ JSON_File* ModuleResource::createMeta(const char* path, ResType type) const
 		break;
 	case R_SCENE:
 		ResourceScene::setImportDefaults(*importSettings);
+		break;
+	case R_SHADER:
+		ResourceShader::setImportDefaults(*importSettings);
 		break;
 	}
 	

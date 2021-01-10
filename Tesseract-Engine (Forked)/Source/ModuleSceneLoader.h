@@ -33,7 +33,7 @@ public:
 
 public:
 
-	std::string next_scene_path = "";
+	std::string next_scene_path = "empty_scene";
 
 private:
 

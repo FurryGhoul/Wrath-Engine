@@ -1,7 +1,109 @@
 {
     "Game Objects": [
         {
-            "UID": 968165619,
+            "UID": 3552046996,
+            "ParentUID": 0,
+            "Name": "WaterDemoPlane",
+            "Active": true,
+            "Static": false,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        0.0,
+                        2.0,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        2.0,
+                        0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                }
+            ]
+        },
+        {
+            "UID": 75254297,
+            "ParentUID": 3552046996,
+            "Name": "pPlane1",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        19.074861526489259,
+                        1.0,
+                        19.074861526489259
+                    ],
+                    "Transform": [
+                        19.074861526489259,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        19.074861526489259,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 149193421,
+                    "FBX": "Assets/Models/WaterDemoPlane.fbx",
+                    "mesh": "Unnamed"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "water_shader"
+                }
+            ]
+        },
+        {
+            "UID": 4193468240,
             "ParentUID": 0,
             "Name": "Camera",
             "Active": true,
@@ -66,12 +168,12 @@
                     "Far Plane": 100.0,
                     "VFOV": 0.5235987901687622,
                     "Aspect Ratio": 1.7777777910232545,
-                    "Culling": true
+                    "Culling": false
                 }
             ]
         },
         {
-            "UID": 1965589144,
+            "UID": 1145711254,
             "ParentUID": 0,
             "Name": "Street environment_V01",
             "Active": true,
@@ -117,8 +219,8 @@
             ]
         },
         {
-            "UID": 250587566,
-            "ParentUID": 1965589144,
+            "UID": 769165985,
+            "ParentUID": 1145711254,
             "Name": "Dummy001",
             "Active": true,
             "Static": true,
@@ -163,64 +265,8 @@
             ]
         },
         {
-            "UID": 757018691,
-            "ParentUID": 250587566,
-            "Name": "Plane001",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -0.02860260009765625,
-                        0.026032090187072755,
-                        0.0
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        0.9966352581977844,
-                        0.9706164598464966,
-                        0.9966352581977844
-                    ],
-                    "Transform": [
-                        0.9966352581977844,
-                        0.0,
-                        0.0,
-                        -0.02860260009765625,
-                        0.0,
-                        0.9706164598464966,
-                        0.0,
-                        0.026032090187072755,
-                        0.0,
-                        0.0,
-                        0.9966352581977844,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 3787512373,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(8)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                }
-            ]
-        },
-        {
-            "UID": 1499124405,
-            "ParentUID": 250587566,
+            "UID": 2396929176,
+            "ParentUID": 769165985,
             "Name": "City_building_031",
             "Active": true,
             "Static": true,
@@ -264,695 +310,24 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 1072773790,
+                    "UID": 1748887790,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
                     "mesh": "Unnamed(6)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 },
                 {
                     "Type": 3,
-                    "UID": 3016529873,
+                    "UID": 765049929,
                     "texture": "Assets/Textures/Building_V01_C.png"
                 }
             ]
         },
         {
-            "UID": 361078506,
-            "ParentUID": 250587566,
-            "Name": "City_building_013",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -42.288055419921878,
-                        33.201576232910159,
-                        5.014607040720875e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        -0.9999999403953552,
-                        0.0,
-                        -42.288055419921878,
-                        0.9999999403953552,
-                        5.960464477539063e-8,
-                        0.0,
-                        33.201576232910159,
-                        0.0,
-                        0.0,
-                        1.0,
-                        5.014607040720875e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2136782235,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(5)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 3920783623,
-                    "texture": "Assets/Textures/building 06_ c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 2359286239,
-            "ParentUID": 250587566,
-            "Name": "City_building_028",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        13.38798999786377,
-                        -33.75503921508789,
-                        -9.383451811117993e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        13.38798999786377,
-                        0.0,
-                        1.0,
-                        0.0,
-                        -33.75503921508789,
-                        0.0,
-                        0.0,
-                        1.0,
-                        -9.383451811117993e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 3200891241,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(6)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 4281762234,
-                    "texture": "Assets/Textures/Building_V01_C.png"
-                }
-            ]
-        },
-        {
-            "UID": 3873831028,
-            "ParentUID": 250587566,
-            "Name": "City_building_036",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -31.216331481933595,
-                        33.201576232910159,
-                        5.014607040720875e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        -0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        0.9999999403953552,
-                        0.0,
-                        -31.216331481933595,
-                        -0.9999999403953552,
-                        5.960464477539063e-8,
-                        -0.0,
-                        33.201576232910159,
-                        -0.0,
-                        0.0,
-                        1.0,
-                        5.014607040720875e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 1531690598,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(5)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 239391473,
-                    "texture": "Assets/Textures/building 06_ c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 32074025,
-            "ParentUID": 250587566,
-            "Name": "City_building_008",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        40.97999572753906,
-                        18.270824432373048,
-                        -0.0000020522466002148578
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        -0.9999999403953552,
-                        0.0,
-                        40.97999572753906,
-                        0.9999999403953552,
-                        5.960464477539063e-8,
-                        0.0,
-                        18.270824432373048,
-                        0.0,
-                        0.0,
-                        1.0,
-                        -0.0000020522466002148578,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 629033404,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(3)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 653837446,
-                    "texture": "Assets/Textures/building_025_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 1189509869,
-            "ParentUID": 250587566,
-            "Name": "City_building_038",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -41.64900207519531,
-                        -16.495393753051759,
-                        0.0
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        -0.7071068286895752,
-                        0.7071067094802856
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        -1.1920928955078126e-7,
-                        0.9999999403953552,
-                        0.0,
-                        -41.64900207519531,
-                        -0.9999999403953552,
-                        -1.1920928955078126e-7,
-                        -0.0,
-                        -16.495393753051759,
-                        -0.0,
-                        0.0,
-                        1.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 777175705,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(16)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 1644319707,
-                    "texture": "Assets/Textures/building05 _c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 2284854904,
-            "ParentUID": 250587566,
-            "Name": "City_building_023",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        42.13064193725586,
-                        37.4932861328125,
-                        -0.0000015106878663573298
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        42.13064193725586,
-                        0.0,
-                        1.0,
-                        0.0,
-                        37.4932861328125,
-                        0.0,
-                        0.0,
-                        1.0,
-                        -0.0000015106878663573298,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 1370477206,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(2)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 1249491437,
-                    "texture": "Assets/Textures/building_016_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 1614171039,
-            "ParentUID": 250587566,
-            "Name": "City_building_014",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -19.439706802368165,
-                        32.061729431152347,
-                        0.0
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        -1.0,
-                        -4.371138828673793e-8
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        -1.0,
-                        8.742277657347586e-8,
-                        0.0,
-                        -19.439706802368165,
-                        -8.742277657347586e-8,
-                        -1.0,
-                        0.0,
-                        32.061729431152347,
-                        0.0,
-                        0.0,
-                        1.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 3923809542,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(9)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 4118780317,
-                    "texture": "Assets/Textures/building03_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 1009672496,
-            "ParentUID": 250587566,
-            "Name": "City_building_039",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -42.8072395324707,
-                        -30.643888473510743,
-                        -9.383451811117993e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        -0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        0.9999999403953552,
-                        0.0,
-                        -42.8072395324707,
-                        -0.9999999403953552,
-                        5.960464477539063e-8,
-                        -0.0,
-                        -30.643888473510743,
-                        -0.0,
-                        0.0,
-                        1.0,
-                        -9.383451811117993e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2777284385,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(6)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 3986859728,
-                    "texture": "Assets/Textures/Building_V01_C.png"
-                }
-            ]
-        },
-        {
-            "UID": 3891237848,
-            "ParentUID": 250587566,
-            "Name": "City_building_016",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        34.270423889160159,
-                        -41.972747802734378,
-                        8.553864176974457e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        1.0,
-                        -4.371138828673793e-8
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        -1.0,
-                        8.742277657347586e-8,
-                        0.0,
-                        34.270423889160159,
-                        -8.742277657347586e-8,
-                        -1.0,
-                        0.0,
-                        -41.972747802734378,
-                        0.0,
-                        0.0,
-                        1.0,
-                        8.553864176974457e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 926345215,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(4)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 452603362,
-                    "texture": "Assets/Textures/building 01_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 1704227852,
-            "ParentUID": 250587566,
-            "Name": "City_building_026",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        31.51188850402832,
-                        -16.446016311645509,
-                        0.0
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        1.0,
-                        4.371138828673793e-8
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        -1.0,
-                        -8.742277657347586e-8,
-                        0.0,
-                        31.51188850402832,
-                        8.742277657347586e-8,
-                        -1.0,
-                        0.0,
-                        -16.446016311645509,
-                        0.0,
-                        0.0,
-                        1.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2384757385,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(11)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 1052272221,
-                    "texture": "Assets/Textures/building05 _c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 1361304681,
-            "ParentUID": 250587566,
-            "Name": "City_building_033",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -32.36149597167969,
-                        42.37042236328125,
-                        5.014607040720875e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        -32.36149597167969,
-                        0.0,
-                        1.0,
-                        0.0,
-                        42.37042236328125,
-                        0.0,
-                        0.0,
-                        1.0,
-                        5.014607040720875e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 48467824,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(13)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 1571980380,
-                    "texture": "Assets/Textures/building 06_ c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 231541145,
-            "ParentUID": 250587566,
+            "UID": 4241540372,
+            "ParentUID": 769165985,
             "Name": "Object010",
             "Active": true,
             "Static": true,
@@ -996,441 +371,19 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 1926025356,
+                    "UID": 3570057844,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
                     "mesh": "Unnamed(12)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 }
             ]
         },
         {
-            "UID": 750686767,
-            "ParentUID": 250587566,
-            "Name": "City_building_032",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -29.478403091430665,
-                        21.01409912109375,
-                        0.0
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        -29.478403091430665,
-                        0.0,
-                        1.0,
-                        0.0,
-                        21.01409912109375,
-                        0.0,
-                        0.0,
-                        1.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2813285280,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 1828056146,
-                    "texture": "Assets/Textures/building03_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 2289771050,
-            "ParentUID": 250587566,
-            "Name": "City_building_040",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -34.679481506347659,
-                        -30.643888473510743,
-                        -9.383451811117993e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        -0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        0.9999999403953552,
-                        0.0,
-                        -34.679481506347659,
-                        -0.9999999403953552,
-                        5.960464477539063e-8,
-                        -0.0,
-                        -30.643888473510743,
-                        -0.0,
-                        0.0,
-                        1.0,
-                        -9.383451811117993e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 1385135931,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(6)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 1501077369,
-                    "texture": "Assets/Textures/Building_V01_C.png"
-                }
-            ]
-        },
-        {
-            "UID": 957108207,
-            "ParentUID": 250587566,
-            "Name": "City_building_030",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -42.8072395324707,
-                        -41.83556365966797,
-                        -9.383451811117993e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        -0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        0.9999999403953552,
-                        0.0,
-                        -42.8072395324707,
-                        -0.9999999403953552,
-                        5.960464477539063e-8,
-                        -0.0,
-                        -41.83556365966797,
-                        -0.0,
-                        0.0,
-                        1.0,
-                        -9.383451811117993e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2068989668,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(6)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 2252064348,
-                    "texture": "Assets/Textures/Building_V01_C.png"
-                }
-            ]
-        },
-        {
-            "UID": 1405933942,
-            "ParentUID": 250587566,
-            "Name": "Line002",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -2.1597719192504885,
-                        1.8538382053375245,
-                        0.0
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        -0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        0.9999999403953552,
-                        0.0,
-                        -2.1597719192504885,
-                        -0.9999999403953552,
-                        5.960464477539063e-8,
-                        -0.0,
-                        1.8538382053375245,
-                        -0.0,
-                        0.0,
-                        1.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2001057702,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(7)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                }
-            ]
-        },
-        {
-            "UID": 2599476327,
-            "ParentUID": 250587566,
-            "Name": "City_building_011",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        30.134540557861329,
-                        37.4932861328125,
-                        -0.0000015106878663573298
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        30.134540557861329,
-                        0.0,
-                        1.0,
-                        0.0,
-                        37.4932861328125,
-                        0.0,
-                        0.0,
-                        1.0,
-                        -0.0000015106878663573298,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 319581157,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(2)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 37772529,
-                    "texture": "Assets/Textures/building_016_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 3521591851,
-            "ParentUID": 250587566,
-            "Name": "City_building_017",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        44.26008224487305,
-                        -39.15372085571289,
-                        8.553864176974457e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        -0.9999999403953552,
-                        0.0,
-                        44.26008224487305,
-                        0.9999999403953552,
-                        5.960464477539063e-8,
-                        0.0,
-                        -39.15372085571289,
-                        0.0,
-                        0.0,
-                        1.0,
-                        8.553864176974457e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2229604851,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(4)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 2933886903,
-                    "texture": "Assets/Textures/building 01_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 2502627807,
-            "ParentUID": 250587566,
-            "Name": "City_building_007",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        16.0104923248291,
-                        37.4932861328125,
-                        -0.0000015106878663573298
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        16.0104923248291,
-                        0.0,
-                        1.0,
-                        0.0,
-                        37.4932861328125,
-                        0.0,
-                        0.0,
-                        1.0,
-                        -0.0000015106878663573298,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 3561788370,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(2)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 2155117121,
-                    "texture": "Assets/Textures/building_016_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 2258815534,
-            "ParentUID": 250587566,
+            "UID": 3178296329,
+            "ParentUID": 769165985,
             "Name": "City_building_022",
             "Active": true,
             "Static": true,
@@ -1474,216 +427,33 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 3538033864,
+                    "UID": 3489015573,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
                     "mesh": "Unnamed(10)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 },
                 {
                     "Type": 3,
-                    "UID": 752146806,
+                    "UID": 2418167657,
                     "texture": "Assets/Textures/building05 _c.tga"
                 }
             ]
         },
         {
-            "UID": 3148987175,
-            "ParentUID": 250587566,
-            "Name": "City_building_001",
+            "UID": 1472212613,
+            "ParentUID": 769165985,
+            "Name": "City_building_038",
             "Active": true,
             "Static": true,
             "Components": [
                 {
                     "Type": 1,
                     "Position": [
-                        17.707164764404298,
-                        20.05327606201172,
-                        2.121072952832037e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        17.707164764404298,
-                        0.0,
-                        1.0,
-                        0.0,
-                        20.05327606201172,
-                        0.0,
-                        0.0,
-                        1.0,
-                        2.121072952832037e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 2510717949,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(1)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 3295217366,
-                    "texture": "Assets/Textures/Building_V02_C.png"
-                }
-            ]
-        },
-        {
-            "UID": 472661975,
-            "ParentUID": 250587566,
-            "Name": "City_building_004",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        -41.47589111328125,
-                        21.01409912109375,
-                        0.0
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        1.0,
-                        0.0,
-                        0.0,
-                        -41.47589111328125,
-                        0.0,
-                        1.0,
-                        0.0,
-                        21.01409912109375,
-                        0.0,
-                        0.0,
-                        1.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 824274713,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 2124718301,
-                    "texture": "Assets/Textures/building03_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 853451990,
-            "ParentUID": 250587566,
-            "Name": "City_building_010",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        25.154010772705079,
-                        -39.15372085571289,
-                        8.553864176974457e-7
-                    ],
-                    "Rotation": [
-                        0.0,
-                        0.0,
-                        0.7071067690849304,
-                        0.7071067690849304
-                    ],
-                    "Scale": [
-                        1.0,
-                        1.0,
-                        1.0
-                    ],
-                    "Transform": [
-                        5.960464477539063e-8,
-                        -0.9999999403953552,
-                        0.0,
-                        25.154010772705079,
-                        0.9999999403953552,
-                        5.960464477539063e-8,
-                        0.0,
-                        -39.15372085571289,
-                        0.0,
-                        0.0,
-                        1.0,
-                        8.553864176974457e-7,
-                        0.0,
-                        0.0,
-                        0.0,
-                        1.0
-                    ]
-                },
-                {
-                    "Type": 2,
-                    "UID": 261429791,
-                    "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(4)"
-                },
-                {
-                    "Type": 5,
-                    "shader": "default_shader"
-                },
-                {
-                    "Type": 3,
-                    "UID": 1218295589,
-                    "texture": "Assets/Textures/building 01_c.tga"
-                }
-            ]
-        },
-        {
-            "UID": 3798732824,
-            "ParentUID": 250587566,
-            "Name": "City_building_034",
-            "Active": true,
-            "Static": true,
-            "Components": [
-                {
-                    "Type": 1,
-                    "Position": [
-                        16.049516677856447,
-                        -16.696884155273439,
+                        -41.64900207519531,
+                        -16.495393753051759,
                         0.0
                     ],
                     "Rotation": [
@@ -1701,11 +471,11 @@
                         -1.1920928955078126e-7,
                         0.9999999403953552,
                         0.0,
-                        16.049516677856447,
+                        -41.64900207519531,
                         -0.9999999403953552,
                         -1.1920928955078126e-7,
                         -0.0,
-                        -16.696884155273439,
+                        -16.495393753051759,
                         -0.0,
                         0.0,
                         1.0,
@@ -1718,24 +488,24 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 119595016,
+                    "UID": 101509431,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
-                    "mesh": "Unnamed(14)"
+                    "mesh": "Unnamed(16)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 },
                 {
                     "Type": 3,
-                    "UID": 2748711144,
+                    "UID": 426494466,
                     "texture": "Assets/Textures/building05 _c.tga"
                 }
             ]
         },
         {
-            "UID": 1813229578,
-            "ParentUID": 250587566,
+            "UID": 3546480149,
+            "ParentUID": 769165985,
             "Name": "City_building_024",
             "Active": true,
             "Static": true,
@@ -1779,24 +549,329 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 3691253774,
+                    "UID": 3919288180,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
                     "mesh": "Unnamed(3)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 },
                 {
                     "Type": 3,
-                    "UID": 1900012005,
+                    "UID": 1212383405,
                     "texture": "Assets/Textures/building_025_c.tga"
                 }
             ]
         },
         {
-            "UID": 3624529713,
-            "ParentUID": 250587566,
+            "UID": 2153194717,
+            "ParentUID": 769165985,
+            "Name": "City_building_032",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -29.478403091430665,
+                        21.01409912109375,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        -29.478403091430665,
+                        0.0,
+                        1.0,
+                        0.0,
+                        21.01409912109375,
+                        0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 883595053,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 940601446,
+                    "texture": "Assets/Textures/building03_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 443605947,
+            "ParentUID": 769165985,
+            "Name": "City_building_036",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -31.216331481933595,
+                        33.201576232910159,
+                        5.014607040720875e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        -0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        0.9999999403953552,
+                        0.0,
+                        -31.216331481933595,
+                        -0.9999999403953552,
+                        5.960464477539063e-8,
+                        -0.0,
+                        33.201576232910159,
+                        -0.0,
+                        0.0,
+                        1.0,
+                        5.014607040720875e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 2974167191,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(5)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 342175811,
+                    "texture": "Assets/Textures/building 06_ c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 4286848119,
+            "ParentUID": 769165985,
+            "Name": "City_building_007",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        16.0104923248291,
+                        37.4932861328125,
+                        -0.0000015106878663573298
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        16.0104923248291,
+                        0.0,
+                        1.0,
+                        0.0,
+                        37.4932861328125,
+                        0.0,
+                        0.0,
+                        1.0,
+                        -0.0000015106878663573298,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 752256499,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(2)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 401459610,
+                    "texture": "Assets/Textures/building_016_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 2978365116,
+            "ParentUID": 769165985,
+            "Name": "City_building_017",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        44.26008224487305,
+                        -39.15372085571289,
+                        8.553864176974457e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        -0.9999999403953552,
+                        0.0,
+                        44.26008224487305,
+                        0.9999999403953552,
+                        5.960464477539063e-8,
+                        0.0,
+                        -39.15372085571289,
+                        0.0,
+                        0.0,
+                        1.0,
+                        8.553864176974457e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 3253126701,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(4)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 3238181343,
+                    "texture": "Assets/Textures/building 01_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 2217453257,
+            "ParentUID": 769165985,
+            "Name": "City_building_033",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -32.36149597167969,
+                        42.37042236328125,
+                        5.014607040720875e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        -32.36149597167969,
+                        0.0,
+                        1.0,
+                        0.0,
+                        42.37042236328125,
+                        0.0,
+                        0.0,
+                        1.0,
+                        5.014607040720875e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 2834196461,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(13)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 4278985461,
+                    "texture": "Assets/Textures/building 06_ c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 934859078,
+            "ParentUID": 769165985,
             "Name": "City_building_037",
             "Active": true,
             "Static": true,
@@ -1840,24 +915,624 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 1533194616,
+                    "UID": 3124232046,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
                     "mesh": "Unnamed(15)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 },
                 {
                     "Type": 3,
-                    "UID": 3276483381,
+                    "UID": 2855224418,
                     "texture": "Assets/Textures/building05 _c.tga"
                 }
             ]
         },
         {
-            "UID": 2007450390,
-            "ParentUID": 250587566,
+            "UID": 2006943167,
+            "ParentUID": 769165985,
+            "Name": "City_building_001",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        17.707164764404298,
+                        20.05327606201172,
+                        2.121072952832037e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        17.707164764404298,
+                        0.0,
+                        1.0,
+                        0.0,
+                        20.05327606201172,
+                        0.0,
+                        0.0,
+                        1.0,
+                        2.121072952832037e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 3346988370,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(1)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 2047794248,
+                    "texture": "Assets/Textures/Building_V02_C.png"
+                }
+            ]
+        },
+        {
+            "UID": 2882955209,
+            "ParentUID": 769165985,
+            "Name": "City_building_013",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -42.288055419921878,
+                        33.201576232910159,
+                        5.014607040720875e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        -0.9999999403953552,
+                        0.0,
+                        -42.288055419921878,
+                        0.9999999403953552,
+                        5.960464477539063e-8,
+                        0.0,
+                        33.201576232910159,
+                        0.0,
+                        0.0,
+                        1.0,
+                        5.014607040720875e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1439839440,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(5)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 3313225984,
+                    "texture": "Assets/Textures/building 06_ c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 1009916556,
+            "ParentUID": 769165985,
+            "Name": "City_building_023",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        42.13064193725586,
+                        37.4932861328125,
+                        -0.0000015106878663573298
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        42.13064193725586,
+                        0.0,
+                        1.0,
+                        0.0,
+                        37.4932861328125,
+                        0.0,
+                        0.0,
+                        1.0,
+                        -0.0000015106878663573298,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1849821600,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(2)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 328995371,
+                    "texture": "Assets/Textures/building_016_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 3612135003,
+            "ParentUID": 769165985,
+            "Name": "City_building_016",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        34.270423889160159,
+                        -41.972747802734378,
+                        8.553864176974457e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        1.0,
+                        -4.371138828673793e-8
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        -1.0,
+                        8.742277657347586e-8,
+                        0.0,
+                        34.270423889160159,
+                        -8.742277657347586e-8,
+                        -1.0,
+                        0.0,
+                        -41.972747802734378,
+                        0.0,
+                        0.0,
+                        1.0,
+                        8.553864176974457e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 3677385785,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(4)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 4151269865,
+                    "texture": "Assets/Textures/building 01_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 2037379217,
+            "ParentUID": 769165985,
+            "Name": "City_building_008",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        40.97999572753906,
+                        18.270824432373048,
+                        -0.0000020522466002148578
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        -0.9999999403953552,
+                        0.0,
+                        40.97999572753906,
+                        0.9999999403953552,
+                        5.960464477539063e-8,
+                        0.0,
+                        18.270824432373048,
+                        0.0,
+                        0.0,
+                        1.0,
+                        -0.0000020522466002148578,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 4022181403,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(3)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 588456640,
+                    "texture": "Assets/Textures/building_025_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 1847026899,
+            "ParentUID": 769165985,
+            "Name": "City_building_014",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -19.439706802368165,
+                        32.061729431152347,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        1.0,
+                        -4.371138828673793e-8
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        -1.0,
+                        8.742277657347586e-8,
+                        0.0,
+                        -19.439706802368165,
+                        -8.742277657347586e-8,
+                        -1.0,
+                        0.0,
+                        32.061729431152347,
+                        0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1982866430,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(9)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 3959519972,
+                    "texture": "Assets/Textures/building03_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 919211305,
+            "ParentUID": 769165985,
+            "Name": "City_building_026",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        31.51188850402832,
+                        -16.446016311645509,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        1.0,
+                        4.371138828673793e-8
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        -1.0,
+                        -8.742277657347586e-8,
+                        0.0,
+                        31.51188850402832,
+                        8.742277657347586e-8,
+                        -1.0,
+                        0.0,
+                        -16.446016311645509,
+                        0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 3487920755,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(11)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 2535080583,
+                    "texture": "Assets/Textures/building05 _c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 2611633875,
+            "ParentUID": 769165985,
+            "Name": "City_building_011",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        30.134540557861329,
+                        37.4932861328125,
+                        -0.0000015106878663573298
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        30.134540557861329,
+                        0.0,
+                        1.0,
+                        0.0,
+                        37.4932861328125,
+                        0.0,
+                        0.0,
+                        1.0,
+                        -0.0000015106878663573298,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 2102583430,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(2)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 3590364156,
+                    "texture": "Assets/Textures/building_016_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 2274370985,
+            "ParentUID": 769165985,
+            "Name": "Plane001",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -0.02860260009765625,
+                        0.026032090187072755,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        0.9966352581977844,
+                        0.9706164598464966,
+                        0.9966352581977844
+                    ],
+                    "Transform": [
+                        0.9966352581977844,
+                        0.0,
+                        0.0,
+                        -0.02860260009765625,
+                        0.0,
+                        0.9706164598464966,
+                        0.0,
+                        0.026032090187072755,
+                        0.0,
+                        0.0,
+                        0.9966352581977844,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1362643718,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(8)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                }
+            ]
+        },
+        {
+            "UID": 1855806644,
+            "ParentUID": 769165985,
+            "Name": "Line002",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -2.1597719192504885,
+                        1.8538382053375245,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        -0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        0.9999999403953552,
+                        0.0,
+                        -2.1597719192504885,
+                        -0.9999999403953552,
+                        5.960464477539063e-8,
+                        -0.0,
+                        1.8538382053375245,
+                        -0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 3431141281,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(7)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                }
+            ]
+        },
+        {
+            "UID": 2283846159,
+            "ParentUID": 769165985,
             "Name": "City_building_035",
             "Active": true,
             "Static": true,
@@ -1901,24 +1576,268 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 3976851017,
+                    "UID": 2853708273,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
                     "mesh": "Unnamed(6)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 },
                 {
                     "Type": 3,
-                    "UID": 665955896,
+                    "UID": 2138885046,
                     "texture": "Assets/Textures/Building_V01_C.png"
                 }
             ]
         },
         {
-            "UID": 3333943295,
-            "ParentUID": 250587566,
+            "UID": 3972080127,
+            "ParentUID": 769165985,
+            "Name": "City_building_040",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -34.679481506347659,
+                        -30.643888473510743,
+                        -9.383451811117993e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        -0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        0.9999999403953552,
+                        0.0,
+                        -34.679481506347659,
+                        -0.9999999403953552,
+                        5.960464477539063e-8,
+                        -0.0,
+                        -30.643888473510743,
+                        -0.0,
+                        0.0,
+                        1.0,
+                        -9.383451811117993e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 3614795854,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(6)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 2692454575,
+                    "texture": "Assets/Textures/Building_V01_C.png"
+                }
+            ]
+        },
+        {
+            "UID": 1395223531,
+            "ParentUID": 769165985,
+            "Name": "City_building_028",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        13.38798999786377,
+                        -33.75503921508789,
+                        -9.383451811117993e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        13.38798999786377,
+                        0.0,
+                        1.0,
+                        0.0,
+                        -33.75503921508789,
+                        0.0,
+                        0.0,
+                        1.0,
+                        -9.383451811117993e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1019866183,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(6)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 2618282203,
+                    "texture": "Assets/Textures/Building_V01_C.png"
+                }
+            ]
+        },
+        {
+            "UID": 3749565994,
+            "ParentUID": 769165985,
+            "Name": "City_building_010",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        25.154010772705079,
+                        -39.15372085571289,
+                        8.553864176974457e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        -0.9999999403953552,
+                        0.0,
+                        25.154010772705079,
+                        0.9999999403953552,
+                        5.960464477539063e-8,
+                        0.0,
+                        -39.15372085571289,
+                        0.0,
+                        0.0,
+                        1.0,
+                        8.553864176974457e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 375172293,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(4)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 1377560987,
+                    "texture": "Assets/Textures/building 01_c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 3453785153,
+            "ParentUID": 769165985,
+            "Name": "City_building_039",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -42.8072395324707,
+                        -30.643888473510743,
+                        -9.383451811117993e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        -0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        0.9999999403953552,
+                        0.0,
+                        -42.8072395324707,
+                        -0.9999999403953552,
+                        5.960464477539063e-8,
+                        -0.0,
+                        -30.643888473510743,
+                        -0.0,
+                        0.0,
+                        1.0,
+                        -9.383451811117993e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 2048437645,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(6)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 510239676,
+                    "texture": "Assets/Textures/Building_V01_C.png"
+                }
+            ]
+        },
+        {
+            "UID": 3587901337,
+            "ParentUID": 769165985,
             "Name": "City_building_041",
             "Active": true,
             "Static": true,
@@ -1962,18 +1881,201 @@
                 },
                 {
                     "Type": 2,
-                    "UID": 2246557186,
+                    "UID": 2920435950,
                     "FBX": "Assets/Models/Street environment_V01.FBX",
                     "mesh": "Unnamed(1)"
                 },
                 {
                     "Type": 5,
-                    "shader": "default_shader"
+                    "shaderName": "default_shader"
                 },
                 {
                     "Type": 3,
-                    "UID": 3229809978,
+                    "UID": 2474592278,
                     "texture": "Assets/Textures/Building_V02_C.png"
+                }
+            ]
+        },
+        {
+            "UID": 3518358102,
+            "ParentUID": 769165985,
+            "Name": "City_building_034",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        16.049516677856447,
+                        -16.696884155273439,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        -0.7071068286895752,
+                        0.7071067094802856
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        -1.1920928955078126e-7,
+                        0.9999999403953552,
+                        0.0,
+                        16.049516677856447,
+                        -0.9999999403953552,
+                        -1.1920928955078126e-7,
+                        -0.0,
+                        -16.696884155273439,
+                        -0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1258891349,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(14)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 62069515,
+                    "texture": "Assets/Textures/building05 _c.tga"
+                }
+            ]
+        },
+        {
+            "UID": 4254767638,
+            "ParentUID": 769165985,
+            "Name": "City_building_030",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -42.8072395324707,
+                        -41.83556365966797,
+                        -9.383451811117993e-7
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        -0.7071067690849304,
+                        0.7071067690849304
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        5.960464477539063e-8,
+                        0.9999999403953552,
+                        0.0,
+                        -42.8072395324707,
+                        -0.9999999403953552,
+                        5.960464477539063e-8,
+                        -0.0,
+                        -41.83556365966797,
+                        -0.0,
+                        0.0,
+                        1.0,
+                        -9.383451811117993e-7,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1579115641,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed(6)"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 14842429,
+                    "texture": "Assets/Textures/Building_V01_C.png"
+                }
+            ]
+        },
+        {
+            "UID": 3502960443,
+            "ParentUID": 769165985,
+            "Name": "City_building_004",
+            "Active": true,
+            "Static": true,
+            "Components": [
+                {
+                    "Type": 1,
+                    "Position": [
+                        -41.47589111328125,
+                        21.01409912109375,
+                        0.0
+                    ],
+                    "Rotation": [
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ],
+                    "Scale": [
+                        1.0,
+                        1.0,
+                        1.0
+                    ],
+                    "Transform": [
+                        1.0,
+                        0.0,
+                        0.0,
+                        -41.47589111328125,
+                        0.0,
+                        1.0,
+                        0.0,
+                        21.01409912109375,
+                        0.0,
+                        0.0,
+                        1.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        0.0,
+                        1.0
+                    ]
+                },
+                {
+                    "Type": 2,
+                    "UID": 1711419749,
+                    "FBX": "Assets/Models/Street environment_V01.FBX",
+                    "mesh": "Unnamed"
+                },
+                {
+                    "Type": 5,
+                    "shaderName": "default_shader"
+                },
+                {
+                    "Type": 3,
+                    "UID": 2539016739,
+                    "texture": "Assets/Textures/building03_c.tga"
                 }
             ]
         }

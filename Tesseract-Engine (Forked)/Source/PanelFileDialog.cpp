@@ -23,7 +23,7 @@ PanelFileDialog::~PanelFileDialog()
 
 void PanelFileDialog::Draw()
 {
-	ImGui::Begin(name.c_str(), &active, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
+	ImGui::Begin(name.c_str(), &active, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking | ImGuiWindowFlags_NoCollapse);
 
 	ImGui::BeginMenuBar();
 	if (ImGui::ArrowButton("back", ImGuiDir_Left))

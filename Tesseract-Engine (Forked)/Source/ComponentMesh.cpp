@@ -175,7 +175,7 @@ void ComponentMesh::Load(JSON_Value* component)
 void ComponentMesh::DrawMesh()
 {
 	ComponentShader* shaderComp = (ComponentShader*)gameObject->GetComponent(SHADER);
-	ShaderProgram* shaderProgram = App->shaders->GetShaderFromID(App->shaders->GetShader(shaderComp->name));
+	ResourceShader* shaderProgram = App->shaders->GetShaderFromID(App->shaders->GetShader(shaderComp->name));
 	
 
 	if (!shaderComp)
@@ -230,7 +230,7 @@ void ComponentMesh::DrawMesh()
 		else if (shaderProgram->uniforms[i]->type == UniformType::TIME)
 		{
 			int time = glGetUniformLocation(shaderProgram->ID, shaderProgram->uniforms[i]->name.c_str());
-			glUniform1i(time, App->shaderTimer.ReadTime());
+			glUniform1i(time, App->game_timer.ReadTime());
 		}
 		else if (shaderProgram->uniforms[i]->type == UniformType::TEXTURE)
 		{

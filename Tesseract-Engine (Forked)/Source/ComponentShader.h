@@ -4,6 +4,8 @@
 #include "Component.h"
 #include <string>
 
+class ShaderProgram;
+
 class ComponentShader : public Component
 {
 public:
@@ -18,7 +20,6 @@ public:
 	void Load(JSON_Value* component);
 
 public:
-	uint shaderID = 0;
-	std::string name;
+		std::string name;
 };
 #endif // !__COMPONENTSHADER_H__

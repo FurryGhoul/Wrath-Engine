@@ -37,6 +37,7 @@ void PanelAssets::Draw()
 		clearElements(); //BUG: Possible crash? NOTIFY
 		App->fileSystem->getFilesAt(current_path.c_str(), elements, nullptr, "meta");
 		update_timer.Start();
+		force_update = false;
 	}
 
 	float folderWidth = (float)App->gui->folder->width;
@@ -319,6 +320,9 @@ void PanelAssets::clearElements()
 		it_e++;
 	}
 	elements.clear();
+	selected_element = nullptr;
+	creating = false;
+	renaming = false;
 }
 
 void PanelAssets::selectElement(assetsElement* element)
