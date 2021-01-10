@@ -48,10 +48,12 @@ Last but not least the component shader is the one in charge of saving and loadi
 
 # Component and Resources Mesh
 This component was modified to have a draw function which gets the information from the components and drawing it with shaders. The funtion indicates with shader program we are to use with glUseProgram(), bind a vertex array and textture (if it exist), and finally gets the necessary matrix and textures uniform from the shaders and uses them to place and render the object inside the scene. The rest of variable (int, float, vec...) are loaded and stored in the GPU.
+
 As for the resource, we load the VRAM. We have a function which loads the mesh by creating a buffer and saving space for the variables and their size, for the shader we do the same but only for the vertices, normals, texture coordinates and color of the mesh. Once stored we generated a vertex array and 2 buffers for the VBO and IBO (vertex and index buffer object) and bind them, we pass the data through the buffer from before and finally we make a vertex pointer to store varaibles in their group size. 
 
 # In-game
 The user can see in-game that each game object has a component shader, by deafult this will be the default shader which will display the mesh normaly with their correct texture or color. The shader can be change in the inspector to another one, but in case the shader is dynamic (represent a certain movement) the movement wont be visible until the user enter in game mode by pressing play. The inspector also allows to change non-predefined unifrom values. 
+
 As to modify the shader itself, in the tools tab a shader editor can be opened which will allow us to open any shader (vertex or fragment) and modify it. The editor is meant to support c++ coding language, so be careful with modifying it. Once the editing is finished the user can save the shader and a recompile shader function will be called to update the shader inside the scene, so that the user is able to see the result in real time; and in case something goes wrong the error and the line in which happened will be displayed on the console window. 
 
 <img src="https://i.imgur.com/llqu9gx.gif" width="600"> <img src="https://i.imgur.com/o9r054T.gif" width="600">
