@@ -1,8 +1,11 @@
 # Wrath-Engine
 
-This is a 3D Engine created by [Ivan Drofiak](https://github.com/FurryGhoul) student of the Bachelor’s Degree in Video Games by UPC at CITM.
+This is a 3D Engine created by [Ivan Drofiak](https://github.com/FurryGhoul) student of the Bachelor’s Degree in Video Games by UPC at CITM, with a implmentation of the shader pipeline.
 
-Our Repository: https://github.com/FurryGhoul/Wrath-Engine
+My Repository: https://github.com/FurryGhoul/Wrath-Engine
+
+## Fork
+The engine was forked from [Tesseract-Engine](https://github.com/Adria-F/Tesseract-Engine), and engine created by [Adria Ferrer](https://github.com/Adria-F) and [Marc Garcia](https://github.com/MaxitoSama). The reason for that was due to them having a proper resource system and having worked on it last year, since I forked it as well. It must be noted that although forked, as github didn't allow to fork from a certain point the code used was from their second delivery [Delivery 2.2](https://github.com/FurryGhoul/Tesseract-Engine/releases/tag/Assignment2.2), as to not have any code related to the third assignment.
 
 ## Libraries Used
 - SDL.
@@ -27,9 +30,9 @@ In the scene window, the movement controls is as follows:
 - Use 'F' to focus the camera on the object.
 - Use 'Shift' to duplicate movement speed.
 
-The Hierarchy window is still in progress, so far it supports creating a camera as well as a display of an fbx hierarchy with each childs in a tree manner. The user can also delete game objects as well as move them around chaning their parent. 
-The Console window shows info about the actions done by the application.
-The Inspector window shows information about the selected game objects regarding their transform, mesh and material. The users can also edit the transform through the window moving, rotating and scaling the objects. 
+The Hierarchy window displays all game objects on the scene, it supports deleting objects and reparenting them inside the hierarchy. 
+The Console window shows info about the actions done by the application: loading, errors, importing... .
+The Inspector window shows information about the selected game objects regarding their transform, mesh, material and shader. The users can also edit the transform through the window moving, rotating and scaling the objects, change the mesh, material and both edit and change the shader. 
 As for the cameras the user can decide which camera is active, which one is culling and move them.
 The Configuration window has the following submenus:
 
@@ -41,27 +44,31 @@ The Configuration window has the following submenus:
 From the menu, the user can:
 
 # File
-- And Save the scene, but with no load.
+- Save the scene.
+- Load the scene.
+- Create new scene.
 - Close the application.
 
 # Help
 - About: A short descrption of the engine and link to the libraries used. 
 - Hardware Info: Information about the technical aspects of the engine.
 - GitHub: A link to the repository where the source code can be found.
-- Controls: A window that displays the controls for the scene window.
 
-# Windows
+# Tools
+- You can desactivate different panels.
+- You can open the shader edtiro window to edit the shaders in the engine.
 
-This section allows the user to activate/desactivate the windows displayed on screen. 
-The windows can be moved freely arround and organized as the user rathers using docking.
+# Debug
+You cna close/open console and config window.
 
 # Scene
-
-There is a fully implemented mouse picking, so the users can select any game object in the scene, but their is no guizmo implemented. 
+There is a fully implemented mouse picking, so the users can select any game object in the scene, with a guizmo.
 
 # Not Done
+The user cant create new shaders in the editor, he can right them but they won't be saved. 
 
-There are no resources implemented, the load functions aren't working henceworth they are disabled, there is no play, pause or stop button and you can't change the mesh or material of any game objects.
+## Extra Notes
+If the scene is loaded, and you can see the hierarchy with game objects but they don't appear on screen try turning camera culling on or off, inside the inspector by selecting the camera in the hierarchy. There are sometimes when the scene is loaded the culling doesn't render the game objects unless you turn it back on or off. 
 
 ## License
 
