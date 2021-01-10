@@ -6,6 +6,7 @@ This is a 3D Engine created by Ivan Drofiak student of the Bachelor’s Degree i
 Repository: [Wrath Engine]https://github.com/FurryGhoul/Wrath-Engine
 
 ### Team
+![Ivan Drofiak](https://imgur.com/Qn7mTvJ)
 Created by [Ivan Drofiak](https://github.com/FurryGhoul) 
 - Implemented all included libraries
 - Made an engine work frame with ImGui
