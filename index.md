@@ -55,5 +55,5 @@ As to modify the shader itself, in the tools tab a shader editor can be opened w
 <img src="https://i.imgur.com/llqu9gx.gif" width="600"> <img src="https://i.imgur.com/o9r054T.gif" width="600">
 
 ## Video Showcase
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/WeyadynQCDI)
+[![Watch the video](https://i.imgur.com/DLT4EM1.png)](https://youtu.be/WeyadynQCDI)
 
