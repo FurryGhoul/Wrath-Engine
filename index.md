@@ -3,7 +3,9 @@
 This is a 3D Engine created by Ivan Drofiak student of the Bachelor’s Degree in Video Games by UPC at CITM, as part of an assignment to simulate and create the basic functionalities of modern game engine; and adding a more specific system to it as the last part, in this case a shader pipeline. 
 
 ### Repository;
-Repository: [Wrath Engine]https://github.com/FurryGhoul/Wrath-Engine
+Repository: https://github.com/FurryGhoul/Wrath-Engine
+
+Release: https://github.com/FurryGhoul/Wrath-Engine/releases/tag/3.0
 
 ### Team
 <img src="https://i.imgur.com/Qn7mTvJ.jpg" width="400">
@@ -56,4 +58,27 @@ As to modify the shader itself, in the tools tab a shader editor can be opened w
 
 ## Video Showcase
 [![Watch the video](https://i.imgur.com/DLT4EM1.png)](https://youtu.be/WeyadynQCDI)
+
+## License
+MIT License
+
+Copyright (c) 2020 FurryGhoul
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
