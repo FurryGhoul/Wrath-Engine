@@ -276,7 +276,7 @@ bool Application::SaveDefaultConfig(const char* path)const
 	JSON_File* document = JSON_manager->openWriteFile(path);
 
 	JSON_Value* app = document->createValue();
-	app->addString("title", "Tesseract-Engine");
+	app->addString("title", "Wrath-Engine");
 	app->addInt("frameCap", 60);
 	document->addValue("App", app);
 

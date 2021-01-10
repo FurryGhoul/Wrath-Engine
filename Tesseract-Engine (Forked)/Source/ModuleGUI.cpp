@@ -205,7 +205,7 @@ update_status ModuleGUI::Update(float dt)
 			if (ImGui::MenuItem("About", NULL, about->isActive()))
 				about->toggleActive();
 			if (ImGui::MenuItem("GitHub Repository"))
-				App->RequestBrowser("https://github.com/Adria-F/Engines");
+				App->RequestBrowser("https://github.com/FurryGhoul/Wrath-Engine");
 			ImGui::EndMenu();
 		}
 	

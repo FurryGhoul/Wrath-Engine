@@ -21,22 +21,27 @@ void PanelAbout::Draw()
 	ImGui::Begin(name.c_str(), &active);
 
 	//Name and description
-	ImGui::Text("Tesseract-Engine");
+	ImGui::Text("Wrath-Engine");
 	ImGui::NewLine();
 	ImGui::Text("This engine is created as part of the 3D engines subject in the UPC - CITM.\n"
-				"We attempt to create an engine with all the features needed in order to create the games\n"
-				"for our future projects."
+				"I attempted to add a shader pipeline on top of an engine with all the basic features, /n"
+				"created by other students mentioned below'"
 	);
 
 	//Authors
 	ImGui::NewLine();
-	ImGui::Text("Created by:");
+	ImGui::Text("Version 0.6 (Delivery 2) Created by:");
 	ImGui::NewLine(); ImGui::SameLine(80);
 	if (ImGui::Selectable("Adria Ferrer", false, 0, { 85, 13 }))
 		App->RequestBrowser("https://github.com/Adria-F");
 	ImGui::SameLine(185);
 	if (ImGui::Selectable("Max Garcia", false, 0, { 70, 13 }))
 		App->RequestBrowser("https://github.com/MaxitoSama");
+	ImGui::NewLine();
+	ImGui::Text("Version 1.0 (Delivery 3) Created by:");
+	ImGui::NewLine(); ImGui::SameLine(80);
+	if (ImGui::Selectable("Ivan Drofiak", false, 0, { 82, 13 }))
+		App->RequestBrowser("https://github.com/FurryGhoul");
 
 	//Libraries
 	ImGui::NewLine();

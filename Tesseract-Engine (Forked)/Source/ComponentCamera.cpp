@@ -226,7 +226,8 @@ void ComponentCamera::Load(JSON_Value * component)
 	setAspectRatio(component->getFloat("Aspect Ratio"));
 	IsCulling = component->getBool("Culling");
 
-	//App->scene_intro->ChangeCulling(gameObject, IsCulling);
+	App->scene_intro->ChangeCulling(gameObject, true);
+	App->scene_intro->ChangeCulling(gameObject, IsCulling);
 }
 
 void ComponentCamera::CameraBB()
