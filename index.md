@@ -3,11 +3,10 @@
 This is a 3D Engine created by Ivan Drofiak student of the Bachelor’s Degree in Video Games by UPC at CITM, as part of an assignment to simulate and create the basic functionalities of modern game engine; and adding a more specific system to it as the last part, in this case a shader pipeline. 
 
 ### Repository;
-<img src="https://i.imgur.com/Qn7mTvJ.jpg" width="600">
 Repository: [Wrath Engine]https://github.com/FurryGhoul/Wrath-Engine
 
 ### Team
-![Ivan](https://imgur.com/Qn7mTvJ)
+<img src="https://i.imgur.com/Qn7mTvJ.jpg" width="400">
 Created by [Ivan Drofiak]([img]https://i.imgur.com/Qn7mTvJ.jpg[/img]) 
 - Implemented all included libraries
 - Made an engine work frame with ImGui
