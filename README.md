@@ -43,34 +43,34 @@ The Configuration window has the following submenus:
 
 From the menu, the user can:
 
-# File
+## File
 - Save the scene.
 - Load the scene.
 - Create new scene.
 - Close the application.
 
-# Help
+## Help
 - About: A short descrption of the engine and link to the libraries used. 
 - Hardware Info: Information about the technical aspects of the engine.
 - GitHub: A link to the repository where the source code can be found.
 
-# Tools
+## Tools
 - You can desactivate different panels.
 - You can open the shader edtiro window to edit the shaders in the engine.
 
-# Debug
+## Debug
 You cna close/open console and config window.
 
-# Scene
+## Scene
 There is a fully implemented mouse picking, so the users can select any game object in the scene, with a guizmo.
 
-# Not Done
+## Not Done
 The user cant create new shaders in the editor, he can right them but they won't be saved. 
 
-## Extra Notes
+# Extra Notes
 If the scene is loaded, and you can see the hierarchy with game objects but they don't appear on screen try turning camera culling on or off, inside the inspector by selecting the camera in the hierarchy. There are sometimes when the scene is loaded the culling doesn't render the game objects unless you turn it back on or off. 
 
-## License
+# License
 
 MIT License
 
