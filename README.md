@@ -30,10 +30,12 @@ In the scene window, the movement controls is as follows:
 - Use 'F' to focus the camera on the object.
 - Use 'Shift' to duplicate movement speed.
 
-The Hierarchy window displays all game objects on the scene, it supports deleting objects and reparenting them inside the hierarchy. 
-The Console window shows info about the actions done by the application: loading, errors, importing... .
-The Inspector window shows information about the selected game objects regarding their transform, mesh, material and shader. The users can also edit the transform through the window moving, rotating and scaling the objects, change the mesh, material and both edit and change the shader. 
-As for the cameras the user can decide which camera is active, which one is culling and move them.
+- The Hierarchy window displays all game objects on the scene, it supports deleting objects and reparenting them inside the hierarchy. 
+- The Console window shows info about the actions done by the application: loading, errors, importing... .
+- The Inspector window shows information about the selected game objects regarding their transform, mesh, material and shader. The users can also edit the transform through the window moving, rotating and scaling the objects, change the mesh, material and both edit and change the shader. 
+- As for the cameras the user can decide which camera is active, which one is culling and move them.
+- The scene also has a play and stop functionality, having a game scene. Some shaders that allows movement can only be fully seen when pressing the play button.
+
 The Configuration window has the following submenus:
 
 - Application: This section displays the info about the engine as well as some data.
