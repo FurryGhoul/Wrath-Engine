@@ -7,7 +7,7 @@ Repository: [Wrath Engine]https://github.com/FurryGhoul/Wrath-Engine
 
 ### Team
 ![Ivan](https://imgur.com/Qn7mTvJ)
-Created by [Ivan Drofiak](https://github.com/FurryGhoul) 
+Created by [Ivan Drofiak]([img]https://i.imgur.com/Qn7mTvJ.jpg[/img]) 
 - Implemented all included libraries
 - Made an engine work frame with ImGui
 - Exporting and impoting system
