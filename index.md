@@ -50,6 +50,6 @@ As for the resource, we load the VRAM. We have a function which loads the mesh b
 # In-game
 The user can see in-game that each game object has a component shader, by deafult this will be the default shader which will display the mesh normaly with their correct texture or color. The shader can be change in the inspector to another one, but in case the shader is dynamic (represent a certain movement) the movement wont be visible until the user enter in game mode by pressing play. The inspector also allows to change non-predefined unifrom values. 
 As to modify the shader itself, in the tools tab a shader editor can be opened which will allow us to open any shader (vertex or fragment) and modify it. The editor is meant to support c++ coding language, so be careful with modifying it. Once the editing is finished the user can save the shader and a recompile shader function will be called to update the shader inside the scene, so that the user is able to see the result in real time; and in case something goes wrong the error and the line in which happened will be displayed on the console window. 
-# Editor
-<img src="https://i.imgur.com/llqu9gx.gif" width="400"> <img src="https://i.imgur.com/o9r054T.gif" width="400">
-# In-game Functionalities
+
+<img src="https://i.imgur.com/llqu9gx.gif" width="600"> <img src="https://i.imgur.com/o9r054T.gif" width="600">
+
