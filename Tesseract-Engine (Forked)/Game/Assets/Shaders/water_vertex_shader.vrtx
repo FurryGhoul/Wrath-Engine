@@ -6,22 +6,30 @@ layout (location = 3) in vec2 texCoord;
 
 out vec3 ourColor;
 out vec2 TexCoord;
+out float vertexHeight;
 
 uniform mat4 model_matrix;
 uniform mat4 view;
 uniform mat4 projection;
 uniform float frequency;
 uniform int time;
+uniform float height;
 
 void main()
 {
 	float ftime = float(time);
 	vec3 initPos = position;
-	initPos.y = sin(initPos.x * frequency + ftime/500);
+	initPos.y = (sin(initPos.x * frequency + ftime/500)+1)/2.0;
+	initPos.y = pow(initPos.y, 2) * height;
+	vertexHeight = initPos.y;
 	gl_Position = projection * view * model_matrix * vec4(initPos, 1.0f);
 	ourColor = color;
 	TexCoord = texCoord;
 }
+
+
+
+
 
 
 

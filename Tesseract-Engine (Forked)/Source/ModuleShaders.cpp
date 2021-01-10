@@ -31,6 +31,7 @@ bool ModuleShaders::Start()
 	{
 		shaderPrograms.push_back(waterShaderProgram);
 		waterShaderProgram->AddUniformFloat(UniformType::FLOAT, "frequency", 5.0f);
+		waterShaderProgram->AddUniformFloat(UniformType::FLOAT, "height", 2.0f);
 		waterShaderProgram->AddUniform(UniformType::GLOBAL, "model_matrix");
 		waterShaderProgram->AddUniform(UniformType::VIEW, "view");
 		waterShaderProgram->AddUniform(UniformType::PROJECTION, "projection");

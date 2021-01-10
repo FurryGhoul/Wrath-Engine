@@ -41,14 +41,16 @@ void ComponentShader::DrawInfo()
 				if (shaderProgram->uniforms[i]->type == UniformType::INT)
 				{
 					ImGui::Text(shaderProgram->uniforms[i]->name.c_str());
-					ImGui::PushID("ShaderInt");
+					std::string valueName = shaderProgram->uniforms[i]->name + "ShaderInt";
+					ImGui::PushID(valueName.c_str());
 					ImGui::InputInt("", &((UniformInt*)shaderProgram->uniforms[i])->value, 0, 0, ImGuiInputTextFlags_EnterReturnsTrue);
 					ImGui::PopID();
 				}
 				else if (shaderProgram->uniforms[i]->type == UniformType::FLOAT)
 				{
 					ImGui::Text(shaderProgram->uniforms[i]->name.c_str());
-					ImGui::PushID("ShaderFloat");
+					std::string valueName = shaderProgram->uniforms[i]->name + "ShaderFloat";
+					ImGui::PushID(valueName.c_str());
 					ImGui::InputFloat("", &((UniformFloat*)shaderProgram->uniforms[i])->value, 0.0f, 0.0f, "%.3f", ImGuiInputTextFlags_EnterReturnsTrue);
 					ImGui::PopID();
 				}
@@ -56,7 +58,8 @@ void ComponentShader::DrawInfo()
 				{
 					ImGui::Text(shaderProgram->uniforms[i]->name.c_str());
 					float vector2[2] = { ((UniformVec2*)shaderProgram->uniforms[i])->value.x, ((UniformVec2*)shaderProgram->uniforms[i])->value.y };
-					ImGui::PushID("ShaderVec2");
+					std::string valueName = shaderProgram->uniforms[i]->name + "ShaderVec2";
+					ImGui::PushID(valueName.c_str());
 					ImGui::DragFloat2("", vector2, 1.f, 0, 100);
 					ImGui::PopID();
 				}
@@ -64,14 +67,16 @@ void ComponentShader::DrawInfo()
 				{
 					ImGui::Text(shaderProgram->uniforms[i]->name.c_str());
 					float vector3[3] = { ((UniformVec3*)shaderProgram->uniforms[i])->value.x, ((UniformVec3*)shaderProgram->uniforms[i])->value.y, ((UniformVec3*)shaderProgram->uniforms[i])->value.z };
-					ImGui::PushID("ShaderVec3");
+					std::string valueName = shaderProgram->uniforms[i]->name + "ShaderVec3";
+					ImGui::PushID(valueName.c_str());
 					ImGui::DragFloat3("", vector3, 1.f, 0, 100);
 					ImGui::PopID();
 				}
 				else if (shaderProgram->uniforms[i]->type == UniformType::VEC4)
 				{
 					float vector4[4] = { ((UniformVec4*)shaderProgram->uniforms[i])->value.x, ((UniformVec4*)shaderProgram->uniforms[i])->value.y, ((UniformVec4*)shaderProgram->uniforms[i])->value.z, ((UniformVec4*)shaderProgram->uniforms[i])->value.w };
-					ImGui::PushID("ShaderVec4");
+					std::string valueName = shaderProgram->uniforms[i]->name + "ShaderVec4";
+					ImGui::PushID(valueName.c_str());
 					ImGui::DragFloat4("", vector4, 1.f, 0, 100);
 					ImGui::PopID();
 				}

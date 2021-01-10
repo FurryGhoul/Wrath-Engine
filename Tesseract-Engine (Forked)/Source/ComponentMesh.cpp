@@ -231,7 +231,6 @@ void ComponentMesh::DrawMesh()
 		{
 			int time = glGetUniformLocation(shaderProgram->ID, shaderProgram->uniforms[i]->name.c_str());
 			glUniform1i(time, App->shaderTimer.ReadTime());
-			LOG("time %d", time);
 		}
 		else if (shaderProgram->uniforms[i]->type == UniformType::TEXTURE)
 		{
