@@ -7,6 +7,7 @@ Repository: [Wrath Engine]https://github.com/FurryGhoul/Wrath-Engine
 
 ### Team
 <img src="https://i.imgur.com/Qn7mTvJ.jpg" width="400">
+
 Created by [Ivan Drofiak](https://github.com/FurryGhoul)
 - Implemented all included libraries
 - Made an engine work frame with ImGui
@@ -52,4 +53,7 @@ The user can see in-game that each game object has a component shader, by deaful
 As to modify the shader itself, in the tools tab a shader editor can be opened which will allow us to open any shader (vertex or fragment) and modify it. The editor is meant to support c++ coding language, so be careful with modifying it. Once the editing is finished the user can save the shader and a recompile shader function will be called to update the shader inside the scene, so that the user is able to see the result in real time; and in case something goes wrong the error and the line in which happened will be displayed on the console window. 
 
 <img src="https://i.imgur.com/llqu9gx.gif" width="600"> <img src="https://i.imgur.com/o9r054T.gif" width="600">
+
+## Video Showcase
+[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/WeyadynQCDI)
 
