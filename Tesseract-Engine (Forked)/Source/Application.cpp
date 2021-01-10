@@ -123,7 +123,7 @@ bool Application::Init()
 	counting = false;
 	game_dt = 0;
 
-	shaderTimer.Start();
+	game_timer.Stop();
 	return ret;
 }
 

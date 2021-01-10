@@ -225,6 +225,8 @@ void ComponentCamera::Load(JSON_Value * component)
 	frustum.verticalFov = component->getFloat("VFOV");
 	setAspectRatio(component->getFloat("Aspect Ratio"));
 	IsCulling = component->getBool("Culling");
+
+	//App->scene_intro->ChangeCulling(gameObject, IsCulling);
 }
 
 void ComponentCamera::CameraBB()
